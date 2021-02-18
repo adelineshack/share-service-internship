@@ -8,10 +8,9 @@ import { Link } from '@reach/router';
 function Header() {
 	return (
 		<div className="header">
-			<a><Link to='/'>Home</Link></a>
-			<a><Link to='/profile'>Profile</Link></a>
-			<a><Link to='/dashboard'>Dashboard</Link></a>
-			
+			<Link to='/'>Home</Link>
+			<Link to='/profile'>Profile</Link>
+			<Link to='/dashboard'>Dashboard</Link>
 		</div>
 	);
 }
