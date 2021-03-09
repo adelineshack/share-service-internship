@@ -1,0 +1,83 @@
+.enter-account {
+	.back {
+		width: 914px;
+		height: 495px;
+		justify-content: flex-start;
+		&__content {
+			left: 54px;
+			width: 285px;
+			margin-left: 54px;
+		}
+		.button {
+			margin-top: 28px;
+		}
+	}
+	.front {
+		right: 43px;
+		width: 478px;
+		
+		&__content {
+			position: absolute;
+			width: 300px;
+			height: 298px;
+			
+			
+		}
+		
+		&__form {
+			margin-top: 41px;
+		}
+		
+		&__forgot {
+			position: absolute;
+			right: 0;
+			font-size: 14px;
+			line-height: 17px;
+			color: #5063EE;
+			text-decoration: none;
+		}
+		
+		&__wrapper {
+			
+			margin-top: 35px;
+		}
+		
+		
+		.button {		
+			width: 235px;
+		}
+	}
+
+}
+
+// Переходы
+
+
+
+.frontEnterTransition-appear{
+	opacity: 1;
+	right: unset;
+	// left: 43px;
+	transform: translateX(-74%);
+	transition: all .5s ease;
+  }
+  
+.frontEnterTransition-appear.frontEnterTransition-appear-active {
+	opacity: 1;
+	// right: 39px;
+	transform: translateX(0px);
+	transition: all .5s ease;
+}
+
+.backEnterTransition-appear{
+	transform: translateX(150%);
+	opacity: 0;
+	transition: .5s ease;
+  }
+  
+.backEnterTransition-appear.backEnterTransition-appear-active {
+	transform: translateX(0);
+	opacity: 1;
+	transition: .5s ease;
+}
+
