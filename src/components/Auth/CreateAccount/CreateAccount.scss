@@ -1,0 +1,78 @@
+.create-account {
+	transform: all 1s;
+	.back {
+		width: 914px;
+		height: 495px;
+		justify-content: flex-end;
+		&__content {
+			right: 74px;
+			width: 245px;
+			margin-right: 74px;
+		}
+		.button {
+			margin-top: 28px;
+			color: #2C353D;
+		}
+	}
+	.front {
+		left: 43px;
+		width: 478px;
+		&__content {
+			width: 300px;
+		}
+		
+		&__form {
+			margin-top: 44px;
+		}
+		
+	
+	.button {		
+		width: 235px;
+	}
+	}
+	
+}
+.frontCreateTransition-appear{
+	opacity: 1;
+	transform: translateX(75%);
+  }
+  
+.frontCreateTransition-appear.frontCreateTransition-appear-active {
+	opacity: 1;
+	transform: translateX(0px);
+	transition: .5s ease;
+}
+// .frontCreateTransition-exit {
+// 	opacity: 1;
+	
+// }
+// .frontCreateTransition-leave.frontCreateTransition-leave-active {
+// 	opacity: 0;
+// 	transition: 0.5s ease;
+// }
+// .frontCreateTransition-leave {
+// 	opacity: 1;
+// 	transform: scale(1);
+// }
+  
+// .frontCreateTransition-leave-active {
+// 	opacity: 0;
+// 	transform: scale(0.9);
+// 	transition: opacity 300ms, transform 300ms;
+// }
+
+.backCreateTransition-appear{
+	transform: translateX(-200%);
+	opacity: 1;
+	transition: .5s ease;
+}
+  
+.backCreateTransition-appear.backCreateTransition-appear-active {
+	transform: translateX(0);
+	opacity: 1;
+	transition: .5s ease;
+}
+// .backCreateTransition-leave {
+// 	opacity: 0;
+// 	transition: .5s ease;
+// }
