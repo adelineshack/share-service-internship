@@ -16,9 +16,8 @@ function EnterAccount()  {
 				<CSSTransitionGroup
 					transitionName="backEnterTransition"
 					transitionAppear={true}
-					transitionAppearTimeout={3000}
-					transitionEnter={true}
-					transitionLeave={true}>
+					transitionEnterTimeout={3000}
+					transitionEnter={true}>
 					
 					<BackBlock
 						title="Welcome back!"
@@ -33,9 +32,8 @@ function EnterAccount()  {
 			<CSSTransitionGroup
 				transitionName="frontEnterTransition"
 				transitionAppear={true}
-				transitionAppearTimeout={600}
-				transitionEnter={true}
-				transitionLeave={true}>
+				transitionEnterTimeout={600}
+				transitionEnter={true}>
 
 				<FrontBlock 
 					title="Let’s make a party tonight."

@@ -18,9 +18,8 @@ function RecoverPassword()  {
 				<CSSTransitionGroup
 					transitionName="backRecoverTransition"
 					transitionAppear={true}
-					transitionAppearTimeout={3000}
+					transitionEnterTimeout={3000}
 					transitionEnter={true}
-					transitionLeave={true}
 				>
 					
 					<div className="back__content">
@@ -36,9 +35,8 @@ function RecoverPassword()  {
 				<CSSTransitionGroup
 					transitionName="backRecoverTransition"
 					transitionAppear={true}
-					transitionAppearTimeout={3000}
+					transitionEnterTimeout={3000}
 					transitionEnter={true}
-					transitionLeave={true}
 				>
 						
 					<div className="front__content">
