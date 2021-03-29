@@ -137,9 +137,9 @@ function Form()  {
 			<button
 				type = "submit" 
 				className = "button"
-				disabled = {!newPassword.inputValid || 
-							!confirmNewPassword.inputValid ||
-							oldPassword.inputValid} 
+				// disabled = {!newPassword.inputValid || 
+				// 			!confirmNewPassword.inputValid ||
+				// 			oldPassword.inputValid} 
 				onClick = { handleNewPassword }
 			>
 						Change my password
