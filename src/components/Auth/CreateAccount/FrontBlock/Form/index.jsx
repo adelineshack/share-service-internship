@@ -1,120 +1,97 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { navigate } from '@reach/router';
 import useInput from './../../../ValidationHook/index';
-import Button from '../../../../Button';
+// import Button from '../../../../Button';
 import Email from './../../../../Email/index';
 import Password from '../../../../Password';
+import { useDispatch } from "react-redux";
+// import { useForm } from "react-hook-form";
+import { registerUser } from './../../../../../store/actions/index';
 
 
 //CreateAccount
 
 function Form()  {
+	
 	const email = useInput('', {isEmpty: true, minLength: 5, isEmail: true});
 	const password = useInput('', {isEmpty: true, minLength: 5});
 
-	// Попытка добавить google-авторизацию
+
+	const dispatch = useDispatch();
+	const handleRegistration = () => {
+		
+		console.log('Кнопка работает');
+		const newUserData = {
+		// from your form
+			email: email.value,
+			password: password.value,
+		};	
+		dispatch(registerUser(newUserData));
+	};
 
 	// useEffect(() => {
-	// 	const _onInit = auth2 => {
-	// 		console.log('init OK', auth2);
-	// 	};
-	// 	const _onError = err => {
-	// 		console.log('error', err);
-	// 	};
-	// 	window.gapi.load('auth2', function() {
-	// 		window.gapi.auth2
-	// 			.init({ // не забудьте указать ваш ключ в .env
-	// 				client_id:
-	// 				process.env.REACT_APP_GOOGLE_CLIENT_ID,
-	// 			})
-	// 			.then(_onInit, _onError);
-	// 	});
-	// });
-
-
-	// const signIn = () => {
-	// 	const auth2 = window.gapi.auth2.getAuthInstance();
-	// 	auth2.signIn().then(googleUser => {
+	// 	dispatch(registerUser());
 		
-	// 		// метод возвращает объект пользователя
-	// 		// где есть все необходимые нам поля
-	// 		const profile = googleUser.getBasicProfile();
-	// 		console.log('ID: ' + profile.getId()); // не посылайте подобную информацию напрямую, на ваш сервер!
-	// 		console.log('Full Name: ' + profile.getName());
-	// 		console.log('Given Name: ' + profile.getGivenName());
-	// 		console.log('Family Name: ' + profile.getFamilyName());
-	// 		console.log('Image URL: ' + profile.getImageUrl());
-	// 		console.log('Email: ' + profile.getEmail());
-
-	// 		// токен
-	// 		const id_token = googleUser.getAuthResponse().id_token;
-	// 		console.log('ID Token: ' + id_token);
-	// 	});
-	// };
-
-	// const signOut = () => {
-	// 	const auth2 = window.gapi.auth2.getAuthInstance();
-	// 	auth2.signOut().then(function() {
-	// 		console.log('User signed out.');
-	// 	});
-	// };
+	// }, []);
+  
 
 	return (
-		
+
 		<form 
 			className="front__form"
 			onSubmit={event => {
 				event.preventDefault();
 				event.target.reset();
-
-				navigate('/success-auth');
+				console.log(`Password: ${password.value} Email: ${email.value}`);
+				
 			}}
 		>
 			{/* Email  */}
-			{((email.isDirty && email.emailError) || email.minLengthError) && 
-			<div 
-				style={{color: '#EB5757', 
-					position: 'relative', top: '0', 
-					textAlign: 'right', fontSize: '14px', 
-					marginBottom: '3px'}}
-			>
-					enter valid email
-			</div>}
 
-			{((email.isDirty && email.isEmpty) || email.minLengthError) ?
+			{(email.isDirty && email.isEmpty) && 
+				<div className="validation-text">empty field</div>}
+			{(email.isDirty && email.emailError) && 
+				<div className="validation-text">enter valid email</div>}
+			
+			{(email.isDirty && email.isEmpty) || (email.isDirty && email.emailError) ?
+			// true					 true				true
 				<Email 
 					value={email.value}
 					onChange={e => email.onChange(e)}
 					onBlur={e => email.onBlur(e)}
-					style = {{border: '1px solid #EB5757'}}/> 
+					style = {{border: '1px solid #EB5757'}}
+				/> 
 				: <Email 
 					value={email.value}
 					onChange={e => email.onChange(e)}
-					onBlur={e => email.onBlur(e)}/>
+					onBlur={e => email.onBlur(e)}
+				/>
+					
 			}
 
 			{/* Password */}
-			{(password.isDirty && password.isEmpty || password.minLengthError) && <div 
-				style={{color: '#EB5757', 
-					position: 'relative', textAlign: 'right', 
-					fontSize: '14px', marginBottom: '3px'}}>
-					enter valid password
-			</div>}
-			{(password.isDirty && password.isEmpty || password.minLengthError) ?
+			{(password.isDirty && password.isEmpty) && 
+				<div className="validation-text">empty field</div>}
+			{(password.isDirty && password.minLengthError) && 
+				<div className="validation-text">too short password</div>}
+
+			
+			{(password.isDirty && password.isEmpty) || (password.isDirty && password.minLengthError) ?
 				<Password 
-					value={password.value}
+					value={ password.value }
 					onChange={e => password.onChange(e)}
 					onBlur={e => password.onBlur(e)}
-					style = {{border: '1px solid #EB5757'}}/> 
+					style = {{border: '1px solid #EB5757'}}
+					placeholder = 'Password'
+				/> 
 				: <Password
-					value={password.value}
-					onChange={e => password.onChange(e)}
-					onBlur={e => password.onBlur(e)}/>
+					placeholder = 'Password'
+					value = { password.value }
+					onChange = {e => password.onChange(e)}
+					onBlur = {e => password.onBlur(e)}
+				/>
 				
 			}
-			
-
 			{/* Кнопка */}
 			<label className="front__label">
 				<input className="front__checkbox" name="checkbox" type="checkbox"/>
@@ -123,12 +100,24 @@ function Form()  {
 			</label>
 
 			<div className="front__wrapper">
-						
-				<Button 
+				<button className = "button"
+					disabled = {!email.inputValid || !password.inputValid}
+					// disabled = {!email.inputValid}
+					type = 'submit'
+					onClick = { handleRegistration }
+				>
+					Sign up
+				</button>	
+				{/* <Button 
 					type = "submit" 
 					text = "Sign up"
 					disabled = {!email.inputValid || !password.inputValid}
-				/>
+					// onClick = {() => {
+					// 	handleRegistration;
+					// 	console.log(`Password: ${password.value} Email: ${email.value}`);
+						
+					// }}
+				/> */}
 				<div className="front__social">
 					<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g clipPath="url(#clip0)">
@@ -150,6 +139,5 @@ function Form()  {
 	);
 	
 }
-
 
 export default Form;

@@ -18,16 +18,37 @@
 // 	z-index: -100;
 // }
 .mouse-parallax-bg {
-    position: absolute;
+    position: fixed;
+	top: -50px;
+    left: -50px;
     // background-image: url("../../img/bg_main.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 115%;
-    height: 115%;
-    transition: all 0.3s linear;  
+    width: 120%;
+    height: 120%;
+    transition: all 0.2s ease;  
 	z-index: -100;
 }
+
+.validation-text {
+	color: #EB5757;
+	position: relative; 
+	top: '0';
+	text-align: right; 
+	font-size: 14px;
+	margin-bottom: 3px;
+	transition: all .5s;
+}
+
+.validation-text-change {
+	color: #EB5757; 
+	display: flex;
+	justify-content: flex-end;
+	font-size: 12px; 
+	margin-bottom: 3px;
+}
+
 .front {
 	position: absolute;
 	height: 100vh;
@@ -166,6 +187,20 @@
 }
 
 .password-form {
+	width: 100%;
+	border: 1px solid #C6C6C6;
+	color: #C6C6C6;
+	border-radius: 4px;
+	height: 42px;
+	font-size: 16px;
+	line-height: 19px;
+	font-weight: 400;
+	background-color: #2C353D;
+	margin-bottom: 20px;
+	padding: 12px 14px;
+	
+}
+.input {
 	width: 100%;
 	border: 1px solid #C6C6C6;
 	color: #C6C6C6;

@@ -1,11 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import { navigate, Link } from '@reach/router';
+import {  Link } from '@reach/router';
 import useInput from './../../../ValidationHook/index';
-import Button from '../../../../Button';
+// import Button from '../../../../Button';
 import Email from './../../../../Email/index';
 import Password from './../../../../Password/index';
-
+import { useDispatch } from "react-redux";
+import { enterUser } from '../../../../../store/actions';
 
 //CreateAccount
 
@@ -13,6 +13,20 @@ function Form()  {
 	const email = useInput('', {isEmpty: true, minLength: 5, isEmail: true});
 	const password = useInput('', {isEmpty: true, minLength: 5});
 
+	const dispatch = useDispatch();
+
+	
+	const handleEnter = () => {
+		
+		console.log('Кнопка работает');
+		const newUserData = {
+		
+			email: email.value,
+			password: password.value,
+		};	
+		dispatch(enterUser(newUserData));
+		
+	};
 	return (
 		
 		<form 
@@ -20,21 +34,17 @@ function Form()  {
 			onSubmit={event => {
 				event.preventDefault();
 				event.target.reset();
-
-				navigate('/success-auth');
+				
 			}}
 		>
 			{/* Email  */}
-			{(email.isDirty && email.emailError || email.minLengthError) && 
-			<div 
-				style={{color: '#EB5757', 
-					position: 'relative', top: '0', 
-					textAlign: 'right', fontSize: '14px', 
-					marginBottom: '3px'}}
-			>
-					enter valid email
-			</div>}
-			{(email.isDirty && email.isEmpty || email.minLengthError) ?
+			{(email.isDirty && email.isEmpty) && 
+				<div className="validation-text">empty field</div>}
+			{(email.isDirty && email.emailError) && 
+				<div className="validation-text">enter valid email</div>}
+			
+			{(email.isDirty && email.isEmpty) || (email.isDirty && email.emailError) ?
+			// true 				false			true			false
 				<Email 
 					value={email.value}
 					onChange={e => email.onChange(e)}
@@ -44,30 +54,33 @@ function Form()  {
 				/> 
 				: <Email
 					value={email.value}
+					placeholder="Email"
 					onChange={e => email.onChange(e)}
-					onBlur={e => email.onBlur(e)}/>
+					onBlur={e => email.onBlur(e)}
+				/>
 				
 			}
 			{/* Password */}
-			{(password.isDirty && password.isEmpty || password.minLengthError) && <div 
-				style={{color: '#EB5757', 
-					position: 'relative', textAlign: 'right', 
-					fontSize: '14px', marginBottom: '3px'}}>
-					enter valid password
-			</div>}
-			{(password.isDirty && password.isEmpty || password.minLengthError) ?
+			{(password.isDirty && password.isEmpty) && 
+				<div className="validation-text">empty field</div>}
+			{(password.isDirty && password.minLengthError) && 
+				<div className="validation-text">too short password</div>}
+
+			
+			{(password.isDirty && password.isEmpty) || (password.isDirty && password.minLengthError) ?
 				<Password 
-					value={password.value}
+					value={ password.value }
 					onChange={e => password.onChange(e)}
 					onBlur={e => password.onBlur(e)}
-					placeholder="Password" 
-					style = {{border: '1px solid #EB5757'}}/> 
+					placeholder = 'Password'
+					style = {{border: '1px solid #EB5757'}}
+				/> 
 				: <Password
-					value={password.value}
-					onChange={e => password.onChange(e)}
-					onBlur={e => password.onBlur(e)}
-					placeholder="Password"  />
- 
+					placeholder = 'Password'
+					value = { password.value }
+					onChange = {e => password.onChange(e)}
+					onBlur = {e => password.onBlur(e)}
+				/>
 			}
 			
 			{/* Кнопка */}
@@ -80,12 +93,20 @@ function Form()  {
 			<Link className="front__forgot" to='/recover-password'>Forgot password?</Link>
 
 			<div className="front__wrapper">
-						
-				<Button 
+				<button
+					type = "submit" 
+					className = "button"
+					disabled = {!email.inputValid || !password.inputValid}
+					onClick = { handleEnter }
+				>
+						Sign in
+				</button>
+				{/* <Button 
 					type = "submit" 
 					text = "Sign up"
+
 					disabled = {!email.inputValid || !password.inputValid}
-				/>
+				/> */}
 				<div className="front__social">
 					<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g clipPath="url(#clip0)">

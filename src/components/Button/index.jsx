@@ -11,6 +11,7 @@ function Button(props)  {
 			// disabled = {!email.inputValid}
 			type = 'submit'
 			disabled = {props.disabled}
+			onClick = { props.onClick }
 		>
 
 			{props.text}
@@ -21,7 +22,8 @@ function Button(props)  {
 Button.propTypes = {
 	text: PropTypes.string,
 	disabled: PropTypes.func,
-	btn: PropTypes.string
+	btn: PropTypes.string,
+	onClick: PropTypes.func,
 };
 
 export default Button;
