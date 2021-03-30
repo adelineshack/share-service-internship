@@ -5,15 +5,19 @@ import { navigate } from '@reach/router';
 
 
 axios.defaults.baseURL = `https://share-service.mircod.one/api`;
-const token = localStorage.token;
-const config = {
-	headers: { Authorization: `Token ${token}` }
-};
-// axios.interceptors.request.use(function (config) {
-// 	const token = "your_token"; // from store
-// 	config.headers.Authorization = `Token ${token}`;
-// 	return config;
-// });
+// const token = localStorage.token;
+// const config = {
+// 	headers: { Authorization: `Token ${token}` }
+// };
+
+axios.interceptors.request.use(function (config) {
+	const token = localStorage.token;
+			
+	if (localStorage.token !== null) {
+		config.headers.Authorization = `Token ${token}`;
+	}
+	return config;
+});
 
 
 
@@ -68,7 +72,7 @@ export const recoverUserSuccess = createAction("RECOVER_USER_SUCCESS");
 export const recoverUser = (userData) => {
 	return (dispatch) => {
 		
-		axios.post('/auth/send_email_confirmation/', userData, config)
+		axios.post('/auth/send_email_confirmation/', userData)
 			.then(function (response) {
 				const { data } = response; 
 				localStorage.setItem("token", data.auth_token);
@@ -88,7 +92,7 @@ export const newPasswordUserSuccess = createAction("NEW_PASSWORD_USER_SUCCESS");
 export const newPasswordUser = (userData) => {
 	return (dispatch) => {
 		
-		axios.post('/auth/set_new_password/', userData, config)
+		axios.post('/auth/set_new_password/', userData)
 			.then(function (response) {
 				const { data } = response; 
 				localStorage.setItem("token", data.auth_token);
