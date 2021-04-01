@@ -60,6 +60,24 @@
 	top: 224px;
 	right: 91px;
 }
+.card-photo {
+	cursor: pointer;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+}
+.avatar {
+	position: absolute;
+	visibility: hidden;
+}
+.labelAvatar {
+	z-index: 2;
+	width: 170px;
+	height: 170px;
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+}
 .card-name-person {
 	font-size: 24px;
 	line-height: 28px;

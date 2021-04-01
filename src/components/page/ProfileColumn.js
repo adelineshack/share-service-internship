@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './ProfileColumn.scss';
 import ProfileColumnMore from './ProfileColumnMore';
 import './button.scss';
+import { useDispatch } from 'react-redux';
+import { changeAvatar } from './actions/actions';
 
 function ProfileColumn(props) {
 	const [handleModal, setHandleModal] = useState(false);
@@ -10,6 +12,11 @@ function ProfileColumn(props) {
 		return setHandleModal(!handleModal);
 	};
 
+	const dispatch = useDispatch();
+	const changeUserAvatar = (event) => {
+		event.preventDefault();
+		dispatch(changeAvatar(event.target.files[0]));
+	};
 	return (
 		<div
 			className={`profile-column ${
@@ -44,17 +51,28 @@ function ProfileColumn(props) {
 				</div>
 				<div className="person-card">
 					<div className="card-photo">
-						<img
-							src="/images/photo-profile.png"
-							alt="person"
-							className="card-photo"
-						/>
+						<form>
+							<img
+								src="/images/photo-profile.png"
+								alt="person"
+								className="card-photo"
+								name="card_photo"
+							/>
+							<input
+								type="file"
+								className="avatar"
+								id="avatar"
+								onInput={(event) => changeUserAvatar(event)}
+								name="avatar"
+							/>
+							<label for="avatar" className="labelAvatar"></label>
+						</form>
 					</div>
 					<div className="card-name-person">Annete Black, 22</div>
 					<div className="card-mail">annetBlack@mail.rom</div>
 					<div className="card-name">@Ablack</div>
 					<button className="signOut" onClick={() => props.Change()}>
-						Sing out
+						Sign out
 					</button>
 				</div>
 			</div>

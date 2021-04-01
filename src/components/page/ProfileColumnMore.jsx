@@ -1,34 +1,50 @@
 import React from 'react';
+import { changeUser } from './actions/actions';
 import './ProfileColumn.scss';
 import './ProfileColumnMore.scss';
+import { useDispatch } from 'react-redux';
 
 function ProfileColumnMore(props) {
+	const dispatch = useDispatch();
+	const handleUserChange = (event) => {
+		event.preventDefault();
+		const newUserData = {
+			// from form
+			first_name: event.target.elements.userName.value,
+		};
+
+		dispatch(changeUser(newUserData));
+	};
+
 	return (
 		<div
 			className={`profile-column-more ${
 				props.showModal ? 'open' : 'close'
 			} style={{...props.style}}`}
 		>
-			<div className="background">
-				{/* <img src="/images/back1.svg" alt="1" className="back1" />
-				<img src="/images/back2.png" alt="2" className="back2" />
-				<img src="/images/back3.png" alt="3" className="back3" />
-				<img src="/images/back4.png" alt="4" className="back4" />
-				<img src="/images/back5.png" alt="5" className="back5" />
-				<img src="/images/back6.png" alt="6" className="back6" /> */}
-			</div>
 			<div className="main-content">
 				<div className="person-card-more">
-					<input
-						placeholder="Annette Black, 22"
-						className="input-more"
-					/>
-					<input
-						placeholder="annetBlack@mail.rom"
-						className="input-more"
-					/>
-					<input placeholder="@Ablack" className="input-more" />
-					<button className="more-save">Save</button>
+					<form
+						onSubmit={(event) => handleUserChange(event)}
+						className="form"
+					>
+						<input
+							placeholder="Annete Black, 22"
+							className="input-more"
+							type="text"
+							name="userName"
+						/>
+						<input
+							value="annetBlack@mail.rom"
+							className="input-more"
+						/>
+						<input value="@Ablack" className="input-more" />
+						<input
+							type="submit"
+							value="Save"
+							className="more-save"
+						/>
+					</form>
 					<button
 						className="more-change-password"
 						onClick={() => props.ChangePassword()}
