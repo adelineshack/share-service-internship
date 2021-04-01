@@ -11,6 +11,7 @@ import ReplyRecover from './RecoverPassword/ReplyRecover/index';
 import ChangePassword from './ChangePassword';
 import ChangedPassword from './ChangePassword/ChangedPassword';
 // import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Profile from './../Profile/index';
 
 
 
@@ -62,9 +63,10 @@ function Auth()  {
 						<EnterAccount path="/enter-account" />
 						<RecoverPassword path="/recover-password" />
 						<ReplyRecover path="/reply-recover" />
-						<ChangePassword path="/change-password" />
+						<ChangePassword path="/auth/forgot_password/*" />
 						<ChangedPassword path="/changed-password" /> 
-					
+						<Profile path="/profile" />
+						
 					</Router>
 				</div>
 			</div>

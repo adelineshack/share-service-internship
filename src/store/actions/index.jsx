@@ -4,14 +4,26 @@ import axios from "axios";
 import { navigate } from '@reach/router';
 
 
-axios.defaults.baseURL = `https://share-service.mircod.one/api`;
-// const token = localStorage.token;
-// const config = {
-// 	headers: { Authorization: `Token ${token}` }
-// };
+axios.defaults.baseURL = 'https://kitbucket.ru/api';
 
-axios.interceptors.request.use(function (config) {
+axios.interceptors.request.use(async (config) => {
+
+	// Non token-needed routes
+	if (
+		[
+			'/auth/sign_up/',
+			'/auth/sign_in/',
+			'/auth/forgot_password/',
+			'/auth/set_new_password/',
+		].includes(config.url)
+	) {
+		return config;
+	}
 	const token = localStorage.token;
+
+	if (!token) {
+		return navigate('/enter-account');
+	}
 			
 	if (localStorage.token !== null) {
 		config.headers.Authorization = `Token ${token}`;
@@ -25,16 +37,12 @@ export const registerUserSuccess = createAction("REGISTER_USER_SUCCESS");
 
 export const registerUser = (userData) => {
 	return (dispatch) => {
-		// Можно юзать async/await
-		// axios.get('https://share-service.mircod.one/api/' + 'user/').then()...
-		// axios.post('https://share-service.mircod.one/api/' + 'auth/sign_up/', { first_name: 'test', last_name: 'test', ... }).then()...
-		// Рекомендация: baseUrl лучше указывать при инициализации axios, Authorization: Token your_token можно также указать при ините, он будет автоматом отправляться в запросах (где нужен в апишке)
-
+	
 		axios.post('/auth/sign_up/', userData)
 			.then(function (response) {
-				const { data } = response; 
+				// const { data } = response; 
+				// localStorage.setItem("token", data.auth_token);
 				dispatch(registerUserSuccess(response));
-				localStorage.setItem("token", data.auth_token);
 				navigate('/success-auth');
 				console.log(response);
 			})
@@ -53,10 +61,10 @@ export const enterUser = (userData) => {
 		
 		axios.post('/auth/sign_in/', userData)
 			.then(function (response) {
-				const { data } = response; 
-				localStorage.setItem("token", data.auth_token);
+				// const { data } = response; 
+				// localStorage.setItem("token", data.auth_token);
 				dispatch(enterUserSuccess(response));
-				navigate('/success-auth');
+				navigate('/profile');
 				console.log(response);
 			})
 			.catch(function (error) {
@@ -72,10 +80,10 @@ export const recoverUserSuccess = createAction("RECOVER_USER_SUCCESS");
 export const recoverUser = (userData) => {
 	return (dispatch) => {
 		
-		axios.post('/auth/send_email_confirmation/', userData)
+		axios.post('/auth/forgot_password/', userData)
 			.then(function (response) {
-				const { data } = response; 
-				localStorage.setItem("token", data.auth_token);
+				// const { data } = response; 
+				// localStorage.setItem("token", data.auth_token);
 				dispatch(recoverUserSuccess(response));
 				navigate('/reply-recover');
 				console.log(response);

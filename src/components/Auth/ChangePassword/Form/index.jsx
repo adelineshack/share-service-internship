@@ -6,6 +6,7 @@ import useInput from './../../ValidationHook/index';
 import Password from './../../../Password/index';
 import { useDispatch } from "react-redux";
 import { newPasswordUser } from '../../../../store/actions';
+import { useLocation } from '@reach/router';
 
 
 
@@ -15,7 +16,16 @@ function Form()  {
 	
 	const newPassword = useInput('', {isEmpty: true, minLength: 5});
 	const confirmNewPassword = useInput('', {isEmpty: true, minLength: 5});
-	const oldPassword = useInput('', {isEmpty: true, minLength: 5});
+	
+	const location = useLocation();
+	
+	const url = location.pathname;
+	const tokenArr = url.split('/');
+	const token = tokenArr[tokenArr.length-1];
+
+
+	
+
 
 	const dispatch = useDispatch();
 
@@ -26,12 +36,14 @@ function Form()  {
 		
 		const newUserData = {
 		// from your form
+			token: token,
 			password: newPassword.value,
+			
 		};
 		dispatch(newPasswordUser(newUserData));
 		
 	};
-	console.log(newPassword.value);
+	// console.log(newPassword.value);
 
 	return (
 		
@@ -98,52 +110,28 @@ function Form()  {
 
 						
 				</label>
-
-
-				<label className="back__item">
-								
-					<span className="title-pass">Old password</span>
-
-					{(oldPassword.isDirty && oldPassword.isEmpty) && 
-					<div className="validation-text-change">empty field</div>}
-
-					{(oldPassword.isDirty && oldPassword.minLengthError) && 
-					<div className="validation-text-change">too short password</div>}
-
-			
-					{(oldPassword.isDirty && oldPassword.isEmpty) || 
-					(oldPassword.isDirty && oldPassword.minLengthError) ?
-						<Password 
-							value={ oldPassword.value }
-							onChange={e => oldPassword.onChange(e)}
-							onBlur={e => oldPassword.onBlur(e)}
-							style = {{border: '1px solid #EB5757'}}
-						/> 
-						: <Password
-							value = { oldPassword.value }
-							onChange = {e => oldPassword.onChange(e)}
-							onBlur = {e => oldPassword.onBlur(e)}
-						/>
-					}
-								
-				</label>
-			</div>
-			{(newPassword.value != confirmNewPassword.value) && 
+				<div className="back__item">
+					{(newPassword.value != confirmNewPassword.value) && 
 						<div
 							style={{color: '#EB5757'}}
 						>
 							Пароли не совпадают
 						</div>}
-			<button
-				type = "submit" 
-				className = "button"
-				// disabled = {!newPassword.inputValid || 
-				// 			!confirmNewPassword.inputValid ||
-				// 			oldPassword.inputValid} 
-				onClick = { handleNewPassword }
-			>
+			
+					<button
+						type = "submit" 
+						className = "button"
+						// disabled = {!newPassword.inputValid || 
+						// 			!confirmNewPassword.inputValid ||
+						// 			oldPassword.inputValid} 
+						onClick = { handleNewPassword }
+					>
 						Change my password
-			</button>
+					</button>
+				</div>
+
+			</div>
+			
 			
 					
 		</form>
