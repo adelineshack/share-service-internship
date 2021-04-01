@@ -63,7 +63,7 @@ function Auth()  {
 						<EnterAccount path="/enter-account" />
 						<RecoverPassword path="/recover-password" />
 						<ReplyRecover path="/reply-recover" />
-						<ChangePassword path="/auth/forgot_password/*" />
+						<ChangePassword path="/auth/forgot_password/:token" />
 						<ChangedPassword path="/changed-password" /> 
 						<Profile path="/profile" />
 						

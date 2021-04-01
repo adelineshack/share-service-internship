@@ -6,7 +6,7 @@ import useInput from './../../ValidationHook/index';
 import Password from './../../../Password/index';
 import { useDispatch } from "react-redux";
 import { newPasswordUser } from '../../../../store/actions';
-import { useLocation } from '@reach/router';
+import { useParams } from '@reach/router';
 
 
 
@@ -17,13 +17,12 @@ function Form()  {
 	const newPassword = useInput('', {isEmpty: true, minLength: 5});
 	const confirmNewPassword = useInput('', {isEmpty: true, minLength: 5});
 	
-	const location = useLocation();
 	
-	const url = location.pathname;
-	const tokenArr = url.split('/');
-	const token = tokenArr[tokenArr.length-1];
-
-
+	
+	
+	const tokenProps = useParams();
+	const token = tokenProps.token;
+	console.log(token);
 	
 
 
