@@ -39,7 +39,7 @@ function Page() {
 	};
 
 	return (
-		<div className="container">
+		<div className="container-max">
 			<div className="back-1"></div>
 			<div className="back-2"></div>
 			<Menu />

@@ -65,7 +65,7 @@ function ProfileColumn(props) {
 								onInput={(event) => changeUserAvatar(event)}
 								name="avatar"
 							/>
-							<label for="avatar" className="labelAvatar"></label>
+							<label htmlFor="avatar" className="labelAvatar"></label>
 						</form>
 					</div>
 					<div className="card-name-person">Annete Black, 22</div>

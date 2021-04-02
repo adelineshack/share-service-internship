@@ -11,7 +11,7 @@ const Email = (props) => {
 
 	Email.propTypes = {
 		placeholder: PropTypes.string,
-		style: PropTypes.string,
+		style: PropTypes.object,
 		value: PropTypes.string,
 		onChange: PropTypes.func,
 		onBlur: PropTypes.func,
