@@ -1,4 +1,4 @@
-import reducers from "./reducers";
+import * as reducers from "./reducers";
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 
 const middleware = getDefaultMiddleware({
