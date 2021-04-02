@@ -90,7 +90,7 @@ function Form()  {
 				<span className="front__remember">Запомнить меня</span>
 			</label>
 
-			<Link className="front__forgot" to='/recover-password'>Forgot password?</Link>
+			<Link className="front__forgot" to='/auth/recover-password'>Forgot password?</Link>
 
 			<div className="front__wrapper">
 				<button
