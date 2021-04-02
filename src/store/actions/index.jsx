@@ -22,7 +22,7 @@ axios.interceptors.request.use(async (config) => {
 	const token = localStorage.token;
 
 	if (!token) {
-		return navigate('/enter-account');
+		return navigate('/auth/enter-account');
 	}
 			
 	if (localStorage.token !== null) {
@@ -43,7 +43,7 @@ export const registerUser = (userData) => {
 				// const { data } = response; 
 				// localStorage.setItem("token", data.auth_token);
 				dispatch(registerUserSuccess(response));
-				navigate('/success-auth');
+				navigate('/auth/success-auth');
 				console.log(response);
 			})
 			.catch(function (error) {
@@ -64,7 +64,7 @@ export const enterUser = (userData) => {
 				// const { data } = response; 
 				// localStorage.setItem("token", data.auth_token);
 				dispatch(enterUserSuccess(response));
-				navigate('/profile');
+				navigate('/');
 				console.log(response);
 			})
 			.catch(function (error) {
@@ -85,7 +85,7 @@ export const recoverUser = (userData) => {
 				// const { data } = response; 
 				// localStorage.setItem("token", data.auth_token);
 				dispatch(recoverUserSuccess(response));
-				navigate('/reply-recover');
+				navigate('/auth/reply-recover');
 				console.log(response);
 			})
 			.catch(function (error) {
@@ -105,7 +105,7 @@ export const newPasswordUser = (userData) => {
 				const { data } = response; 
 				localStorage.setItem("token", data.auth_token);
 				dispatch(newPasswordUserSuccess(response));
-				navigate('/changed-password');
+				navigate('/auth/changed-password');
 				console.log(response);
 			})
 			.catch(function (error) {

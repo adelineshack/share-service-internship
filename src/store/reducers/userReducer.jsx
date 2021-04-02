@@ -1,8 +1,10 @@
 import { handleActions } from "redux-actions";
 import * as actions from "../actions";
+import * as actionsPage from "../../components/page/actions/actions";
 
 const defaultState = {
 	users: [],
+	userInfo: {},
 };
 
 export const userInfoReducer = handleActions(
@@ -34,6 +36,30 @@ export const userInfoReducer = handleActions(
 			return {
 				...state,
 				users: payload,
+			};
+		},
+		[actionsPage.fetchUserDataSuccess](state, { payload }) {
+			return {
+				...state,
+				userInfo: payload,
+			};
+		},
+		[actionsPage.changeUserSuccess](state, { payload }) {
+			return {
+				...state,
+				userInfo: payload,
+			};
+		},
+		[actionsPage.changeUserPassword](state, { payload }) {
+			return {
+				...state,
+				userInfo: payload,
+			};
+		},
+		[actionsPage.changeUserAvatar](state, { payload }) {
+			return {
+				...state,
+				userInfo: payload,
 			};
 		},
 	},

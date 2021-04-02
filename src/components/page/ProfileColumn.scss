@@ -1,0 +1,115 @@
+//right column
+.header {
+	box-sizing: border-box;
+}
+.back1 {
+	margin-left: 166.83px;
+}
+.back2 {
+	margin-left: 198px;
+}
+.back3 {
+	margin-left: 118px;
+}
+.back4 {
+	margin-left: 0;
+	margin-top: 678px;
+}
+.back5 {
+	margin-left: 70px;
+	margin-top: 763px;
+}
+.back6 {
+	margin-left: 5px;
+	margin-top: 793px;
+}
+.name {
+	@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+	font-family: Roboto, sans-serif;
+	color: #eeeeee;
+	opacity: 0.5;
+	font-size: 24px;
+	position: absolute;
+	right: 236px;
+	top: 36px;
+	height: 28px;
+	box-sizing: border-box;
+}
+
+.customization {
+	position: absolute;
+	right: 82px;
+	top: 195px;
+	cursor: pointer;
+}
+//card
+.main-content {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.person-card {
+	box-sizing: border-box;
+	width: 197px;
+	position: absolute;
+	font-family: Roboto, sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	top: 224px;
+	right: 91px;
+}
+.card-photo {
+	cursor: pointer;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+}
+.avatar {
+	position: absolute;
+	visibility: hidden;
+}
+.labelAvatar {
+	z-index: 2;
+	width: 170px;
+	height: 170px;
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+}
+.card-name-person {
+	font-size: 24px;
+	line-height: 28px;
+	color: #eeeeee;
+	margin: 13px 0;
+}
+.card-mail {
+	color: #5063ee;
+	font-size: 20px;
+	line-height: 23px;
+}
+.card-name {
+	font-size: 20px;
+	line-height: 23px;
+	color: #828282;
+	margin: 13px 0px;
+}
+
+.profile-column {
+	height: 900px;
+	width: 380px;
+	display: none;
+	background-color: #2c353d;
+	box-sizing: border-box;
+	z-index: 2;
+}
+.profile-column.open {
+	display: block;
+}
+.profile-column.close {
+	display: none;
+}
+.background img {
+	position: absolute;
+}
