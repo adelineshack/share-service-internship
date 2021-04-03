@@ -26,7 +26,7 @@ function BackBlock()  {
 				onSubmit={event => {
 					event.preventDefault();
 					event.target.reset();
-					navigate('/enter-account');
+					navigate('/auth/enter-account');
 				}}
 			>
 					
