@@ -10,7 +10,7 @@ function App() {
 		<div className="App">
 			<Router>
 				<Auth path="/auth/*" />
-				<Page path="/" />
+				<Page path="/*" />
 			</Router>
 		</div>
 
