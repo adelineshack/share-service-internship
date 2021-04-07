@@ -86,9 +86,19 @@ function Page() {
 			<Router>
 				{/* <div className="back-1"></div>
 				<div className="back-2"></div> */}
+				<DefaultPage path="/" />
 				<GoalCatalog path="/goal/categories/" />
 			</Router>
 		</div>
+	);
+}
+
+export function DefaultPage() {
+	return (
+		<>
+			<div className="back-1"></div>
+			<div className="back-2"></div>
+		</>
 	);
 }
 
