@@ -5,6 +5,7 @@ import './GoalsCatalog.scss';
 import { useDispatch, useSelector} from "react-redux";
 // import StackGrid from "react-stack-grid";
 import { getGoalsCategories, getGoals} from './../../../store/actions/index';
+import { navigate } from '@reach/router';
 
 
 
@@ -58,9 +59,6 @@ function GoalCatalog() {
 
 	}, []);
 	
-
-	
-
 	
 	const categories = useSelector(state => state.goals.categories);
 	const goals = useSelector(state => state.goals.goals);
@@ -104,7 +102,20 @@ function GoalCatalog() {
 		}
 	};
 
+	// const filterCategories = () => {
+	// 	categories.map((categories) => {
+	// 		let filteredGoals = goals.filter(goals => {
+	// 			if(goals.category === categories.title) {
+	// 				return true;
+	// 			}
+	// 		});
+	// 		console.log(filteredGoals);
+	// 		return filteredGoals;
+	// 	});
+	// };
 	const filterCategories = () => {
+		dispatch(getGoals());
+		
 		categories.map((categories) => {
 			let filteredGoals = goals.filter(goals => {
 				if(goals.category === categories.title) {
@@ -160,13 +171,14 @@ function GoalCatalog() {
 
 			<div className="goals__layout">
 				{newGoals.map((goals, index) =>
-					<div key={index} className="example_grid">
+					<div key={index} className="goals_grid">
 						{goals.map((goals) =>
 							
 							<div
 								className = 'item_grid' 
 								style = {{backgroundImage: goals.bg_image }}
 								key={ goals.id }
+								onClick = { () => navigate(`/goal/${goals.id}`)}
 							>
 								
 								<div className="goals_goals__circle">

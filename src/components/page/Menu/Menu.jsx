@@ -13,7 +13,7 @@ function Menu() {
 				<div className="icon">
 					<img src="/images/icon.svg" alt="icon"></img>
 				</div>
-				<div className="GoalMenu">
+				<div className="GoalMenu" onClick = { () => navigate('/') }>
 					<img src="/images/GoalMenu.png" alt="GoalMenu" />
 				</div>
 				{/* вторая строчка */}

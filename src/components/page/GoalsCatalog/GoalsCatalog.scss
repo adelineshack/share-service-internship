@@ -120,6 +120,14 @@
 	background-position: center;
 	object-fit: cover;
 	z-index: 10;
+	cursor: pointer;
+	// transition: all 1s;
+	// &:hover {
+		
+	// 	&::after {
+	// 		background: rgba(116, 116, 116, 0.425);
+	// 	}
+	// }
 	&::after {
 		content: '';
 		position: absolute;
@@ -133,7 +141,7 @@
 	}
 }
 
-.example_grid {
+.goals_grid {
 	display: grid;
 	grid-template-columns: 84px 310px 310px 90px 310px;
 	// grid-template-columns:  ;

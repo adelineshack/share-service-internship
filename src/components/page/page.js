@@ -12,6 +12,7 @@ import SuccessModal from './SuccessModal/SuccessModal';
 import Notifications from './Notifications/Notifications';
 import { Router } from '@reach/router';
 import GoalCatalog from './GoalsCatalog/index';
+import GoalPage from './GoalPage';
 
 function Page() {
 	const [handleModal, setHandleModal] = useState(false);
@@ -88,6 +89,7 @@ function Page() {
 				<div className="back-2"></div> */}
 				<DefaultPage path="/" />
 				<GoalCatalog path="/goal/categories/" />
+				<GoalPage path="/goal/:id" />
 			</Router>
 		</div>
 	);
