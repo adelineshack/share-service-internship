@@ -113,3 +113,39 @@ export const newPasswordUser = (userData) => {
 			});
 	};
 };
+
+export const getGoalsCategoriesSuccess = createAction("GET_GOALS_CATEGORIES_SUCCESS");
+
+export const getGoalsCategories = () => {
+	return (dispatch) => {
+		
+		axios.get('/goal/categories/')
+			.then(function (response) {
+				const { data } = response; 
+				dispatch(getGoalsCategoriesSuccess(data));
+				console.log(response);
+				console.log(data);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+};
+
+export const getGoalsSuccess = createAction("GET_GOALS_SUCCESS");
+
+export const getGoals = () => {
+	return (dispatch) => {
+		
+		axios.get('/goal/')
+			.then(function (response) {
+				const { data } = response; 
+				dispatch(getGoalsSuccess(data));
+				console.log(response);
+				console.log(data);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+};

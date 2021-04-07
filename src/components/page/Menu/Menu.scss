@@ -8,7 +8,7 @@
 	justify-content: space-between;
 	height: 900px;
 	cursor: pointer;
-	z-index: 2;
+	z-index: 100;
 }
 .mini-menu {
 	width: 84px;
@@ -27,6 +27,7 @@
 .mini-menu:hover {
 	width: 245px;
 	transition: all 0.2s ease-in-out;
+	z-index: 100;
 	.GoalMenu {
 		display: block;
 	}

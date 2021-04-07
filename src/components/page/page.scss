@@ -38,10 +38,10 @@
 	width: 304px;
 }
 .tools {
-	position: absolute;
+	position: fixed;
 	top: 34px;
 	right: 47px;
-	z-index: 3;
+	z-index: 100;
 }
 .bell:hover {
 	cursor: pointer;
