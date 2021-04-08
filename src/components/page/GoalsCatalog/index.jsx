@@ -3,7 +3,6 @@ import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/scss/alice-carousel.scss";
 import './GoalsCatalog.scss';
 import { useDispatch, useSelector} from "react-redux";
-// import StackGrid from "react-stack-grid";
 import { getGoalsCategories, getGoals, filterGoals } from './../../../store/actions/index';
 import { navigate } from '@reach/router';
 
@@ -26,7 +25,7 @@ function GoalCatalog() {
 	//Получение данных из стора
 	const categories = useSelector(state => state.goals.categories);
 	let goals = useSelector(state => state.goals.goals);
-	let categoryId = useSelector(state => state.filteredCategoryId);
+	let categoryId = useSelector(state => state.goals.filteredCategoryId);
 	console.log(categoryId);
 
 	
@@ -55,6 +54,12 @@ function GoalCatalog() {
 	window.newGoals = newGoals;
 	window.goals = goals;
 	window.categories = categories;
+
+	function filterCategories(categories) {
+		let categoryId = categories.id;
+		dispatch(filterGoals(categoryId));
+		console.log(categoryId);
+	}
 	
 	
 	const responsive = {
@@ -69,13 +74,6 @@ function GoalCatalog() {
 		}
 	};
 
-		
-
-	const filterCategories = (categories) => {
-		let categoryId = categories.id;
-		dispatch(filterGoals(categoryId));
-		console.log(categoryId);
-	};
 
 
 	return (
@@ -128,7 +126,6 @@ function GoalCatalog() {
 								if (obj.category.id === categoryId) {
 									return true;
 								} 
-								
 								return true;
 							}).map((goals) =>
 							
