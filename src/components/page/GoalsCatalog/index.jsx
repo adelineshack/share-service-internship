@@ -34,7 +34,6 @@ function GoalCatalog() {
 	goals.map( item => item.bg_image = `url(${item.bg_image})`);
 
 	
-	
 	//Разделение на подмассивы
 	let newGoals = [];
 	const length = 6;
@@ -50,18 +49,21 @@ function GoalCatalog() {
 		
 	});
 
+
+
 	//Для работы в консоле
 	window.newGoals = newGoals;
 	window.goals = goals;
 	window.categories = categories;
 
 	function filterCategories(categories) {
-		let categoryId = categories.id;
-		dispatch(filterGoals(categoryId));
+		
+		dispatch(filterGoals(categories.id));
+		dispatch(getGoals());
 		console.log(categoryId);
 	}
 	
-	
+
 	const responsive = {
 		0: {
 			items: 4
@@ -74,7 +76,8 @@ function GoalCatalog() {
 		}
 	};
 
-
+	console.log(goals);
+	console.log(newGoals);
 
 	return (
 		<div className="goals__container">
@@ -123,10 +126,19 @@ function GoalCatalog() {
 					<div key={index} className="goals_grid">
 						{ 
 							section.filter(obj => {
-								if (obj.category.id === categoryId) {
+								if ( categoryId.length === 0 ) {
+									// console.log(section);
+									
 									return true;
-								} 
-								return true;
+
+								}  else if (obj.category.id === categoryId)  {
+									
+									// section = section.splice(0, 2, goals);
+									// console.log(section);
+									// console.log(obj);
+									return true;
+								}	return false;
+								
 							}).map((goals) =>
 							
 								<div
