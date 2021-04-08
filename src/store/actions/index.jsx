@@ -149,3 +149,24 @@ export const getGoals = () => {
 			});
 	};
 };
+
+export const filterGoalsSuccess = createAction("FILTER_GOALS_SUCCESS");
+
+export const filterGoals = (filteredData) => {
+	return (dispatch) => {
+		
+		axios.get('/goal/categories/', )
+			.then(function (response) {
+				const { data } = response; 
+				dispatch(filterGoalsSuccess(filteredData));
+				console.log(response);
+				console.log(data);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+};
+
+
+

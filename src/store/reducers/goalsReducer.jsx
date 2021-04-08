@@ -5,6 +5,7 @@ import * as actions from "../actions";
 const defaultState = {
 	categories: [],
 	goals: [],
+	filteredCategoryId: [],
 };
 
 export const goalsReducer = handleActions(
@@ -21,6 +22,13 @@ export const goalsReducer = handleActions(
 			return {
 				...state,
 				goals: payload,
+			};
+		},
+		[actions.filterGoalsSuccess](state, { payload }) {
+			console.log(payload);
+			return {
+				...state,
+				filteredCategoryId: payload,
 			};
 		},
 		
