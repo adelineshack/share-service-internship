@@ -15,6 +15,9 @@ axios.interceptors.request.use(async (config) => {
 			'/auth/sign_in/',
 			'/auth/forgot_password/',
 			'/auth/set_new_password/',
+			'/auth/set_new_password/',
+			'/goal/categories/',
+			'/goal/'
 		].includes(config.url)
 	) {
 		return config;
@@ -22,7 +25,7 @@ axios.interceptors.request.use(async (config) => {
 	const token = localStorage.token;
 
 	if (!token) {
-		return navigate('/auth/enter-account');
+		return navigate('/auth');
 	}
 			
 	if (localStorage.token !== null) {
