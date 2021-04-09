@@ -39,7 +39,7 @@
 .customization {
 	position: absolute;
 	right: 82px;
-	top: 195px;
+	top: 155px;
 	cursor: pointer;
 }
 //card
@@ -48,17 +48,21 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	//justify-content: flex-end;
+	width: 25vw;
 }
 .person-card {
 	box-sizing: border-box;
-	width: 197px;
-	position: absolute;
+	width: 25vw;
+	height: 90vh;
+	//position: absolute;
 	font-family: Roboto, sans-serif;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	top: 224px;
-	right: 91px;
+	justify-content: flex-end;
+	// top: 224px;
+	// right: 91px;
 }
 .card-photo {
 	cursor: pointer;
@@ -76,7 +80,7 @@
 	height: 170px;
 	position: absolute;
 	cursor: pointer;
-	top: 0;
+	top: 25vh;
 }
 .card-name-person {
 	font-size: 24px;
@@ -95,20 +99,25 @@
 	color: #828282;
 	margin: 13px 0px;
 }
-
+.container-max {
+	display: flex;
+}
 .profile-column {
-	position: fixed;
-	top: 0;
-	right: 0;
-	height: 100vh;
-	width: 380px;
+height: 100vh;
+	width: 25vw;
 	display: none;
 	background-color: #2c353d;
 	box-sizing: border-box;
-	z-index: 99;
+	z-index: 2;
+	position: absolute;
+	right: 0;
+	overflow: hidden;
 }
 .profile-column.open {
 	display: block;
+	display: flex;
+	//flex-direction: column;
+	align-items: center;
 }
 .profile-column.close {
 	display: none;

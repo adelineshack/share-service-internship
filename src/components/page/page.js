@@ -13,6 +13,7 @@ import Notifications from './Notifications/Notifications';
 import { Router } from '@reach/router';
 import GoalCatalog from './GoalsCatalog/index';
 import GoalPage from './GoalPage';
+//import GoalsFamily from './GoalsFamily';
 
 function Page() {
 	const [handleModal, setHandleModal] = useState(false);
@@ -43,8 +44,17 @@ function Page() {
 
 	return (
 		<div className="container-max">
-			
-			
+			<div className="backg">
+				<div className="back-00">
+					<div className="back-0"></div>
+				</div>
+				{/* <GoalsFamily /> */}
+				<div className="back-11">
+					<div className="back-1"></div>
+					<div className="back-2"></div>
+				</div>
+			</div>
+
 			<Menu />
 			<div className="tools">
 				<img
@@ -85,9 +95,7 @@ function Page() {
 			/>
 			<Notifications notesModal={notesModal} />
 			<Router>
-				{/* <div className="back-1"></div>
-				<div className="back-2"></div> */}
-				<DefaultPage path="/" />
+				{/* <DefaultPage path="/" /> */}
 				<GoalCatalog path="/goal/categories/" />
 				<GoalPage path="/goal/:id" />
 			</Router>

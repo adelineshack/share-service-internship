@@ -2,6 +2,7 @@ import React from 'react';
 import './ModalChangePassword.scss';
 import { changePassword } from '../actions/actions';
 import { useDispatch } from 'react-redux';
+import '../button.scss';
 
 function ModalChangePassword(props) {
 	const dispatch = useDispatch();
@@ -51,7 +52,7 @@ function ModalChangePassword(props) {
 						className="input"
 						name="new_password_again"
 					/>
-					<button type="submit" className="btn-change">
+					<button type="submit" className="btn-change all-buttons">
 						Change my password
 					</button>
 				</form>

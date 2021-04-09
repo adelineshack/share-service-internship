@@ -1,4 +1,4 @@
-button {
+.all-buttons {
 	background-color: #5063ee;
 	display: flex;
 	justify-content: center;
@@ -14,7 +14,8 @@ button {
 	border: none;
 }
 .signOut {
-	margin-top: 149px;
+margin-bottom: 10vh;
+	margin-top: 10vh;
 	//z-index: 3;
 }
 .signOut:hover {

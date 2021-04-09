@@ -23,14 +23,14 @@ function ProfileColumn(props) {
 				props.profileColumn ? 'open' : 'close'
 			} style={{...props.style}}`}
 		>
-			<div className="background">
+			{/* <div className="background">
 				<img src="/images/back1.svg" alt="1" className="back1" />
 				<img src="/images/back2.png" alt="2" className="back2" />
 				<img src="/images/back3.png" alt="3" className="back3" />
 				<img src="/images/back4.png" alt="4" className="back4" />
 				<img src="/images/back5.png" alt="5" className="back5" />
 				<img src="/images/back6.png" alt="6" className="back6" />
-			</div>
+			</div> */}
 			<div className="main-content">
 				<ProfileColumnMore
 					Delete={() => props.Delete()}
@@ -71,7 +71,7 @@ function ProfileColumn(props) {
 					<div className="card-name-person">Annete Black, 22</div>
 					<div className="card-mail">annetBlack@mail.rom</div>
 					<div className="card-name">@Ablack</div>
-					<button className="signOut" onClick={() => props.Change()}>
+					<button className="signOut all-buttons" onClick={() => props.Change()}>
 						Sign out
 					</button>
 				</div>

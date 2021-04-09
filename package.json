@@ -54,9 +54,9 @@
   },
   "devDependencies": {
     "node-sass": "^5.0.0",
-    "react-router": "^5.2.0",
     "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
+    "react-router": "^5.2.0",
     "redux-devtools": "^3.7.0",
     "stylelint": "^13.10.0",
     "stylelint-config-prettier": "^8.0.2",
