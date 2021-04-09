@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { createAction } from 'redux-actions';
 
-axios.defaults.baseURL = `https://kitbucket.ru/api`;
-axios.interceptors.request.use(function (config) {
-	const token = '2a411a269574576e5873f82945a4e13b6021e427'; // from store
-	config.headers.Authorization = `Token ${token}`;
-	return config;
-});
+// axios.defaults.baseURL = `https://kitbucket.ru/api`;
+// axios.interceptors.request.use(function (config) {
+// 	const token = '2a411a269574576e5873f82945a4e13b6021e427'; // from store
+// 	config.headers.Authorization = `Token ${token}`;
+// 	return config;
+// });
 
 export const fetchUserDataSuccess = createAction('FETCH_USER_DATA_SUCCESS');
 export const changeUserSuccess = createAction('CHANGE_USER_SUCCESS');

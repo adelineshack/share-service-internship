@@ -127,7 +127,7 @@ export const getGoalsCategories = () => {
 				const { data } = response; 
 				dispatch(getGoalsCategoriesSuccess(data));
 				console.log(response);
-				console.log(data);
+				// console.log(data);
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -145,7 +145,7 @@ export const getGoals = () => {
 				const { data } = response; 
 				dispatch(getGoalsSuccess(data));
 				console.log(response);
-				console.log(data);
+				// console.log(data);
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -160,10 +160,10 @@ export const filterGoals = (filteredData) => {
 		
 		axios.get('/goal/categories/', )
 			.then(function (response) {
-				const { data } = response; 
+				// const { data } = response; 
 				dispatch(filterGoalsSuccess(filteredData));
 				console.log(response);
-				console.log(data);
+				// console.log(data);
 			})
 			.catch(function (error) {
 				console.log(error);
