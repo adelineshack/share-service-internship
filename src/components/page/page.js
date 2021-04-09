@@ -44,16 +44,16 @@ function Page() {
 
 	return (
 		<div className="container-max">
-			<div className="backg">
+			{/* <div className="backg">
 				<div className="back-00">
 					<div className="back-0"></div>
 				</div>
-				{/* <GoalsFamily /> */}
+				<GoalsFamily />
 				<div className="back-11">
 					<div className="back-1"></div>
 					<div className="back-2"></div>
 				</div>
-			</div>
+			</div> */}
 
 			<Menu />
 			<div className="tools">
@@ -95,7 +95,7 @@ function Page() {
 			/>
 			<Notifications notesModal={notesModal} />
 			<Router>
-				{/* <DefaultPage path="/" /> */}
+				<DefaultPage path="/" />
 				<GoalCatalog path="/goal/categories/" />
 				<GoalPage path="/goal/:id" />
 			</Router>
