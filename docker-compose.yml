@@ -1,0 +1,11 @@
+version: '3.2'
+
+services:
+  frontend_build:
+    build: .
+    command: sh move_build_to_volume.sh
+    volumes:
+      - data_volume:/home/app/web/build_to_volume/
+
+volumes:
+  data_volume:
