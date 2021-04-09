@@ -4,7 +4,7 @@ import * as actionsPage from "../../components/page/actions/actions";
 
 const defaultState = {
 	users: [],
-	userInfo: {},
+	
 };
 
 export const userInfoReducer = handleActions(

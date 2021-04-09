@@ -97,12 +97,15 @@
 }
 
 .profile-column {
-	height: 900px;
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100vh;
 	width: 380px;
 	display: none;
 	background-color: #2c353d;
 	box-sizing: border-box;
-	z-index: 2;
+	z-index: 99;
 }
 .profile-column.open {
 	display: block;

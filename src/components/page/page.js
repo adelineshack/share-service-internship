@@ -10,6 +10,9 @@ import ModalDeleteAccount from './ModalDelete/modal-delete';
 import ModalChangePassword from './ModalChangePassword/modal-change-password';
 import SuccessModal from './SuccessModal/SuccessModal';
 import Notifications from './Notifications/Notifications';
+import { Router } from '@reach/router';
+import GoalCatalog from './GoalsCatalog/index';
+import GoalPage from './GoalPage';
 
 function Page() {
 	const [handleModal, setHandleModal] = useState(false);
@@ -40,8 +43,8 @@ function Page() {
 
 	return (
 		<div className="container-max">
-			<div className="back-1"></div>
-			<div className="back-2"></div>
+			
+			
 			<Menu />
 			<div className="tools">
 				<img
@@ -81,7 +84,23 @@ function Page() {
 				Success={() => Success()}
 			/>
 			<Notifications notesModal={notesModal} />
+			<Router>
+				{/* <div className="back-1"></div>
+				<div className="back-2"></div> */}
+				<DefaultPage path="/" />
+				<GoalCatalog path="/goal/categories/" />
+				<GoalPage path="/goal/:id" />
+			</Router>
 		</div>
+	);
+}
+
+export function DefaultPage() {
+	return (
+		<>
+			<div className="back-1"></div>
+			<div className="back-2"></div>
+		</>
 	);
 }
 
