@@ -33,20 +33,40 @@ function GoalCatalog() {
 	// Отобажение бэкграунда
 	goals.map( item => item.bg_image = `url(${item.bg_image})`);
 
-	
+	let filteredGoal = goals.filter(obj => {
+		if ( categoryId === null ) {
+			console.log("работает");
+			
+			return true;
+
+		}  else if (obj.category.id === categoryId)  {
+			console.log("работает2");
+			console.log(obj);
+			return true;
+		}	else return false;
+		
+	});
+	console.log(filteredGoal);
+
+
 	//Разделение на подмассивы
 	let newGoals = [];
 	const length = 6;
-	for (let i = 0; i < goals.length; i += length) {
-		newGoals.push(goals.slice(i, i + length));
+	for (let i = 0; i < filteredGoal.length; i += length) {
+		newGoals.push(filteredGoal.slice(i, i + length));
 	}
 
 	
 	//Добавление пустых полей
 	newGoals.map(obj => {
-		obj.splice(3, 0, {category: { id: 999}});
-		obj.splice(6, 0, {category: { id: 999}});
-		
+		if ( filteredGoal.length > 3 && filteredGoal.length <  5 ) {
+			obj.splice(3, 0, {category: { id: 999}});
+			
+		} else if ( filteredGoal.length >  5 ) {
+			obj.splice(3, 0, {category: { id: 999}});
+			obj.splice(6, 0, {category: { id: 999}});
+		}
+	
 	});
 
 
@@ -125,21 +145,7 @@ function GoalCatalog() {
 				{newGoals.map((section, index) =>
 					<div key={index} className="goals_grid">
 						{ 
-							section.filter(obj => {
-								if ( categoryId.length === 0 ) {
-									// console.log(section);
-									
-									return true;
-
-								}  else if (obj.category.id === categoryId)  {
-									
-									// section = section.splice(0, 2, goals);
-									// console.log(section);
-									// console.log(obj);
-									return true;
-								}	return false;
-								
-							}).map((goals) =>
+							section.map((goals) =>
 							
 								<div
 									className = 'item_grid' 

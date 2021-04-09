@@ -5,7 +5,7 @@ import * as actions from "../actions";
 const defaultState = {
 	categories: [],
 	goals: [],
-	filteredCategoryId: [],
+	filteredCategoryId: null,
 };
 
 export const goalsReducer = handleActions(
