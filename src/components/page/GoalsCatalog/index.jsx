@@ -63,8 +63,8 @@ function GoalCatalog() {
 			obj.splice(3, 0, {category: { id: 999}});
 			
 		} else if ( filteredGoal.length >  5 ) {
-			obj.splice(3, 0, {category: { id: 999}});
-			obj.splice(6, 0, {category: { id: 999}});
+			obj.splice(3, 0, {category: { id: 'default'}});
+			obj.splice(6, 0, {category: { id: 'default'}});
 		}
 	
 	});
