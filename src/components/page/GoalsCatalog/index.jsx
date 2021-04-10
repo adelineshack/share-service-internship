@@ -26,7 +26,6 @@ function GoalCatalog() {
 	const categories = useSelector(state => state.goals.categories);
 	let goals = useSelector(state => state.goals.goals);
 	let categoryId = useSelector(state => state.goals.filteredCategoryId);
-	console.log(categoryId);
 
 	
 	
@@ -35,19 +34,17 @@ function GoalCatalog() {
 
 	let filteredGoal = goals.filter(obj => {
 		if ( categoryId === null ) {
-			console.log("работает");
 			
 			return true;
 
 		}  else if (obj.category.id === categoryId)  {
-			console.log("работает2");
-			console.log(obj);
+	
 			return true;
 		}	else return false;
 		
 	});
-	console.log(filteredGoal);
 
+	
 
 	//Разделение на подмассивы
 	let newGoals = [];
@@ -59,22 +56,19 @@ function GoalCatalog() {
 	
 	//Добавление пустых полей
 	newGoals.map(obj => {
-		if ( filteredGoal.length > 3 && filteredGoal.length <  5 ) {
-			obj.splice(3, 0, {category: { id: 999}});
+		if ( obj.length > 3 && obj.length <  5 ) {
+			obj.splice(3, 0, {category: { id: 997}});
 			
-		} else if ( filteredGoal.length >  5 ) {
-			obj.splice(3, 0, {category: { id: 'default'}});
-			obj.splice(6, 0, {category: { id: 'default'}});
+		} else if ( obj.length >  5 ) {
+			obj.splice(3, 0, {category: { id: 999}});
+			obj.splice(6, 0, {category: { id: 998}});
+		} else {
+			return true;
 		}
 	
 	});
 
 
-
-	//Для работы в консоле
-	window.newGoals = newGoals;
-	window.goals = goals;
-	window.categories = categories;
 
 	function filterCategories(categories) {
 		
@@ -96,8 +90,6 @@ function GoalCatalog() {
 		}
 	};
 
-	console.log(goals);
-	console.log(newGoals);
 
 	return (
 		<div className="goals__container">
@@ -112,7 +104,8 @@ function GoalCatalog() {
 						infinite={true}
 						mouseTracking={true}
 						responsive={responsive}
-						swipeDisabled={true}
+						
+						
 					>
 						{categories.map((categories) => 
 
@@ -120,7 +113,7 @@ function GoalCatalog() {
 								key = {categories.id} 
 								className="goals__slider-item" 
 								// style={{background: `hsl(${categories.id * 75}, 60%, 60%)` }}
-								style={{background: `linear-gradient(180deg, hsl(${categories.id*80}, 92%, 77%) 0%, hsl(233, 82%, 62%) 100%)`}}
+								style={{background: `linear-gradient(180deg, hsl(${categories.id*30}, 92%, 77%) 0%, hsl(${categories.id*60}, 82%, 62%) 100%)`}}
 								onDoubleClick = {() => filterCategories(categories) }
 							>
 								<div className="goals__slider-icon">
@@ -143,14 +136,14 @@ function GoalCatalog() {
 
 			<div className="goals__layout">
 				{newGoals.map((section, index) =>
-					<div key={index} className="goals_grid">
+					<div key = {index} className="goals_grid">
 						{ 
 							section.map((goals) =>
 							
 								<div
 									className = 'item_grid' 
 									style = {{backgroundImage: goals.bg_image }}
-									key={ goals.id }
+									key = { goals.id }
 									onClick = { () => navigate(`/goal/${goals.id}`)}
 								>
 							
