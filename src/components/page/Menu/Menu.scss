@@ -3,12 +3,13 @@
 .left-menu {
 	display: flex;
 	position: fixed;
-    left: 0;
-    top: 0;
+	left: 0;
+	top: 0;
 	justify-content: space-between;
-	height: 900px;
+	height: 100vh;
 	cursor: pointer;
 	z-index: 100;
+	position: absolute;
 }
 .mini-menu {
 	width: 84px;

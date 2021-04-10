@@ -1,5 +1,6 @@
 import React from 'react';
 import './ModalDelete.scss';
+import '../button.scss';
 
 function ModalDeleteAccount(props) {
 	return (
@@ -10,8 +11,11 @@ function ModalDeleteAccount(props) {
 		>
 			<div className="deleteAccount singOutAttention">
 				<div className="white-text">Delete your account?</div>
-				<button className="btn-yes">Yes</button>
-				<button className="btn-cancel" onClick={() => props.Delete()}>
+				<button className="btn-yes all-buttons">Yes</button>
+				<button
+					className="btn-cancel all-buttons"
+					onClick={() => props.Delete()}
+				>
 					Cancel
 				</button>
 			</div>

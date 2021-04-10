@@ -3,6 +3,7 @@ import { changeUser } from './actions/actions';
 import './ProfileColumn.scss';
 import './ProfileColumnMore.scss';
 import { useDispatch } from 'react-redux';
+import './button.scss';
 
 function ProfileColumnMore(props) {
 	const dispatch = useDispatch();
@@ -28,35 +29,39 @@ function ProfileColumnMore(props) {
 						onSubmit={(event) => handleUserChange(event)}
 						className="form"
 					>
-						<input
-							placeholder="Annete Black, 22"
-							className="input-more"
-							type="text"
-							name="userName"
-						/>
-						<input
-							value="annetBlack@mail.rom"
-							className="input-more"
-						/>
-						<input value="@Ablack" className="input-more" />
+						<div className="card-inputs">
+							<input
+								placeholder="Annete Black, 22"
+								className="input-more"
+								type="text"
+								name="userName"
+							/>
+							<input
+								value="annetBlack@mail.rom"
+								className="input-more"
+							/>
+							<input value="@Ablack" className="input-more" />
+						</div>
 						<input
 							type="submit"
 							value="Save"
 							className="more-save"
 						/>
 					</form>
-					<button
-						className="more-change-password"
-						onClick={() => props.ChangePassword()}
-					>
-						Change password
-					</button>
-					<button
-						className="more-delete"
-						onClick={() => props.Delete()}
-					>
-						Delete account
-					</button>
+					<div className="delete-change-buttons">
+						<button
+							className="more-change-password all-buttons"
+							onClick={() => props.ChangePassword()}
+						>
+							Change password
+						</button>
+						<button
+							className="more-delete all-buttons"
+							onClick={() => props.Delete()}
+						>
+							Delete account
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
