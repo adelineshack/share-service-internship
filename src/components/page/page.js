@@ -44,16 +44,7 @@ function Page() {
 
 	return (
 		<div className="container-max">
-			{/* <div className="backg">
-				<div className="back-00">
-					<div className="back-0"></div>
-				</div>
-				<GoalsFamily />
-				<div className="back-11">
-					<div className="back-1"></div>
-					<div className="back-2"></div>
-				</div>
-			</div> */}
+		
 
 			<Menu />
 			<div className="tools">
