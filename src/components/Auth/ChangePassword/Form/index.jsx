@@ -22,7 +22,7 @@ function Form()  {
 	
 	const tokenProps = useParams();
 	const token = tokenProps.token;
-	console.log(token);
+	
 	
 
 
@@ -31,7 +31,7 @@ function Form()  {
 	
 	const handleNewPassword = () => {
 		
-		console.log('Кнопка работает');
+	
 		
 		const newUserData = {
 		// from your form
