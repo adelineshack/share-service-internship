@@ -12,8 +12,8 @@ import SuccessModal from './SuccessModal/SuccessModal';
 import Notifications from './Notifications/Notifications';
 import { Router } from '@reach/router';
 import GoalCatalog from './GoalsCatalog/index';
-import GoalPage from './GoalPage';
-//import GoalsFamily from './GoalsFamily';
+//import GoalPage from './GoalPage';
+import GoalsFamily from './GoalsFamily/GoalsFamily';
 
 function Page() {
 	const [handleModal, setHandleModal] = useState(false);
@@ -44,8 +44,9 @@ function Page() {
 
 	return (
 		<div className="container-max">
-		
+			{/* страница семьи, раскомментировать строчку ниже */}
 
+			{/* <GoalsFamily /> */}
 			<Menu />
 			<div className="tools">
 				<img
@@ -88,7 +89,7 @@ function Page() {
 			<Router>
 				<DefaultPage path="/" />
 				<GoalCatalog path="/goal/categories/" />
-				<GoalPage path="/goal/:id" />
+				<GoalsFamily path="/goal/:id" />
 			</Router>
 		</div>
 	);
