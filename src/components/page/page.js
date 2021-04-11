@@ -96,10 +96,11 @@ function Page() {
 
 export function DefaultPage() {
 	return (
-		<>
+		<div className="back-block__default">
+		
 			<div className="back-1"></div>
 			<div className="back-2"></div>
-		</>
+		</div>
 	);
 }
 
