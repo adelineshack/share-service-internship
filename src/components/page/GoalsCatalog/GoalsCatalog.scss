@@ -4,8 +4,8 @@
 		position: relative;
 		// margin: 106px 100px 0 160px;
 		// margin-top: 106px;
-		// top: 106px;
-		// left: 163px;
+		top: 106px;
+		left: 163px;
 		height: 100%;
 		// width: 100vw;
 		
@@ -72,8 +72,6 @@
 		margin-right: 86px;
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		// grid-template-columns: repeat(4, 1fr);
-		// &__wrapper {
 			
 		// }
 		&__circle {

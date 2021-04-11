@@ -1,21 +1,36 @@
-import React from 'react';
-import { changeUser } from './actions/actions';
+import React, {useState} from 'react';
+// import { changeUser } from './actions/actions';
 import './ProfileColumn.scss';
 import './ProfileColumnMore.scss';
-import { useDispatch } from 'react-redux';
 import './button.scss';
+import { useDispatch } from 'react-redux';
+import { changeUserName } from './actions/actions';
 
 function ProfileColumnMore(props) {
+	
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
+	// const [email, setEmail] = useState('');
+	// const [nickname, setNickname] = useState(null);
+
+	const id = props.userData.id;
+
 	const dispatch = useDispatch();
-	const handleUserChange = (event) => {
-		event.preventDefault();
-		const newUserData = {
-			// from form
-			first_name: event.target.elements.userName.value,
+
+	// console.log( email );
+	
+
+	const handleChangeName = () => {
+	
+		const newUserName = {
+			first_name: firstName,
+			last_name: lastName,
 		};
 
-		dispatch(changeUser(newUserData));
+		dispatch(changeUserName(newUserName, id));
+		
 	};
+
 
 	return (
 		<div
@@ -23,48 +38,69 @@ function ProfileColumnMore(props) {
 				props.showModal ? 'open' : 'close'
 			} style={{...props.style}}`}
 		>
-			<div className="main-content">
-				<div className="person-card-more">
-					<form
-						onSubmit={(event) => handleUserChange(event)}
-						className="form"
-					>
-						<div className="card-inputs">
-							<input
-								placeholder="Annete Black, 22"
-								className="input-more"
-								type="text"
-								name="userName"
-							/>
-							<input
-								value="annetBlack@mail.rom"
-								className="input-more"
-							/>
-							<input value="@Ablack" className="input-more" />
-						</div>
+			{/* <div className="main-content"> */}
+			<div className="person-card-more">
+				<form
+					onSubmit={(event) => {
+						event.preventDefault();
+						event.target.reset();
+					}}
+					className="form"
+				>
+					<div className="card-inputs">
 						<input
-							type="submit"
-							value="Save"
-							className="more-save"
+							placeholder = "First name"
+							className = "input-more"
+							type = "text"
+							name = "firstName"
+							onChange = { e => setFirstName(e.target.value) }
+							value = { firstName }
 						/>
-					</form>
-					<div className="delete-change-buttons">
-						<button
-							className="more-change-password all-buttons"
-							onClick={() => props.ChangePassword()}
-						>
-							Change password
-						</button>
-						<button
-							className="more-delete all-buttons"
-							onClick={() => props.Delete()}
-						>
-							Delete account
-						</button>
+						<input
+							placeholder = "Last name"
+							className = "input-more"
+							type = "text"
+							name = "lastName"
+							onChange = { e => setLastName(e.target.value) }
+							value = { lastName }
+						/>
+						{/* <input
+								className="input-more"
+								onChange = { e => setEmail(e.target.value) }
+								value = { email }
+								placeholder = "Email"
+							/>
+							<input 
+								className="input-more" 
+								onChange = { e => setNickname(e.target.value) }
+								value = { nickname }
+								placeholder = "Nickname"
+							/> */}
 					</div>
+					<input
+						type="submit"
+						value="Save"
+						className="more-save"
+						onClick = { handleChangeName }
+					/>
+				</form>
+				<div className="delete-change-buttons">
+					<button
+						className="more-change-password all-buttons"
+						onClick={() => props.ChangePassword()}
+					>
+							Change password
+					</button>
+					<button
+						className="more-delete all-buttons"
+						onClick={() => props.Delete()}
+					>
+							Delete account
+					</button>
 				</div>
 			</div>
 		</div>
+		// </div>
 	);
 }
 

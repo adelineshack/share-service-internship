@@ -9,8 +9,8 @@ function App() {
 	return (
 		<div className="App">
 			<Router>
-				<Auth path="/auth/*" />
-				<Page path="/*" />
+				<Auth path="auth/*" />
+				<Page path="/:id/*" />
 			</Router>
 		</div>
 	);
