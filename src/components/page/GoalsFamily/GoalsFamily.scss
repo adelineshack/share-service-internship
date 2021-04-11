@@ -1,0 +1,97 @@
+.body-back-1 {
+	position: absolute;
+	width: 95vw;
+	height: 35vh;
+	right: 0;
+	background-size: cover;
+	background: linear-gradient(
+		180deg,
+		rgba(30, 37, 43, 0) 0%,
+		rgba(30, 37, 43, 0.288409) 39.58%,
+		rgba(30, 37, 43, 0.81) 68.75%,
+		#1e252b 93.23%
+	);
+	z-index: 1;
+	// filter: blur(3px);
+}
+.body-back {
+	width: 95vw;
+}
+.body-content-container {
+	right: 0;
+	z-index: 3;
+	height: 100vh;
+	width: 95vw;
+	position: absolute;
+	margin: 0;
+}
+.body-content {
+	position: absolute;
+	margin-top: 73vh;
+	margin-left: 2vw;
+	width: 90vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+	z-index: 456;
+}
+.goal-text {
+	position: absolute;
+	color: #868686;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 24px;
+	margin-left: 10vw;
+	margin-right: 10vw;
+	margin-top: 45vh;
+	z-index: 23;
+}
+.goal_famimly_title {
+	position: absolute;
+	display: flex;
+	flex-direction: row;
+	z-index: 322;
+}
+.spotify {
+	position: absolute;
+	margin-top: 20vh;
+	margin-left: 10vw;
+	z-index: 6547;
+}
+.spotify-title {
+	position: absolute;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 45px;
+	line-height: 55px;
+	color: #eeeeee;
+	margin-top: 27vh;
+	margin-left: 23vw;
+}
+.goal-button-join {
+	position: absolute;
+	margin-top: 27vh;
+	left: 65vw;
+}
+.joined {
+	position: absolute;
+	margin-top: 58vh;
+	margin-left: 10vw;
+	width: 30vw;
+	height: 10vh;
+	background-color: antiquewhite;
+	color: black;
+}
+.card {
+	width: 18vw;
+	height: 20vh;
+	background-color: cadetblue;
+	color: #1e252b;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+}

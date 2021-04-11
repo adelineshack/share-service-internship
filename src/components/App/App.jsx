@@ -1,6 +1,6 @@
 import React from 'react';
 import Auth from '../Auth';
-import {  Router } from '@reach/router';
+import { Router } from '@reach/router';
 import './App.scss';
 import '../page/page.scss';
 import Page from '../page/page';
@@ -13,7 +13,6 @@ function App() {
 				<Page path="/*" />
 			</Router>
 		</div>
-
 	);
 }
 

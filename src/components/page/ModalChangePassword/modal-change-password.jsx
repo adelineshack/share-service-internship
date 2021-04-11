@@ -32,25 +32,31 @@ function ModalChangePassword(props) {
 				<div onClick={() => props.ChangePassword()}>
 					<img src="/images/x.png" alt="x" className="x" />
 				</div>
-				<div className="white-text">Change password</div>
-				<form onSubmit={(event) => twoFunc(event)} className="form">
+				<div className="white-text-1">Change password</div>
+				<form
+					onSubmit={(event) => twoFunc(event)}
+					className="change-form"
+				>
 					<input
 						placeholder="Старый пароль"
 						alt="Старый пароль"
 						className="input"
 						name="old_password"
+						type="password"
 					/>
 					<input
 						placeholder="Новый пароль"
 						alt="Новый пароль"
 						className="input"
 						name="new_password"
+						type="password"
 					/>
 					<input
 						placeholder="Еще раз новый пароль"
 						alt="Еще раз новый пароль"
 						className="input"
 						name="new_password_again"
+						type="password"
 					/>
 					<button type="submit" className="btn-change all-buttons">
 						Change my password

@@ -17,12 +17,14 @@ export const fetchUserData = () => {
 	return (dispatch) => {
 		console.log(axios.defaults.headers.Authorization);
 		axios
-			.get('user/7/')
+			.get('user/{id}/')
 			.then((data) => {
 				dispatch(fetchUserDataSuccess(data));
+				console.log(data);
 			})
-			.catch((err) => {
+			.catch((err, data) => {
 				console.log(err);
+				console.log(data);
 			});
 	};
 };
@@ -30,7 +32,7 @@ export const fetchUserData = () => {
 export const changeUser = (userData) => {
 	return (dispatch) => {
 		axios
-			.patch('user/7/', userData)
+			.patch('user/{id}/', userData)
 			.then((data) => {
 				dispatch(changeUserSuccess(data));
 			})
@@ -43,7 +45,7 @@ export const changeUser = (userData) => {
 export const changePassword = (userData) => {
 	return (dispatch) => {
 		axios
-			.patch('user/7/change_password/', userData)
+			.patch('user/{id}/change_password/', userData)
 			.then((data) => {
 				if (data.status === 200) {
 					console.log('Success!');

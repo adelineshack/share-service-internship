@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ProfileColumn.scss';
 import ProfileColumnMore from './ProfileColumnMore';
 import './button.scss';
 import { useDispatch } from 'react-redux';
-import { changeAvatar } from './actions/actions';
+import { changeAvatar, fetchUserData } from './actions/actions';
 
 function ProfileColumn(props) {
 	const [handleModal, setHandleModal] = useState(false);
@@ -17,6 +17,11 @@ function ProfileColumn(props) {
 		event.preventDefault();
 		dispatch(changeAvatar(event.target.files[0]));
 	};
+
+	useEffect(() => {
+		dispatch(fetchUserData());
+	}, []);
+
 	return (
 		<div
 			className={`profile-column ${
@@ -65,13 +70,23 @@ function ProfileColumn(props) {
 								onInput={(event) => changeUserAvatar(event)}
 								name="avatar"
 							/>
-							<label htmlFor="avatar" className="labelAvatar"></label>
+							<label
+								htmlFor="avatar"
+								className="labelAvatar"
+							></label>
 						</form>
 					</div>
-					<div className="card-name-person">Annete Black, 22</div>
+					{/* <div className="card-name-person">Annete Black, 22</div> */}
+					<div className="card-name-person">
+						{/*  {userInfo.first_name} */}
+						das
+					</div>
 					<div className="card-mail">annetBlack@mail.rom</div>
 					<div className="card-name">@Ablack</div>
-					<button className="signOut all-buttons" onClick={() => props.Change()}>
+					<button
+						className="signOut all-buttons"
+						onClick={() => props.Change()}
+					>
 						Sign out
 					</button>
 				</div>
