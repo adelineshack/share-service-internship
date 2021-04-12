@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ModalChangePassword.scss';
 // import { changePassword } from '../actions/actions';
 // import { useDispatch } from 'react-redux';
@@ -27,6 +27,47 @@ function ModalChangePassword(props) {
 		};
 		dispatch(changePassword(newUserData, id));
 		
+	};
+
+	const [showPassword, setShowPassword] = useState(true);
+
+	const ShowPassword = (event) => {
+		event.preventDefault();
+		if (document.getElementById('old_password').type == 'password') {
+			document
+				.getElementById('old_password')
+				.setAttribute('type', 'text');
+		} else {
+			document
+				.getElementById('old_password')
+				.setAttribute('type', 'password');
+		}
+		return setShowPassword(!showPassword);
+	};
+
+	const [showPassword2, setShowPassword2] = useState(true);
+
+	const ShowPassword2 = (event) => {
+		event.preventDefault();
+		if (
+			(document.getElementById('new_password').type == 'password') &
+			(document.getElementById('new_password_again').type == 'password')
+		) {
+			document
+				.getElementById('new_password')
+				.setAttribute('type', 'text');
+			document
+				.getElementById('new_password_again')
+				.setAttribute('type', 'text');
+		} else {
+			document
+				.getElementById('new_password')
+				.setAttribute('type', 'password');
+			document
+				.getElementById('new_password_again')
+				.setAttribute('type', 'password');
+		}
+		return setShowPassword2(!showPassword2);
 	};
 
 	return (
@@ -64,6 +105,7 @@ function ModalChangePassword(props) {
 						className="input"
 						name="old_password"
 						type="password"
+						id="old_password"
 					/>
 
 					{(newPassword.isDirty && newPassword.isEmpty) && 
@@ -71,6 +113,23 @@ function ModalChangePassword(props) {
 
 					{(newPassword.isDirty && newPassword.minLengthError) && 
 					<div className="validation-text-change">too short password</div>}
+					<img
+						src="/images/openedEye.png"
+						className={`openedEye ${
+							showPassword ? 'open' : 'close'
+						} style={{...props.style}}`}
+						onClick={(event) => {
+							return ShowPassword(event);
+						}}
+					></img>
+					<img
+						src="/images/closedEye.png"
+						className={`openedEye ${
+							showPassword ? 'close' : 'open'
+						} style={{...props.style}}`}
+						onClick={(event) => ShowPassword(event)}
+					></img>
+					{/* новый пароль */}
 					<input
 						placeholder="Новый пароль"
 						value={ newPassword.value }
@@ -80,6 +139,7 @@ function ModalChangePassword(props) {
 						className="input"
 						name="new_password"
 						type="password"
+						id="new_password"
 					/>
 
 					{(confirmNewPassword.isDirty && confirmNewPassword.isEmpty) && 
@@ -88,6 +148,23 @@ function ModalChangePassword(props) {
 					{(confirmNewPassword.isDirty && confirmNewPassword.minLengthError) && 
 					<div className="validation-text">too short password</div>}
 
+					<img
+						src="/images/openedEye.png"
+						className={`openedEye2 ${
+							showPassword2 ? 'open' : 'close'
+						} style={{...props.style}}`}
+						onClick={(event) => {
+							return ShowPassword2(event);
+						}}
+					></img>
+					<img
+						src="/images/closedEye.png"
+						className={`openedEye2 ${
+							showPassword2 ? 'close' : 'open'
+						} style={{...props.style}}`}
+						onClick={(event) => ShowPassword2(event)}
+					></img>
+					{/* еще раз новый пароль */}
 					<input
 						placeholder="Еще раз новый пароль"
 						value={ confirmNewPassword.value }
@@ -97,6 +174,7 @@ function ModalChangePassword(props) {
 						className="input"
 						name="new_password_again"
 						type="password"
+						id="new_password_again"
 					/>
 
 					{(newPassword.value != confirmNewPassword.value) && 

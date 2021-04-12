@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './GoalsFamily.scss';
 import Carousel from 'react-elastic-carousel';
-import Card from './card';
+//import Card from './card';
+import { getGoals } from '../../../store/actions';
+//import { useDispatch, useSelector } from 'react-redux';
 
 function GoalsFamily() {
+	const dispatch = useDispatch();
+
+	const id = useSelector((state) => state.goals.goals.id);
+
+	useEffect(() => {
+		dispatch(getGoals());
+	}, []);
+
+	let goals = useSelector((state) => state.goals.goals);
+
 	const breakPoints = [
 		{ width: 1, itemsToShow: 1 },
 		{ width: 500, itemsToShow: 2 },
 		{ width: 768, itemsToShow: 3 },
-		{ width: 1200, itemsToShow: 4 },
+		{ width: 1200, itemsToShow: 3 },
 	];
 	return (
 		<div className="body-content-container">
+			{console.log('это айди')}
+			{console.log(id)}
 			<div className="body-back">
 				<img
 					src="/images/body_back.png"
@@ -43,14 +58,29 @@ function GoalsFamily() {
 			</div>
 			<div className="body-content">
 				<Carousel breakPoints={breakPoints}>
-					<Card number="1" />
-					<Card number="2" />
-					<Card number="3" />
-					<Card number="4" />
-					<Card number="5" />
-					<Card number="6" />
-					<Card number="7" />
-					<Card number="8" />
+					{goals.map((item) => (
+						<div className="card" key={item.id}>
+							<div className="goalBG">
+								<img src={item.bg_image} className="goalBG" />
+							</div>
+							<div className="body-goal">
+								<div className="goalIcon">
+									<img
+										src={item.image}
+										className="goalIconImg"
+									></img>
+								</div>
+								<div className="titleDescr">
+									<div className="goal-card-title">
+										{item.title}
+									</div>
+									<div className="goalDescription">
+										{item.description}
+									</div>
+								</div>
+							</div>
+						</div>
+					))}
 				</Carousel>
 			</div>
 		</div>

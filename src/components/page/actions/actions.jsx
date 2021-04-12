@@ -8,7 +8,7 @@ import { createAction } from 'redux-actions';
 // 	config.headers.Authorization = `Token ${token}`;
 // 	return config;
 // });
-// const id = useSelector((state) => state.userInfo.userData.id);
+export const getGoalsIdSuccess = createAction('GET_GOALS_ID_SUCCESS');
 export const fetchUserDataSuccess = createAction('FETCH_USER_DATA_SUCCESS');
 export const changeUserNameSuccess = createAction('CHANGE_USER_NAME_SUCCESS');
 export const changeUserPasswordSuccess = createAction('CHANGE_USER_PASSWORD_SUCCESS');
@@ -16,10 +16,24 @@ export const changeUserAvatarSuccess = createAction('CHANGE_USER_AVATAR');
 
 export const getUserDataSuccess = createAction('GET_USER_SUCCESS');
 
+export const getGoalsCategories = () => {
+	return (dispatch) => {
+		axios
+			.get('/goal/{id}/')
+			.then(function (response) {
+				const { data } = response;
+				dispatch(getGoalsIdSuccess(data));
+				console.log(response);
+				// console.log(data);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+};
+
 export const getUserData = () => {
-
 	
-
 	return (dispatch) => {
 		
 		axios.get('/user/')
