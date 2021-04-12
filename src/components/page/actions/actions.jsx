@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAction } from 'redux-actions';
+import { navigate } from '@reach/router';
 
 
 // axios.defaults.baseURL = `https://kitbucket.ru/api`;
@@ -44,7 +45,11 @@ export const getUserData = () => {
 				// console.log(data);
 			})
 			.catch(function (error) {
-				console.log(error);
+				if (error.response.status === 401) {
+					navigate('/auth');
+				}
+				
+				console.log(error.response);
 			});
 	};
 };
@@ -76,6 +81,7 @@ export const changeUserName = (userData, id) => {
 			// console.log(data);
 			})
 			.catch(function (error) {
+
 				console.log(error);
 			});
 	};
