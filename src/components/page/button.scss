@@ -1,7 +1,7 @@
 .all-buttons {
 	background-color: #5063ee;
-	display: flex;
-	justify-content: center;
+	// display: flex;
+	// justify-content: center;
 	align-items: center;
 	border-radius: 19px;
 	font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
@@ -14,9 +14,10 @@
 	border: none;
 }
 .signOut {
-margin-bottom: 10vh;
-	margin-top: 10vh;
-	//z-index: 3;
+	margin-top: 20px;
+// 	margin-top: 10vh;
+	// z-index: 3;
+	line-height: 53px;
 }
 .signOut:hover {
 	cursor: pointer;

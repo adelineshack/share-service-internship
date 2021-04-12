@@ -1,20 +1,21 @@
 import axios from 'axios';
 import { createAction } from 'redux-actions';
 
+
 // axios.defaults.baseURL = `https://kitbucket.ru/api`;
 // axios.interceptors.request.use(function (config) {
 // 	const token = '2a411a269574576e5873f82945a4e13b6021e427'; // from store
 // 	config.headers.Authorization = `Token ${token}`;
 // 	return config;
 // });
-
 export const getGoalsIdSuccess = createAction('GET_GOALS_ID_SUCCESS');
 export const fetchUserDataSuccess = createAction('FETCH_USER_DATA_SUCCESS');
-export const changeUserSuccess = createAction('CHANGE_USER_SUCCESS');
-export const changeUserPassword = createAction('CHANGE_USER_PASSWORD');
-export const changeUserAvatar = createAction('CHANGE_USER_AVATAR');
+export const changeUserNameSuccess = createAction('CHANGE_USER_NAME_SUCCESS');
+export const changeUserPasswordSuccess = createAction('CHANGE_USER_PASSWORD_SUCCESS');
+export const changeUserAvatarSuccess = createAction('CHANGE_USER_AVATAR');
 
-//пока не работает
+export const getUserDataSuccess = createAction('GET_USER_SUCCESS');
+
 export const getGoalsCategories = () => {
 	return (dispatch) => {
 		axios
@@ -31,50 +32,66 @@ export const getGoalsCategories = () => {
 	};
 };
 
-export const fetchUserData = () => {
+export const getUserData = () => {
+	
 	return (dispatch) => {
-		console.log(axios.defaults.headers.Authorization);
-		axios
-			.get('user/{id}/')
-			.then((data) => {
-				dispatch(fetchUserDataSuccess(data));
-				console.log(data);
+		
+		axios.get('/user/')
+			.then(function (response) {
+				const { data } = response; 
+				dispatch(getUserDataSuccess(data));
+				console.log(response);
+				// console.log(data);
 			})
-			.catch((err, data) => {
-				console.log(err);
-				console.log(data);
+			.catch(function (error) {
+				console.log(error);
 			});
 	};
 };
 
-export const changeUser = (userData) => {
+// export const fetchUserData = () => {
+// 	return (dispatch) => {
+// 		console.log(axios.defaults.headers.Authorization);
+// 		axios
+// 			.get('user/{id}/')
+// 			.then((data) => {
+// 				dispatch(fetchUserDataSuccess(data));
+// 				console.log(data);
+// 			})
+// 			.catch((err, data) => {
+// 				console.log(err);
+// 				console.log(data);
+// 			});
+// 	};
+// };
+
+export const changeUserName = (userData, id) => {
 	return (dispatch) => {
-		axios
-			.patch('user/{id}/', userData)
-			.then((data) => {
-				dispatch(changeUserSuccess(data));
+		
+		axios.patch(`/user/${id}/`, userData)
+			.then(function (response) {
+				const { data } = response; 
+				dispatch(changeUserNameSuccess(data));
+				console.log(response);
+			// console.log(data);
 			})
-			.catch((err) => {
-				console.log(err);
+			.catch(function (error) {
+				console.log(error);
 			});
 	};
 };
 
-export const changePassword = (userData) => {
+export const changePassword = (userData, id) => {
 	return (dispatch) => {
-		axios
-			.patch('user/{id}/change_password/', userData)
-			.then((data) => {
-				if (data.status === 200) {
-					console.log('Success!');
-					dispatch(changeUserPassword(data));
-				} else {
-					console.log('We have errors!');
-				}
-				console.log(data);
+		axios.patch(`user/${id}/change_password/`, userData)
+			.then(function (response) {
+				const { data } = response; 
+				dispatch(changeUserPasswordSuccess(data));
+				console.log(response);
+				// console.log(data);
 			})
-			.catch((err) => {
-				console.log(err.response);
+			.catch(function (error) {
+				console.log(error);
 			});
 	};
 };
@@ -82,25 +99,37 @@ export const changePassword = (userData) => {
 // var bodyFormData = new FormData();
 // bodyFormData.append('image', imageFile);
 
-export const changeAvatar = (userData) => {
+export const changeAvatar = (file) => {
 	return (dispatch) => {
 		const formData = new FormData();
-		formData.append('avatar', userData);
+		formData.append('avatar', file);
 		console.log(formData.avatar);
-		axios
-			.post('user/avatar/', formData, {
-				headers: {
-					'Content-Type':
-						'multipart/form-data;boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
-				},
+		
+		axios.post(`/user/avatar/`, formData) 
+			.then(function (response) {
+				
+				const { data } = response; 
+				dispatch(changeUserPasswordSuccess(data));
+				console.log(response);
+				// console.log(data);
 			})
-			.then((data) => {
-				dispatch(changeUserAvatar(data));
-				console.log('success');
-			})
-			.catch((err) => {
-				console.log(err);
-				console.log(':(');
+			.catch(function (error) {
+				console.log(error);
 			});
+		// axios
+		// 	.post('user/avatar/', formData, {
+		// 		headers: {
+		// 			'Content-Type':
+		// 				'multipart/form-data;boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
+		// 		},
+		// 	})
+		// 	.then((data) => {
+		// 		dispatch(changeUserAvatarSuccess(data));
+		// 		console.log('success');
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 		console.log(':(');
+		// 	});
 	};
 };

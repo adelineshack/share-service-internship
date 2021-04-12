@@ -1,8 +1,9 @@
 import { createAction } from 'redux-actions';
 import axios from 'axios';
-import { navigate } from '@reach/router';
+import { navigate, redirectTo } from '@reach/router';
 
 axios.defaults.baseURL = 'https://kitbucket.ru/api';
+
 
 axios.interceptors.request.use(async (config) => {
 	// Non token-needed routes
@@ -22,10 +23,10 @@ axios.interceptors.request.use(async (config) => {
 	const token = localStorage.token;
 
 	if (!token) {
-		return navigate('/auth');
+		return redirectTo('/auth/*');
 	}
-
-	if (localStorage.token !== null) {
+			
+	if (token !== null) {
 		config.headers.Authorization = `Token ${token}`;
 	}
 	return config;
@@ -38,8 +39,8 @@ export const registerUser = (userData) => {
 		axios
 			.post('/auth/sign_up/', userData)
 			.then(function (response) {
-				// const { data } = response;
-				// localStorage.setItem("token", data.auth_token);
+				// const { data } = response; 
+				// localStorage.setItem("token", data.token);
 				dispatch(registerUserSuccess(response));
 				navigate('/auth/success-auth');
 				console.log(response);
@@ -53,15 +54,16 @@ export const registerUser = (userData) => {
 
 export const enterUserSuccess = createAction('ENTER_USER_SUCCESS');
 
-export const enterUser = (userData) => {
+export const enterUser = (userData, id) => {
 	return (dispatch) => {
-		axios
-			.post('/auth/sign_in/', userData)
+		
+		
+		axios.post('/auth/sign_in/', userData)
 			.then(function (response) {
-				// const { data } = response;
-				// localStorage.setItem("token", data.auth_token);
+				const { data } = response; 
+				localStorage.setItem("token", data.token);
 				dispatch(enterUserSuccess(response));
-				navigate('/');
+				navigate(`/api/user/${id}`);
 				console.log(response);
 			})
 			.catch(function (error) {

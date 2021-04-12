@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './page.scss';
 import './button.scss';
 import './Menu/Menu.scss';
@@ -14,6 +14,8 @@ import { Router } from '@reach/router';
 import GoalCatalog from './GoalsCatalog/index';
 //import GoalPage from './GoalPage';
 import GoalsFamily from './GoalsFamily/GoalsFamily';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserData } from './actions/actions';
 
 function Page() {
 	const [handleModal, setHandleModal] = useState(false);
@@ -23,6 +25,17 @@ function Page() {
 	const [notesModal, setNotesModal] = useState(false);
 	const [profileColumn, setProfileColumn] = useState(false);
 
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+
+		dispatch(getUserData());
+		
+	}, []);
+
+	const userData = useSelector((state) => state.userInfo.userData);
+	console.log( userData );
+	
 	const Change = () => {
 		return setHandleModal(!handleModal);
 	};
@@ -63,6 +76,7 @@ function Page() {
 				/>
 			</div>
 			<ProfileColumn
+				userData = { userData }
 				profileColumn={profileColumn}
 				Change={() => Change()}
 				Delete={() => Delete()}
@@ -87,7 +101,7 @@ function Page() {
 			/>
 			<Notifications notesModal={notesModal} />
 			<Router>
-				<DefaultPage path="/" />
+				{/* <DefaultPage path="/*" /> */}
 				<GoalCatalog path="/goal/categories/" />
 				<GoalsFamily path="/goal/:id" />
 			</Router>
@@ -97,10 +111,11 @@ function Page() {
 
 export function DefaultPage() {
 	return (
-		<>
+		<div className="back-block__default">
+		
 			<div className="back-1"></div>
 			<div className="back-2"></div>
-		</>
+		</div>
 	);
 }
 

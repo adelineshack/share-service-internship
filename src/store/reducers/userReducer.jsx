@@ -4,10 +4,25 @@ import * as actionsPage from '../../components/page/actions/actions';
 
 const defaultState = {
 	users: [],
+	userData: [],
+	userPass: [],
+	userAvatar: []
 };
 
 export const userInfoReducer = handleActions(
 	{
+		[actionsPage.getUserDataSuccess](state, { payload }) {
+			return {
+				...state,
+				userData: payload,
+			};
+		},
+		[actionsPage.changeUserNameSuccess](state, { payload }) {
+			return {
+				...state,
+				userData: payload,
+			};
+		},
 		[actions.registerUserSuccess](state, { payload }) {
 			return {
 				...state,
@@ -40,22 +55,16 @@ export const userInfoReducer = handleActions(
 				userInfo: payload,
 			};
 		},
-		[actionsPage.changeUserSuccess](state, { payload }) {
+		[actionsPage.changeUserPasswordSuccess](state, { payload }) {
 			return {
 				...state,
-				userInfo: payload,
+				userPass: payload,
 			};
 		},
-		[actionsPage.changeUserPassword](state, { payload }) {
+		[actionsPage.changeUserAvatarSuccess](state, { payload }) {
 			return {
 				...state,
-				userInfo: payload,
-			};
-		},
-		[actionsPage.changeUserAvatar](state, { payload }) {
-			return {
-				...state,
-				userInfo: payload,
+				userAvatar: payload,
 			};
 		},
 	},

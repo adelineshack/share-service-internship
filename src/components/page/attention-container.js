@@ -12,7 +12,15 @@ const Modal = (props) => {
 		>
 			<div className="singOutAttention">
 				<div className="white-text">Sing out</div>
-				<button onClick = { () => navigate('/auth') } className="btn-yes all-buttons">Yes</button>
+				<button 
+					onClick = { () => {
+						localStorage.token = undefined;
+						navigate('/auth'); 
+					}} 
+					className="btn-yes all-buttons"
+				>
+					Yes
+				</button>
 				<button className="btn-cancel all-buttons" onClick={() => props.Change()}>
 					Cancel
 				</button>

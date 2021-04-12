@@ -1,26 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './ProfileColumn.scss';
 import ProfileColumnMore from './ProfileColumnMore';
 import './button.scss';
+import { changeAvatar } from './actions/actions';
 import { useDispatch } from 'react-redux';
-import { changeAvatar, fetchUserData } from './actions/actions';
+
 
 function ProfileColumn(props) {
 	const [handleModal, setHandleModal] = useState(false);
+	
 
 	const Change = () => {
 		return setHandleModal(!handleModal);
 	};
 
+	const userData = props.userData;
+
+
 	const dispatch = useDispatch();
-	const changeUserAvatar = (event) => {
-		event.preventDefault();
-		dispatch(changeAvatar(event.target.files[0]));
+
+
+	const changeAvatarHandler = (e) => {
+		const file = e.target.files[0];
+		dispatch(changeAvatar(file));
 	};
 
-	useEffect(() => {
-		dispatch(fetchUserData());
-	}, []);
 
 	return (
 		<div
@@ -37,38 +41,44 @@ function ProfileColumn(props) {
 				<img src="/images/back6.png" alt="6" className="back6" />
 			</div> */}
 			<div className="main-content">
-				<ProfileColumnMore
-					Delete={() => props.Delete()}
-					showModal={handleModal}
-					Save={() => props.Save()}
-					ChangePassword={() => props.ChangePassword()}
-					Success={() => props.Success()}
-				/>
+				
 				<div className="header">
 					<div className="name">My profile</div>
 				</div>
-				<div onClick={() => Change()}>
-					<img
-						src="/images/customization.png"
-						alt="customization"
-						className="customization"
-					/>
-				</div>
+
+				
 				<div className="person-card">
+
+					<div className="customization" onClick={() => Change()}>
+						<img
+							src="/images/customization.png"
+							alt="customization"
+							
+						/>
+					</div>
 					<div className="card-photo">
 						<form>
-							<img
-								src="/images/photo-profile.png"
-								alt="person"
-								className="card-photo"
-								name="card_photo"
-							/>
+							<div className = 'card-photo__img'>
+
+								<img
+									src= { !(userData.avatar) 
+										? "/images/default-photo.jpg" 
+										: userData.avatar.original}
+									alt="person"
+									className="card-photo"
+									name="card_photo"
+								/>
+
+							</div>
+							
 							<input
 								type="file"
 								className="avatar"
 								id="avatar"
-								onInput={(event) => changeUserAvatar(event)}
+								// onInput={(event) => changeUserAvatar(event)}
 								name="avatar"
+								accept = 'image/*'
+								onChange = { (e) => changeAvatarHandler(e) }
 							/>
 							<label
 								htmlFor="avatar"
@@ -76,19 +86,34 @@ function ProfileColumn(props) {
 							></label>
 						</form>
 					</div>
-					{/* <div className="card-name-person">Annete Black, 22</div> */}
-					<div className="card-name-person">
-						{/*  {userInfo.first_name} */}
-						das
+
+					<ProfileColumnMore
+						userData = { userData }
+						Delete={() => props.Delete()}
+						showModal={handleModal}
+						Save={() => props.Save()}
+						ChangePassword={() => props.ChangePassword()}
+						Success={() => props.Success()}
+					/>
+					<div className = "card-userInfo">
+
+						<div className="card-name-person">
+							{userData.first_name}
+						</div>
+						<div className="card-mail">{userData.email}</div>
+						<div className="card-name">@Ablack</div>
+						
 					</div>
-					<div className="card-mail">annetBlack@mail.rom</div>
-					<div className="card-name">@Ablack</div>
+					
+					
+
 					<button
 						className="signOut all-buttons"
 						onClick={() => props.Change()}
 					>
 						Sign out
 					</button>
+
 				</div>
 			</div>
 		</div>
