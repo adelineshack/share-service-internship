@@ -18,7 +18,7 @@ function Menu() {
 					<img src="/images/GoalMenu.png" alt="GoalMenu" />
 				</div>
 				{/* вторая строчка */}
-				<div onClick = { () => navigate(`/${id}/goal/categories/`) } className="item__wrap">
+				<div onClick = { () => navigate(`/goal/categories/`) } className="item__wrap">
 					<div className="catalog">
 						<img src="/images/catalog.png" alt="catalog"></img>
 					</div>
