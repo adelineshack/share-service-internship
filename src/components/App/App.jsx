@@ -1,5 +1,5 @@
 import React from 'react';
-import Auth from '../Auth';
+//import Auth from '../Auth';
 import { Router } from '@reach/router';
 import './App.scss';
 import '../page/page.scss';
@@ -9,7 +9,7 @@ function App() {
 	return (
 		<div className="App">
 			<Router>
-				<Auth path="/auth/*" />
+				{/* <Auth path="/auth/*" /> */}
 				<Page path="/*" />
 			</Router>
 		</div>

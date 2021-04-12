@@ -8,10 +8,28 @@ import { createAction } from 'redux-actions';
 // 	return config;
 // });
 
+export const getGoalsIdSuccess = createAction('GET_GOALS_ID_SUCCESS');
 export const fetchUserDataSuccess = createAction('FETCH_USER_DATA_SUCCESS');
 export const changeUserSuccess = createAction('CHANGE_USER_SUCCESS');
 export const changeUserPassword = createAction('CHANGE_USER_PASSWORD');
 export const changeUserAvatar = createAction('CHANGE_USER_AVATAR');
+
+//пока не работает
+export const getGoalsCategories = () => {
+	return (dispatch) => {
+		axios
+			.get('/goal/{id}/')
+			.then(function (response) {
+				const { data } = response;
+				dispatch(getGoalsIdSuccess(data));
+				console.log(response);
+				// console.log(data);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+};
 
 export const fetchUserData = () => {
 	return (dispatch) => {

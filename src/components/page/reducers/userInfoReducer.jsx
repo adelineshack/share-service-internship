@@ -4,6 +4,7 @@ import * as actions from '../actions/actions';
 const defaultState = {
 	users: [],
 	userInfo: {},
+	familyGoals: {},
 };
 
 export const userInfoReducer = handleActions(
