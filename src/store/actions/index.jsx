@@ -23,11 +23,14 @@ axios.interceptors.request.use(async (config) => {
 	const token = localStorage.token;
 
 	if (!token) {
-		return navigate('/auth/*');
+		return navigate('/auth');
 	}
 			
 	if (token !== null) {
+		// console.log('дошло');
 		config.headers.Authorization = `Token ${token}`;
+		axios.defaults.xsrfHeaderName = "X-XSRF-TOKEN";
+		axios.defaults.xsrfCookieName = "XSRF-TOKEN";
 	}
 	return config;
 });

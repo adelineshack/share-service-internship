@@ -7,8 +7,9 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Share subscriptions with other people"
     />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <script>
       // HACK(keanulee): The Redux package assumes `process` exists - mock it here before
