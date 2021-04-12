@@ -1,5 +1,6 @@
 .profile-column-more.open {
 	display: block;
+	// background: #2C353D;
 	z-index: 500;
 	width: 25vw;
 }
@@ -8,8 +9,9 @@
 }
 .input-more {
 	box-sizing: border-box;
+	margin-bottom: 17px;
 	width: 20vw;
-	height: 5vh;
+	height: 40px;
 	background-color: #1e252b;
 	font-size: 16px;
 	line-height: 19px;

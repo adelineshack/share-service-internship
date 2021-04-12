@@ -23,6 +23,7 @@
 	margin-left: 5px;
 	margin-top: 793px;
 }
+
 .name {
 	@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 	font-family: Roboto, sans-serif;
@@ -38,9 +39,15 @@
 
 .customization {
 	position: absolute;
-	right: 50px;
-	top: 120px;
+	right: -30px;
+	top: -10px;
 	cursor: pointer;
+	width: 32px;
+	height: 32px;
+	img {
+		width: 100%;
+		height: 100%;
+	}
 }
 //card
 .main-content {
@@ -48,9 +55,9 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: center;
 	width: 100%;
-	height: 100%;
+	// height: 100%;
 }
 .person-card {
 	box-sizing: border-box;
@@ -68,40 +75,54 @@
 }
 .card-photo {
 	cursor: pointer;
+	position: relative;
 	z-index: 1;
 	display: flex;
 	align-items: center;
 	width: 170px;
 	height: 170px;
 	border-radius: 100%;
+	margin-bottom: 60px;
+	// margin-top: 50px;
 	&__img {
 		width: 170px;
 		height: 170px;
-		
-
+		position: relative;
 		border-radius: 175px;
+		
 		img {
 			width: 100%;
 			height: 100%;
 			background-size: cover;
 			object-fit: cover;
+			pointer-events: none;
 		}
+		.avatar {
+			position: absolute;
+			visibility: hidden;
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			left: 0px;
+		}
+		
 	}
 }
-
-
-.avatar {
-	position: absolute;
-	visibility: hidden;
-}
 .labelAvatar {
-	z-index: 2;
-	width: 170px;
-	height: 170px;
 	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	z-index: 2;
 	cursor: pointer;
-	top: 25vh;
+	
 }
+
+
+
+
 .card-name-person {
 	font-size: 24px;
 	line-height: 28px;
@@ -123,19 +144,21 @@
 	display: flex;
 }
 .profile-column {
+	position: relative;
 	height: 100vh;
-	width: 25vw;
+	width: 380px;
 	display: none;
 	background-color: #2c353d;
-	box-sizing: border-box;
 	z-index: 100;
 	position: fixed;
 	right: 0;
 	overflow: hidden;
+
 }
 .profile-column.open {
 	display: flex;
-	//flex-direction: column;
+	
+	// flex-direction: column;
 	align-items: center;
 }
 .profile-column.close {

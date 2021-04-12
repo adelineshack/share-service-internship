@@ -17,21 +17,7 @@ export const changeUserAvatarSuccess = createAction('CHANGE_USER_AVATAR');
 
 export const getUserDataSuccess = createAction('GET_USER_SUCCESS');
 
-export const getGoalsCategories = () => {
-	return (dispatch) => {
-		axios
-			.get('/goal/{id}/')
-			.then(function (response) {
-				const { data } = response;
-				dispatch(getGoalsIdSuccess(data));
-				console.log(response);
-				// console.log(data);
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-	};
-};
+
 
 export const getUserData = () => {
 	

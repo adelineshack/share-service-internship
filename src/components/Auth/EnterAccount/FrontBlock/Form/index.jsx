@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {  Link } from '@reach/router';
 import useInput from './../../../ValidationHook/index';
 // import Button from '../../../../Button';
@@ -14,8 +14,17 @@ import { enterUser } from '../../../../../store/actions';
 function Form()  {
 	const email = useInput('', {isEmpty: true, minLength: 5, isEmail: true});
 	const password = useInput('', {isEmpty: true, minLength: 5});
+	const [error, setError] = useState('');
+
 
 	const dispatch = useDispatch();
+	
+
+	const handleError = () => {
+	
+		setError('Incorrect email or password');
+	
+	};
 	
 	
 	
@@ -28,7 +37,7 @@ function Form()  {
 			password: password.value,
 		};	
 		
-		dispatch(enterUser(newUserData));
+		dispatch(enterUser(newUserData, handleError));
 	};
 	
 	return (
@@ -42,6 +51,10 @@ function Form()  {
 			}}
 		>
 			{/* Email  */}
+
+			<div className = 'error-message'>{ error }</div>
+
+			
 			{(email.isDirty && email.isEmpty) && 
 				<div className="validation-text">empty field</div>}
 			{(email.isDirty && email.emailError) && 

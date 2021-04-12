@@ -40,15 +40,18 @@ function ProfileColumn(props) {
 				<img src="/images/back5.png" alt="5" className="back5" />
 				<img src="/images/back6.png" alt="6" className="back6" />
 			</div> */}
+
+			<div className="header">
+				<div className="name">My profile</div>
+			</div>
+
+
 			<div className="main-content">
 				
-				<div className="header">
-					<div className="name">My profile</div>
-				</div>
+				
 
 				
-				<div className="person-card">
-
+				<div className="card-photo">
 					<div className="customization" onClick={() => Change()}>
 						<img
 							src="/images/customization.png"
@@ -56,66 +59,72 @@ function ProfileColumn(props) {
 							
 						/>
 					</div>
-					<div className="card-photo">
-						<form>
-							<div className = 'card-photo__img'>
 
-								<img
-									src= { !(userData.avatar) 
-										? "/images/default-photo.jpg" 
-										: userData.avatar.original}
-									alt="person"
-									className="card-photo"
-									name="card_photo"
-								/>
-
-							</div>
-							
-							<input
-								type="file"
-								className="avatar"
-								id="avatar"
-								// onInput={(event) => changeUserAvatar(event)}
-								name="avatar"
-								accept = 'image/*'
-								onChange = { (e) => changeAvatarHandler(e) }
-							/>
-							<label
-								htmlFor="avatar"
-								className="labelAvatar"
-							></label>
-						</form>
-					</div>
-
-					<ProfileColumnMore
-						userData = { userData }
-						Delete={() => props.Delete()}
-						showModal={handleModal}
-						Save={() => props.Save()}
-						ChangePassword={() => props.ChangePassword()}
-						Success={() => props.Success()}
-					/>
-					<div className = "card-userInfo">
-
-						<div className="card-name-person">
-							{userData.first_name}
-						</div>
-						<div className="card-mail">{userData.email}</div>
-						<div className="card-name">@Ablack</div>
+					<form className = 'card-photo__img'>
 						
-					</div>
-					
-					
 
-					<button
-						className="signOut all-buttons"
-						onClick={() => props.Change()}
-					>
-						Sign out
-					</button>
+						<input
+							type="file"
+							className="avatar"
+							id="avatar"
+							// onInput={(event) => changeUserAvatar(event)}
+							name="avatar"
+							accept = 'image/*'
+							onChange = { (e) => changeAvatarHandler(e) }
+						/>
 
+						<img
+							src= { !(userData.avatar) 
+								? "/images/default-photo.jpg" 
+								: userData.avatar.original}
+							alt="person"
+							className="card-photo"
+							name="card_photo"
+						/>
+						<label
+							htmlFor="avatar"
+							className="labelAvatar"
+						></label>
+
+						
+
+						
+					</form>
 				</div>
+
+					
+			
+
+				<div className="card-name-person">
+					{userData.first_name}
+				</div>
+				<div className="card-mail">{userData.email}</div>
+				{/* <div className="card-name">@Ablack</div> */}
+						
+				
+					
+					
+
+				<button
+					className="signOut all-buttons"
+					onClick={() => props.Change()}
+				>
+						Sign out
+				</button>
+
+				
+
 			</div>
+
+
+			<ProfileColumnMore
+				userData = { userData }
+				Delete={() => props.Delete()}
+				showModal={handleModal}
+				Save={() => props.Save()}
+				ChangePassword={() => props.ChangePassword()}
+				Success={() => props.Success()}
+			/>
 		</div>
 	);
 }
