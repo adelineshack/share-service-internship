@@ -6,7 +6,7 @@ import Email from './../../../../Email/index';
 import Password from './../../../../Password/index';
 import { useDispatch } from "react-redux";
 import { enterUser } from '../../../../../store/actions';
-import { useSelector } from 'react-redux';
+
 
 
 //CreateAccount
@@ -17,7 +17,7 @@ function Form()  {
 
 	const dispatch = useDispatch();
 	
-	const id = useSelector((state) => state.userInfo.userData.id);
+	
 	
 	const handleEnter = () => {
 		
@@ -28,8 +28,7 @@ function Form()  {
 			password: password.value,
 		};	
 		
-		dispatch(enterUser(newUserData, id));
-		
+		dispatch(enterUser(newUserData));
 	};
 	
 	return (

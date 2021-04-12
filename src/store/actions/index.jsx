@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 import axios from 'axios';
-import { navigate, redirectTo } from '@reach/router';
+import { navigate } from '@reach/router';
 
 axios.defaults.baseURL = 'https://kitbucket.ru/api';
 
@@ -23,7 +23,7 @@ axios.interceptors.request.use(async (config) => {
 	const token = localStorage.token;
 
 	if (!token) {
-		return redirectTo('/auth/*');
+		return navigate('/auth/*');
 	}
 			
 	if (token !== null) {
@@ -54,7 +54,7 @@ export const registerUser = (userData) => {
 
 export const enterUserSuccess = createAction('ENTER_USER_SUCCESS');
 
-export const enterUser = (userData, id) => {
+export const enterUser = (userData) => {
 	return (dispatch) => {
 		
 		
@@ -63,7 +63,7 @@ export const enterUser = (userData, id) => {
 				const { data } = response; 
 				localStorage.setItem("token", data.token);
 				dispatch(enterUserSuccess(response));
-				navigate(`/api/user/${id}`);
+				navigate('/user');
 				console.log(response);
 			})
 			.catch(function (error) {
@@ -126,6 +126,7 @@ export const getGoalsCategories = () => {
 			})
 			.catch(function (error) {
 				console.log(error);
+				navigate('/auth');
 			});
 	};
 };
@@ -143,6 +144,7 @@ export const getGoals = () => {
 				console.log(response);
 			})
 			.catch(function (error) {
+				navigate('/auth');
 				console.log(error);
 			});
 	};
