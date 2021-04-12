@@ -4,11 +4,18 @@ import * as actions from '../actions/actions';
 const defaultState = {
 	users: [],
 	userInfo: {},
-	familyGoals: {},
+	goalsId: {},
 };
 
 export const userInfoReducer = handleActions(
 	{
+		[actions.getGoalsIdSuccess](state, { payload }) {
+			console.log(payload);
+			return {
+				...state,
+				goalsId: payload,
+			};
+		},
 		[actions.fetchUserDataSuccess](state, { payload }) {
 			return {
 				...state,
