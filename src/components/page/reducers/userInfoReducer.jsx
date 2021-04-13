@@ -9,13 +9,6 @@ const defaultState = {
 
 export const userInfoReducer = handleActions(
 	{
-		[actions.getGoalsIdSuccess](state, { payload }) {
-			console.log(payload);
-			return {
-				...state,
-				goalsId: payload,
-			};
-		},
 		[actions.fetchUserDataSuccess](state, { payload }) {
 			return {
 				...state,

@@ -1,15 +1,41 @@
-import { handleActions } from "redux-actions";
-import * as actions from "../actions";
-
+import { handleActions } from 'redux-actions';
+import {
+	getGoalsIdSuccess,
+	getJoinedSuccess,
+} from '../../components/page/actions/actions';
+import * as actions from '../actions';
 
 const defaultState = {
 	categories: [],
 	goals: [],
 	filteredCategoryId: null,
+	goalsId: {},
+	joined: [],
 };
 
 export const goalsReducer = handleActions(
 	{
+		[getGoalsIdSuccess](state, { payload }) {
+			console.log(payload);
+			return {
+				...state,
+				goalsId: payload,
+			};
+		},
+		[getJoinedSuccess](state, { payload }) {
+			console.log(payload);
+			return {
+				...state,
+				joined: payload,
+			};
+		},
+		[getGoalsIdSuccess](state, { payload }) {
+			console.log(payload);
+			return {
+				...state,
+				goalsId: payload,
+			};
+		},
 		[actions.getGoalsCategoriesSuccess](state, { payload }) {
 			console.log(payload);
 			return {
@@ -31,7 +57,6 @@ export const goalsReducer = handleActions(
 				filteredCategoryId: payload,
 			};
 		},
-		
 	},
 	defaultState
 );

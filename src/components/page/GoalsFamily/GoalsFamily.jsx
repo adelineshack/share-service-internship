@@ -4,7 +4,7 @@ import './GoalsFamily.scss';
 import Carousel from 'react-elastic-carousel';
 //import Card from './card';
 import { getGoals } from '../../../store/actions';
-import { getGoalsId } from '../actions/actions';
+import { getGoalsId, getJoined } from '../actions/actions';
 import { useParams } from '@reach/router';
 
 function GoalsFamily() {
@@ -12,11 +12,12 @@ function GoalsFamily() {
 
 	const params = useParams();
 	const idG = params.id;
-	console.log(useSelector((state) => state.goals.goals));
+	const goalsObj = useSelector((state) => state.goals.goalsId);
 
 	useEffect(() => {
 		dispatch(getGoals());
 		dispatch(getGoalsId(idG));
+		dispatch(getJoined(idG));
 	}, []);
 
 	let goals = useSelector((state) => state.goals.goals);
@@ -27,25 +28,29 @@ function GoalsFamily() {
 		{ width: 768, itemsToShow: 3 },
 		{ width: 1200, itemsToShow: 3 },
 	];
+
 	return (
 		idG,
 		(
 			<div className="body-content-container">
 				<div className="body-back">
-					<img
-						src="/images/body_back.png"
-						//scr={goals[idG].bg_image}
-						alt="background"
-						className="body-back-1"
-					></img>
-					<div className="goal_famimly_title">
+					<div className="back-container">
+						<div className="gradient"></div>
 						<img
-							src="/images/spotify.png"
-							alt="spotify"
-							className="spotify"
-						/>
-						<div className="spotify-title"></div>
-						{/* {goals[idG].title} */}
+							src={goalsObj.bg_image}
+							alt="background"
+							className="body-back-1"
+						></img>
+					</div>
+					<div className="goal_famimly_title">
+						<div className="goal-img-container">
+							<img
+								src={goalsObj.image}
+								alt="spotify"
+								className="spotify"
+							/>
+						</div>
+						<div className="spotify-title">{goalsObj.title}</div>
 						<input
 							type="button"
 							className="goal-button-join all-buttons"

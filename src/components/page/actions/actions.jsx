@@ -10,6 +10,7 @@ export const changeUserPasswordSuccess = createAction(
 );
 export const changeUserAvatarSuccess = createAction('CHANGE_USER_AVATAR');
 export const getUserDataSuccess = createAction('GET_USER_SUCCESS');
+export const getJoinedSuccess = createAction('GET_JOINED_SUCCESS');
 
 export const getGoalsId = (idG) => {
 	return (dispatch) => {
@@ -20,6 +21,22 @@ export const getGoalsId = (idG) => {
 				const { data } = response;
 				dispatch(getGoalsIdSuccess(data));
 				console.log('нет ошибки, id= ' + idG);
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+};
+
+export const getJoined = (idG) => {
+	return (dispatch) => {
+		axios
+			.get(`/goal_party/${idG}/`)
+			.then(function (response) {
+				const { data } = response;
+				dispatch(getJoinedSuccess(data));
+				console.log('присоединились: ');
 				console.log(response);
 			})
 			.catch(function (error) {
