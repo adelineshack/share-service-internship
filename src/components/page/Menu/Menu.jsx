@@ -26,10 +26,13 @@ function Menu() {
 				</div>
 				
 				{/* третья строчка */}
-				<div className="myParties ">
-					<img src="/images/myParties.png" alt="myParties"></img>
+				<div onClick = { () => navigate(`/goal/my-parties/`) } className="item__wrap">
+					<div className="myParties ">
+						<img src="/images/myParties.png" alt="myParties"></img>
+					</div>
+					<div className="menu-text parties-text">My parties</div>
 				</div>
-				<div className="menu-text parties-text">My parties</div>
+				
 			</div>
 		</div>
 	);

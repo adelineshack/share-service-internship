@@ -6,6 +6,7 @@ import Carousel from 'react-elastic-carousel';
 import { getGoals } from '../../../store/actions';
 import { getGoalsId } from '../actions/actions';
 import { useParams } from '@reach/router';
+import { joinGoals } from './../../../store/actions/index';
 
 function GoalsFamily() {
 	const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function GoalsFamily() {
 	const idG = params.id;
 	console.log(useSelector((state) => state.goals.goals));
 
+	console.log(idG);
 	useEffect(() => {
 		dispatch(getGoals());
 		dispatch(getGoalsId(idG));
@@ -27,6 +29,10 @@ function GoalsFamily() {
 		{ width: 768, itemsToShow: 3 },
 		{ width: 1200, itemsToShow: 3 },
 	];
+
+	const handlerJoinFamily = () => {
+		dispatch(joinGoals(idG));
+	};
 	return (
 		idG,
 		(
@@ -50,6 +56,7 @@ function GoalsFamily() {
 							type="button"
 							className="goal-button-join all-buttons"
 							value="Вступить в тусу"
+							onClick = { handlerJoinFamily }
 						></input>
 					</div>
 					<div className="goal-text">

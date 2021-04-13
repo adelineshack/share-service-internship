@@ -174,3 +174,39 @@ export const filterGoals = (filteredData) => {
 			});
 	};
 };
+
+export const joinGoalsSuccess = createAction('JOIN_GOALS_SUCCESS');
+
+export const joinGoals = (id) => {
+	return (dispatch) => {
+		axios
+			.post(`/goal/${id}/join/`)
+			.then(function (response) {
+				const { data } = response;
+				dispatch(joinGoalsSuccess(data));
+				console.log(response);
+				// console.log(data);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+};
+
+export const getMyPartiesSuccess = createAction('GET_MY_PARTIES_SUCCESS');
+
+export const getMyParties = () => {
+	return (dispatch) => {
+		axios
+			.get(`/goal_party/`)
+			.then(function (response) {
+				const { data } = response;
+				dispatch(getMyPartiesSuccess(data));
+				console.log(response);
+				// console.log(data);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+};

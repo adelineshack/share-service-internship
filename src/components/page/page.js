@@ -15,6 +15,7 @@ import GoalCatalog from './GoalsCatalog/index';
 import GoalsFamily from './GoalsFamily/GoalsFamily';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData } from './actions/actions';
+import GoalsMyParties from './GoalsMyParties';
 
 function Page() {
 	const [handleModal, setHandleModal] = useState(false);
@@ -119,6 +120,7 @@ function Page() {
 			<Router>
 				{/* <DefaultPage path="/*" /> */}
 				<GoalCatalog path="/goal/categories/" />
+				<GoalsMyParties path='/goal/my-parties' />
 				<GoalsFamily path="/goal/:id" />
 			</Router>
 		</div>

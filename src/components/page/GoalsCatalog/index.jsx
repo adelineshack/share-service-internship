@@ -62,14 +62,15 @@ function GoalCatalog() {
 
 	const responsive = {
 		0: {
-			items: 4,
+			items: 1,
 		},
-		600: {
-			items: 4,
+		800: {
+			items: 3,
 		},
 		1024: {
 			items: 4,
 		},
+		
 	};
 
 	return (
