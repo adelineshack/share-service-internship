@@ -12,7 +12,6 @@ import { navigate } from '@reach/router';
 
 function GoalCatalog() {
 	const dispatch = useDispatch();
-	
 
 	useEffect(() => {
 		dispatch(getGoalsCategories());
