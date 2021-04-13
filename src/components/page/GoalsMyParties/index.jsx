@@ -53,7 +53,7 @@ function GoalsMyParties() {
 							<div className="parties__user-icon">
 								<img
 									className="parties__thumbnail"
-									src={party.admin.avatar.thumbnail}
+									src={(!party.admin.avatar) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
 									alt={party.admin.first_name}
 								/>
 							</div>
@@ -63,7 +63,8 @@ function GoalsMyParties() {
 								<div key = {user.id} className="parties__user-icon">
 									<img
 										className="parties__thumbnail"
-										src={user.avatar.thumbnail}
+										// src={user.avatar.thumbnail}
+										src={(!user.avatar) ? "/images/default-photo.jpg" : user.avatar.thumbnail}
 										// alt={party.admin.first_name}
 									/>
 								</div>
