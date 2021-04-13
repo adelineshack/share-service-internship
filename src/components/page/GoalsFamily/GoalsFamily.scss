@@ -61,8 +61,8 @@
 	position: absolute;
 }
 .goalIcon {
-	width: 5vw;
-	height: 10vh;
+	width: 75px;
+	height: 75px;
 	z-index: 323;
 	position: absolute;
 	background-color: #1e252b;
@@ -74,22 +74,26 @@
 	margin-right: 16vw;
 }
 .goalBG {
-	background-size: contain;
+	background-size: cover;
 	width: 22vw;
-	height: 24vh;
+	height: 25vh;
 	position: absolute;
 	border-radius: 20px;
 }
 .card {
 	width: 22vw;
-	height: 24vh;
-
+	height: 25vh;
+	cursor: pointer;
 	border-radius: 20px;
+}
+.card:active,
+card:visited {
+	outline: none;
 }
 .card:after {
 	content: '';
 	width: 22vw;
-	height: 24vh;
+	height: 25vh;
 	position: absolute;
 	background: transparent;
 	background-image: linear-gradient(
@@ -99,6 +103,7 @@
 	);
 	//opacity: 0.5;
 	border-radius: 20px;
+	outline: none;
 }
 .body-goal {
 	display: flex;
@@ -161,4 +166,10 @@
 	height: 10vh;
 	background-color: antiquewhite;
 	color: black;
+}
+.rec.rec-arrow {
+	visibility: hidden;
+}
+.rec.rec-dot {
+	visibility: hidden;
 }
