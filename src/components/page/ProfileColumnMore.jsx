@@ -14,10 +14,13 @@ function ProfileColumnMore(props) {
 	// const [nickname, setNickname] = useState(null);
 
 	const id = props.userData.id;
+	const userData = props.userData;
+
+
 
 	const dispatch = useDispatch();
 
-	// console.log( email );
+	console.log( userData );
 	
 
 	const handleChangeName = () => {
@@ -49,7 +52,7 @@ function ProfileColumnMore(props) {
 				>
 					<div className="card-inputs">
 						<input
-							placeholder = "First name"
+							placeholder = { userData.first_name }
 							className = "input-more"
 							type = "text"
 							name = "firstName"
@@ -57,25 +60,25 @@ function ProfileColumnMore(props) {
 							value = { firstName }
 						/>
 						<input
-							placeholder = "Last name"
+							placeholder = { userData.last_name }
 							className = "input-more"
 							type = "text"
 							name = "lastName"
 							onChange = { e => setLastName(e.target.value) }
 							value = { lastName }
 						/>
-						{/* <input
-								className="input-more"
-								onChange = { e => setEmail(e.target.value) }
-								value = { email }
-								placeholder = "Email"
-							/>
-							<input 
-								className="input-more" 
-								onChange = { e => setNickname(e.target.value) }
-								value = { nickname }
-								placeholder = "Nickname"
-							/> */}
+						<input
+							className="input-more"
+							// onChange = { e => setEmail(e.target.value) }
+							value = { userData.email }
+							placeholder = "Email"
+						/>
+						{/* <input 
+							className="input-more" 
+							onChange = { e => setNickname(e.target.value) }
+							value = { nickname }
+							placeholder = "Nickname"
+						/> */}
 					</div>
 					<input
 						type="submit"

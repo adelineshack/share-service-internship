@@ -30,14 +30,14 @@ axios.interceptors.request.use(async (config) => {
 		// console.log('дошло');
 		config.headers.Authorization = `Token ${token}`;
 		axios.defaults.xsrfHeaderName = "X-XSRF-TOKEN";
-		axios.defaults.xsrfCookieName = "XSRF-TOKEN";
+		axios.defaults.xsrfCookieName = "X-CSRFToken";
 	}
 	return config;
 });
 
 export const registerUserSuccess = createAction('REGISTER_USER_SUCCESS');
 
-export const registerUser = (userData) => {
+export const registerUser = (userData, errorMessage) => {
 	return (dispatch) => {
 		axios
 			.post('/auth/sign_up/', userData)
@@ -49,6 +49,7 @@ export const registerUser = (userData) => {
 				console.log(response);
 			})
 			.catch(function (error) {
+				errorMessage();
 				console.log('Ошибка');
 				console.log(error);
 			});
@@ -57,7 +58,7 @@ export const registerUser = (userData) => {
 
 export const enterUserSuccess = createAction('ENTER_USER_SUCCESS');
 
-export const enterUser = (userData) => {
+export const enterUser = (userData, errorMessage) => {
 	return (dispatch) => {
 		
 		
@@ -70,6 +71,8 @@ export const enterUser = (userData) => {
 				console.log(response);
 			})
 			.catch(function (error) {
+				errorMessage();
+				console.log('Ошибка');
 				console.log(error);
 			});
 	};
@@ -77,7 +80,7 @@ export const enterUser = (userData) => {
 
 export const recoverUserSuccess = createAction('RECOVER_USER_SUCCESS');
 
-export const recoverUser = (userData) => {
+export const recoverUser = (userData, errorMessage) => {
 	return (dispatch) => {
 		axios
 			.post('/auth/forgot_password/', userData)
@@ -89,6 +92,7 @@ export const recoverUser = (userData) => {
 				console.log(response);
 			})
 			.catch(function (error) {
+				errorMessage();
 				console.log(error);
 			});
 	};

@@ -12,6 +12,7 @@ import { navigate } from '@reach/router';
 
 function GoalCatalog() {
 	const dispatch = useDispatch();
+	
 
 	useEffect(() => {
 		dispatch(getGoalsCategories());
@@ -125,9 +126,8 @@ function GoalCatalog() {
 								className="item_grid"
 								style={{ backgroundImage: goals.bg_image }}
 								key={goals.id}
-								onClick={() => {
-									navigate(`/goal/${goals.id}`);
-								}}
+								onClick={() => navigate(`/goal/${goals.id}`)}
+								
 							>
 								<div className="goals_goals__circle">
 									<img

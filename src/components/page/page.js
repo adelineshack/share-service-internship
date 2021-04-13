@@ -23,6 +23,7 @@ function Page() {
 	const [successModal, setSuccessModal] = useState(false);
 	const [notesModal, setNotesModal] = useState(false);
 	const [profileColumn, setProfileColumn] = useState(false);
+	const [ notification, setNotification ] = useState(true);
 
 	const dispatch = useDispatch();
 
@@ -53,21 +54,42 @@ function Page() {
 	};
 
 	return (
-		<div className="container-max">
+		<div 
+			className="container-max"
+			// onClick = { () => {
+			// 	(!notesModal) ? setNotesModal(notesModal) : Notes();
+			// }}
+		>
+			{/* страница семьи, раскомментировать строчку ниже */}
+
+			{/* <GoalsFamily /> */}
 			<Menu />
 			<div className="tools">
-				<img
-					src="/images/bell.png"
-					alt="bell"
-					className="bell"
-					onClick={() => Notes()}
-				/>
-				<img
-					src="/images/person.png"
-					alt="person"
-					className="person"
-					onClick={() => Profile()}
-				/>
+				<div className="bell">
+
+					<img
+						// src="/images/bell.png"
+						src = { (notification) ? "/images/bell.png" : "/images/bell1.png" }
+						alt = "bell"
+						
+						onClick={() => {
+							Notes();
+							setNotification(false);
+						}}
+					/>
+
+				</div>
+
+				<div className="person">
+					<img
+						src="/images/person.png"
+						alt="person"
+						
+						onClick={() => Profile()}
+					/>
+				</div>
+				
+				
 			</div>
 			<ProfileColumn
 				userData={userData}
