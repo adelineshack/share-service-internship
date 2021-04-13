@@ -12,7 +12,6 @@ import SuccessModal from './SuccessModal/SuccessModal';
 import Notifications from './Notifications/Notifications';
 import { Router } from '@reach/router';
 import GoalCatalog from './GoalsCatalog/index';
-//import GoalPage from './GoalPage';
 import GoalsFamily from './GoalsFamily/GoalsFamily';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData } from './actions/actions';
@@ -29,14 +28,12 @@ function Page() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-
 		dispatch(getUserData());
-		
 	}, []);
 
 	const userData = useSelector((state) => state.userInfo.userData);
-	console.log( userData );
-	
+	//console.log( userData );
+
 	const Change = () => {
 		return setHandleModal(!handleModal);
 	};
@@ -95,7 +92,7 @@ function Page() {
 				
 			</div>
 			<ProfileColumn
-				userData = { userData }
+				userData={userData}
 				profileColumn={profileColumn}
 				Change={() => Change()}
 				Delete={() => Delete()}
@@ -131,7 +128,6 @@ function Page() {
 export function DefaultPage() {
 	return (
 		<div className="back-block__default">
-		
 			<div className="back-1"></div>
 			<div className="back-2"></div>
 		</div>
