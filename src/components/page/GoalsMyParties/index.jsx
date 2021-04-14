@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	getMyParties,
 } from './../../../store/actions/index';
-// import { navigate } from '@reach/router';
+import { navigate } from '@reach/router';
 
 
 function GoalsMyParties() {
@@ -35,21 +35,16 @@ function GoalsMyParties() {
 						key={party.id} 
 						className="parties__item"
 						style={{ backgroundImage: `url(${party.goal.bg_image})` }}
+						onClick = { () => navigate(`/goal/my-parties/${party.id}`) }
 					>
-						
-						<div className="parties__descr">
-							<div className="parties__circle">
-								<img
-									className="parties__icon"
-									src={party.goal.image}
-									alt={party.goal.title}
-								/>
-							</div>
-							<div className="title">
-								{party.goal.title}
-							</div>
+
+
+						<div className="parties__name">
+							{party.name}
 						</div>
-						<div className="parties__admin">
+						
+						
+						{/* <div className="parties__admin">
 							<div className="parties__user-icon">
 								<img
 									className="parties__thumbnail"
@@ -57,8 +52,18 @@ function GoalsMyParties() {
 									alt={party.admin.first_name}
 								/>
 							</div>
-						</div>
+						</div> */}
+
 						<div className="parties__users">
+							<div className="parties__admin">
+								<div className="parties__user-icon">
+									<img
+										className="parties__thumbnail"
+										src={(!party.admin.avatar) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
+										alt={party.admin.first_name}
+									/>
+								</div>
+							</div>
 							{ party.members.map(user => (
 								<div key = {user.id} className="parties__user-icon">
 									<img
@@ -70,6 +75,18 @@ function GoalsMyParties() {
 								</div>
 							)) }
 							
+						</div>
+						<div className="parties__descr">
+							<div className="parties__circle">
+								<img
+									className="parties__icon"
+									src={party.goal.image}
+									alt={party.goal.title}
+								/>
+							</div>
+							<div className="title">
+								{party.goal.title}
+							</div>
 						</div>
 						
 						

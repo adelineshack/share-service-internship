@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './GoalsFamily.scss';
 import Carousel from 'react-elastic-carousel';
@@ -6,20 +6,32 @@ import Carousel from 'react-elastic-carousel';
 import { getGoals } from '../../../store/actions';
 import { getGoalsId, getJoined } from '../actions/actions';
 import { useParams } from '@reach/router';
-import { joinGoals } from './../../../store/actions/index';
+import { joinGoals, getMyParties } from './../../../store/actions/index';
 
 function GoalsFamily() {
+	const [message, setMessage] = useState('');
 	const dispatch = useDispatch();
+
 
 	const params = useParams();
 	const idG = params.id;
 	const goalsObj = useSelector((state) => state.goals.goalsId);
+	const joinedGoals = useSelector((state) => state.goals.myParties);
 
-	console.log(idG);
+	const filteredJoinedGoals = joinedGoals.filter( goal => {
+		
+		if (+goal.goal.id === +idG) {
+			return true;
+		}
+	});
+
+	console.log(filteredJoinedGoals);
+
 	useEffect(() => {
 		dispatch(getGoals());
 		dispatch(getGoalsId(idG));
 		dispatch(getJoined(idG));
+		dispatch(getMyParties());
 	}, []);
 
 	let goals = useSelector((state) => state.goals.goals);
@@ -33,6 +45,7 @@ function GoalsFamily() {
 
 	const handlerJoinFamily = () => {
 		dispatch(joinGoals(idG));
+		setMessage('Подождите, пока администратор одобрит вашу заявку');
 	};
 	return (
 		idG,
@@ -59,9 +72,13 @@ function GoalsFamily() {
 						<input
 							type="button"
 							className="goal-button-join all-buttons"
-							value="Вступить в тусу"
+							// value=value="Вступить в тусу"
+							value= { (filteredJoinedGoals.length === 0) ? "Вступить в тусу" : "Уже в тусе"}
+							disabled = { (filteredJoinedGoals.length === 0) ? false : true }
 							onClick = { handlerJoinFamily }
+							
 						></input>
+						<div className = "waiting-approval">{message}</div>
 					</div>
 					<div className="goal-text">
 						Amet minim mollit non deserunt ullamco est sit aliqua
