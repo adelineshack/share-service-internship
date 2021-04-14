@@ -31,12 +31,9 @@ function GoalsFamily() {
 		{ width: 1200, itemsToShow: 3 },
 	];
 
-<<<<<<< HEAD
 	const handlerJoinFamily = () => {
 		dispatch(joinGoals(idG));
 	};
-=======
->>>>>>> c5c2d88e91405dba02034317e688009a95a03179
 	return (
 		idG,
 		(
