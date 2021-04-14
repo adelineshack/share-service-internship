@@ -52,7 +52,10 @@ function GoalCatalog() {
 		} else {
 			return true;
 		}
+		
 	});
+
+	
 
 	function filterCategories(categories) {
 		dispatch(filterGoals(categories.id));
@@ -127,7 +130,13 @@ function GoalCatalog() {
 								className="item_grid"
 								style={{ backgroundImage: goals.bg_image }}
 								key={goals.id}
-								onClick={() => navigate(`/goal/${goals.id}`)}
+								onClick={() => {
+									if (Object.keys(goals).length != 1) {
+										navigate(`/goal/${goals.id}`);
+									}
+							
+								}
+								}
 								
 							>
 								<div className="goals_goals__circle">

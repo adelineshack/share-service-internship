@@ -15,6 +15,7 @@ function GoalParty() {
 	const party = useSelector((state) => state.goals.party);
 	const [message, setMessage] = useState('');
 
+
 	console.log(party);
 
 	useEffect(() => {
@@ -61,6 +62,8 @@ function GoalParty() {
 					<div className="party__header-title-goal">
 						{(!party) ? '' : party.goal.title}
 					</div>
+
+				
 
 
 				</div>

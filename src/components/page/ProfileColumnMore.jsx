@@ -51,16 +51,29 @@ function ProfileColumnMore(props) {
 					className="form"
 				>
 					<div className="card-inputs">
+
+						{/* <div>
+							{ ( firstName && (firstName.length > 3)) 
+								? '' : "Too short name" }
+						</div> */}
+						
+
 						<input
-							placeholder = { userData.first_name }
+							placeholder = { (!userData.first_name) ? 'Enter your first name' : userData.first_name }
 							className = "input-more"
 							type = "text"
 							name = "firstName"
 							onChange = { e => setFirstName(e.target.value) }
 							value = { firstName }
 						/>
+
+						{/* <div>
+							{ ( lastName && (lastName.length > 3)) 
+								? '' : "Too short name" }
+						</div> */}
+						
 						<input
-							placeholder = { userData.last_name }
+							placeholder = { (!userData.last_name) ? 'Enter your last name' : userData.last_name }
 							className = "input-more"
 							type = "text"
 							name = "lastName"
@@ -85,6 +98,7 @@ function ProfileColumnMore(props) {
 						value="Save"
 						className="more-save"
 						onClick = { handleChangeName }
+						disabled = { ( firstName && lastName && (firstName.length > 3) && (lastName.length > 3)) ? false : true }
 					/>
 				</form>
 				<div className="delete-change-buttons">

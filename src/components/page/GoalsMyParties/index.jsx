@@ -84,9 +84,10 @@ function GoalsMyParties() {
 									alt={party.goal.title}
 								/>
 							</div>
-							<div className="title">
-								{party.goal.title}
-							</div>
+							
+						</div>
+						<div className="title">
+							{party.goal.title}
 						</div>
 						
 						
