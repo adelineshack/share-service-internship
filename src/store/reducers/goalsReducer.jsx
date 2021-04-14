@@ -9,12 +9,29 @@ const defaultState = {
 	categories: [],
 	goals: [],
 	filteredCategoryId: null,
+	joinedClubs: [],
+	myParties: [],
 	goalsId: {},
 	joined: [],
-};
+};	
 
 export const goalsReducer = handleActions(
 	{
+		[actions.getMyPartiesSuccess](state, { payload }) {
+			console.log(payload);
+			return {
+				...state,
+				myParties: payload,
+			};
+		},
+		[actions.joinGoalsSuccess](state, { payload }) {
+			console.log(payload);
+			return {
+				...state,
+				joinedClubs: payload,
+	
+			};
+		},
 		[getGoalsIdSuccess](state, { payload }) {
 			console.log(payload);
 			return {
