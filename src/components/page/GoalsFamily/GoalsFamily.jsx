@@ -7,7 +7,6 @@ import { getGoals } from '../../../store/actions';
 import { getGoalsId, getJoined } from '../actions/actions';
 import { useParams } from '@reach/router';
 import { joinGoals } from './../../../store/actions/index';
-
 function GoalsFamily() {
 	const dispatch = useDispatch();
 
@@ -15,13 +14,13 @@ function GoalsFamily() {
 	const idG = params.id;
 	const goalsObj = useSelector((state) => state.goals.goalsId);
 
-	console.log(idG);
 	useEffect(() => {
 		dispatch(getGoals());
 		dispatch(getGoalsId(idG));
 		dispatch(getJoined(idG));
 	}, []);
 
+	const joined = useSelector((state) => state.goals.joined);
 	let goals = useSelector((state) => state.goals.goals);
 
 	const breakPoints = [
@@ -60,19 +59,20 @@ function GoalsFamily() {
 							type="button"
 							className="goal-button-join all-buttons"
 							value="Вступить в тусу"
-							onClick = { handlerJoinFamily }
+							onClick={handlerJoinFamily}
 						></input>
 					</div>
-					<div className="goal-text">
-						Amet minim mollit non deserunt ullamco est sit aliqua
-						dolor do amet sint. Velit officia consequat duis enim
-						velit mollit. Exercitation veniam consequat sunt nostrud
-						amet.Amet minim mollit non deserunt ullamco est sit
-						aliqua dolor do amet sint. Velit officia consequat duis
-						enim velit mollit. Exercitation veniam consequat sunt
-						nostrud amet.
+					<div className="goal-text">{goalsObj.description}</div>
+					<div className="joined">
+						{ joined.map(joinedIcons => (
+							<div key = {joinedIcons.thumbnail} className="icon-joined-container">
+								<img
+									className="icon-joined"
+									src={(!joinedIcons.thumbnail) ? "/images/default-photo.jpg" : joinedIcons.thumbnail}
+								/>
+							</div>
+						)) }
 					</div>
-					<div className="joined">joined</div>
 				</div>
 				<div className="body-content">
 					<Carousel breakPoints={breakPoints}>

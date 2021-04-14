@@ -32,12 +32,12 @@ export const getGoalsId = (idG) => {
 export const getJoined = (idG) => {
 	return (dispatch) => {
 		axios
-			.get(`/goal_party/${idG}/`)
+			.get(`/goal/${idG}/members_thumbnails/`)
 			.then(function (response) {
 				const { data } = response;
 				dispatch(getJoinedSuccess(data));
-				console.log('присоединились: ');
-				console.log(response);
+				console.log('joined: ');
+				console.log(data);
 			})
 			.catch(function (error) {
 				console.log(error);

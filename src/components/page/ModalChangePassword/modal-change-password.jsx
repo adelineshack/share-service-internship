@@ -8,25 +8,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changePassword } from './../actions/actions';
 
 function ModalChangePassword(props) {
-
-	const oldPassword = useInput('', {isEmpty: true, minLength: 5});
-	const newPassword = useInput('', {isEmpty: true, minLength: 5});
-	const confirmNewPassword = useInput('', {isEmpty: true, minLength: 5});
+	const oldPassword = useInput('', { isEmpty: true, minLength: 5 });
+	const newPassword = useInput('', { isEmpty: true, minLength: 5 });
+	const confirmNewPassword = useInput('', { isEmpty: true, minLength: 5 });
 
 	const dispatch = useDispatch();
 	const id = useSelector((state) => state.userInfo.userData.id);
 
 	const setNewPassword = () => {
-		
 		const newUserData = {
-		
-
 			old_password: oldPassword.value,
 			new_password: newPassword.value,
-			
 		};
 		dispatch(changePassword(newUserData, id));
-		
 	};
 
 	const [showPassword, setShowPassword] = useState(true);
@@ -82,117 +76,134 @@ function ModalChangePassword(props) {
 				</div>
 				<div className="white-text-1">Change password</div>
 
-
 				<form
-					onSubmit={event => {
+					onSubmit={(event) => {
 						event.preventDefault();
 						event.target.reset();
 					}}
 					className="change-form"
 				>
-					{(oldPassword.isDirty && oldPassword.isEmpty) && 
-					<div className="validation-text-change">empty field</div>}
+					
+					{/* старый пароль */}
+					{oldPassword.isDirty && oldPassword.isEmpty && (
+						<div className="validation-text-change">
+							empty field
+						</div>
+					)}
 
-					{(oldPassword.isDirty && oldPassword.minLengthError) && 
-					<div className="validation-text-change">too short password</div>}
-
-					<input
-						placeholder="Старый пароль"
-						value={ oldPassword.value }
-						onChange={e => oldPassword.onChange(e)}
-						onBlur={e => oldPassword.onBlur(e)}
-						alt="Старый пароль"
-						className="input"
-						name="old_password"
-						type="password"
-						id="old_password"
-					/>
-
-					{(newPassword.isDirty && newPassword.isEmpty) && 
-					<div className="validation-text-change">empty field</div>}
-
-					{(newPassword.isDirty && newPassword.minLengthError) && 
-					<div className="validation-text-change">too short password</div>}
-					<img
-						src="/images/openedEye.png"
-						className={`openedEye ${
-							showPassword ? 'open' : 'close'
-						} style={{...props.style}}`}
-						onClick={(event) => {
-							return ShowPassword(event);
-						}}
-					></img>
-					<img
-						src="/images/closedEye.png"
-						className={`openedEye ${
-							showPassword ? 'close' : 'open'
-						} style={{...props.style}}`}
-						onClick={(event) => ShowPassword(event)}
-					></img>
+					{oldPassword.isDirty && oldPassword.minLengthError && (
+						<div className="validation-text-change">
+							too short password
+						</div>
+					)}
+					<div className="contain-old-pass">
+						<input
+							placeholder="Старый пароль"
+							value={oldPassword.value}
+							onChange={(e) => oldPassword.onChange(e)}
+							onBlur={(e) => oldPassword.onBlur(e)}
+							alt="Старый пароль"
+							className="input-pass"
+							name="old_password"
+							type="password"
+							id="old_password"
+						/>
+						<img
+							src="/images/openedEye.png"
+							className={`openedEye ${
+								showPassword ? 'open' : 'close'	} style={{...props.style}}`}
+							onClick={(event) => {
+								return ShowPassword(event);
+							}}
+						></img>
+						<img
+							src="/images/closedEye.png"
+							className={`openedEye ${
+								showPassword ? 'close' : 'open'
+							} style={{...props.style}}`}
+							onClick={(event) => ShowPassword(event)}
+						></img>
+					</div>
+					
 					{/* новый пароль */}
-					<input
-						placeholder="Новый пароль"
-						value={ newPassword.value }
-						onChange={e => newPassword.onChange(e)}
-						onBlur={e => newPassword.onBlur(e)}
-						alt="Новый пароль"
-						className="input"
-						name="new_password"
-						type="password"
-						id="new_password"
-					/>
+					{newPassword.isDirty && newPassword.isEmpty && (
+						<div className="validation-text-change">
+							empty field
+						</div>
+					)}
+					{newPassword.isDirty && newPassword.minLengthError && (
+						<div className="validation-text-change">
+							too short password
+						</div>
+					)}
+					<div className="contain-old-pass">
+						<input
+							placeholder="Новый пароль"
+							value={newPassword.value}
+							onChange={(e) => newPassword.onChange(e)}
+							onBlur={(e) => newPassword.onBlur(e)}
+							alt="Новый пароль"
+							className="input-pass"
+							name="new_password"
+							type="password"
+							id="new_password"
+						/>
+						<img
+							src="/images/openedEye.png"
+							className={`openedEye2 ${
+								showPassword2 ? 'open' : 'close'
+							} style={{...props.style}}`}
+							onClick={(event) => {
+								return ShowPassword2(event);
+							}}
+						></img>
+						<img
+							src="/images/closedEye.png"
+							className={`openedEye2 ${
+								showPassword2 ? 'close' : 'open'
+							} style={{...props.style}}`}
+							onClick={(event) => ShowPassword2(event)}
+						></img>
+					</div>
 
-					{(confirmNewPassword.isDirty && confirmNewPassword.isEmpty) && 
-					<div className="validation-text">empty field</div>}
+					{confirmNewPassword.isDirty &&
+							confirmNewPassword.isEmpty && (
+						<div className="validation-text">empty field</div>
+					)}
+					{confirmNewPassword.isDirty &&
+						confirmNewPassword.minLengthError && (
+						<div className="validation-text">
+								too short password
+						</div>
+					)}
 
-					{(confirmNewPassword.isDirty && confirmNewPassword.minLengthError) && 
-					<div className="validation-text">too short password</div>}
-
-					<img
-						src="/images/openedEye.png"
-						className={`openedEye2 ${
-							showPassword2 ? 'open' : 'close'
-						} style={{...props.style}}`}
-						onClick={(event) => {
-							return ShowPassword2(event);
-						}}
-					></img>
-					<img
-						src="/images/closedEye.png"
-						className={`openedEye2 ${
-							showPassword2 ? 'close' : 'open'
-						} style={{...props.style}}`}
-						onClick={(event) => ShowPassword2(event)}
-					></img>
-					{/* еще раз новый пароль */}
-					<input
-						placeholder="Еще раз новый пароль"
-						value={ confirmNewPassword.value }
-						onChange={e => confirmNewPassword.onChange(e)}
-						onBlur={e => confirmNewPassword.onBlur(e)}
-						alt="Еще раз новый пароль"
-						className="input"
-						name="new_password_again"
-						type="password"
-						id="new_password_again"
-					/>
-
-					{(newPassword.value != confirmNewPassword.value) && 
-						<div
-							style={{color: '#EB5757'}}
-						>
+					<div className="contain-old-pass">
+						{/* еще раз новый пароль */}
+						<input
+							placeholder="Еще раз новый пароль"
+							value={confirmNewPassword.value}
+							onChange={(e) => confirmNewPassword.onChange(e)}
+							onBlur={(e) => confirmNewPassword.onBlur(e)}
+							alt="Еще раз новый пароль"
+							className="input-pass"
+							name="new_password_again"
+							type="password"
+							id="new_password_again"
+						/>
+					</div>
+					{newPassword.value != confirmNewPassword.value && (
+						<div style={{ color: '#EB5757' }}>
 							Пароли не совпадают
-						</div>}
-					<button 
-						type="submit" 
+						</div>
+					)}
+					<button
+						type="submit"
 						className="btn-change all-buttons"
-						onClick = { setNewPassword }
+						onClick={setNewPassword}
 					>
 						Change my password
 					</button>
 				</form>
-
-
 			</div>
 		</div>
 	);
