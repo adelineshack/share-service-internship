@@ -181,7 +181,14 @@ card:visited {
 }
 .waiting-approval {
 	position: absolute;
-	top: 100px;
+	top: 140px;
+	width: 250px;
+	left: 65vw;
+}
+.error-approval {
+	position: absolute;
+	color: rgb(180, 75, 75);
+	top: 110px;
 	width: 250px;
 	left: 65vw;
 }

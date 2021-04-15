@@ -17,6 +17,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserData } from './actions/actions';
 import GoalsMyParties from './GoalsMyParties';
 import GoalParty from './GoalsMyParties/GoalsParty/index';
+import GoalsTop from './GoalsTop';
+import { getMyParties } from './../../store/actions/index';
 
 
 function Page() {
@@ -32,6 +34,7 @@ function Page() {
 
 	useEffect(() => {
 		dispatch(getUserData());
+		dispatch(getMyParties());
 	}, []);
 
 	const userData = useSelector((state) => state.userInfo.userData);
@@ -120,7 +123,7 @@ function Page() {
 			/>
 			<Notifications notesModal={notesModal} />
 			<Router>
-				{/* <DefaultPage path="/*" /> */}
+				<GoalsTop path="/*" />
 				<GoalCatalog path="/goal/categories/" />
 				<GoalsMyParties path='/goal/my-parties' />
 				<GoalParty path='/goal/my-parties/:idParty'/>
@@ -131,13 +134,6 @@ function Page() {
 	);
 }
 
-export function DefaultPage() {
-	return (
-		<div className="back-block__default">
-			<div className="back-1"></div>
-			<div className="back-2"></div>
-		</div>
-	);
-}
+
 
 export default Page;

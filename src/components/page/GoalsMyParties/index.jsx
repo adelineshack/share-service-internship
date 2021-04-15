@@ -6,6 +6,7 @@ import {
 	getMyParties,
 } from './../../../store/actions/index';
 import { navigate } from '@reach/router';
+// import ContentLoader from 'react-content-loader';
 
 
 function GoalsMyParties() {
@@ -16,6 +17,7 @@ function GoalsMyParties() {
 	useEffect(() => {
 	
 		dispatch(getMyParties());
+	
 		// dispatch(getGoals());
 	}, []);
 
@@ -27,76 +29,103 @@ function GoalsMyParties() {
 	return (
 		<div className='parties__wrapper'>
 			<h1 className="parties__title">My parties</h1>
-			<h2 className = 'parties__message'>{ (goalFamilies.length === 0) ? 'Вы еще пока не вступили ни в одну семью :(' : ''}</h2>
-			<div className="parties__grid">
+			{/* <ContentLoader speed={2}
+				width={604}
+				height={300}
+				viewBox="0 0 1024 1000"
+				backgroundColor="#f3f3f3"
+				foregroundColor="#d6d6d6">
+				 
+				<rect x="0" y="0" rx="19" ry="19" width="604" height="300" />
+				<rect x="3020" y="0" rx="19" ry="19" width="604" height="300" />
+				<rect x="0" y="0" rx="19" ry="19" width="600" height="300" />
+				<rect x="0" y="0" rx="19" ry="19" width="600" height="300" />
+			</ContentLoader> */}
+			{/* <h2 className = 'parties__message'>{ (goalFamilies.length === 0) ? 'Вы еще пока не вступили ни в одну семью :(' : ''}</h2> */}
+
+			{  (goalFamilies.length === 0) ? 
+			
+				<div className="parties__grid_default">					
+					<div className="parties__item_default"></div>
+					<div className="parties__item_default"></div>
+					<div className="parties__item_default"></div>
+					<div className="parties__item_default"></div>
+				</div> 
 				
-				{goalFamilies.map((party) => (
-					<div 
-						key={party.id} 
-						className="parties__item"
-						style={{ backgroundImage: `url(${party.goal.bg_image})` }}
-						onClick = { () => navigate(`/goal/my-parties/${party.id}`) }
-					>
+				:
+				<div className="parties__grid">
+				
+					{goalFamilies.map((party) => (
+					
+						<div 
+							key={party.id} 
+							className="parties__item"
+							style={{ backgroundImage: `url(${party.goal.bg_image})` }}
+							onClick = { () => navigate(`/goal/my-parties/${party.id}`) }
+						>
 
 
-						<div className="parties__name">
-							{party.name}
-						</div>
-						
-						
-						{/* <div className="parties__admin">
-							<div className="parties__user-icon">
-								<img
-									className="parties__thumbnail"
-									src={(!party.admin.avatar) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
-									alt={party.admin.first_name}
-								/>
+							<div className="parties__name">
+								{party.name}
 							</div>
-						</div> */}
+					
 
-						<div className="parties__users">
-							<div className="parties__admin">
-								<div className="parties__user-icon">
-									<img
-										className="parties__thumbnail"
-										src={(!party.admin.avatar) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
-										alt={party.admin.first_name}
-									/>
+							<div className="parties__users">
+								<div className="parties__admin">
+									<div className="parties__user-icon">
+										<img
+											className="parties__thumbnail"
+											src={(!party) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
+											alt={party.admin.first_name}
+										/>
+									</div>
 								</div>
-							</div>
-							{ party.members.map(user => (
+								{/* { party.members.map(user => (
 								<div key = {user.id} className="parties__user-icon">
 									<img
 										className="parties__thumbnail"
 										// src={user.avatar.thumbnail}
-										src={(!user.avatar) ? "/images/default-photo.jpg" : user.avatar.thumbnail}
+										src={!(user.avatar) ? "/images/default-photo.jpg" : user.avatar.thumbnail}
 										// alt={party.admin.first_name}
 									/>
 								</div>
-							)) }
+							)) } */}
 							
-						</div>
-						<div className="parties__descr">
-							<div className="parties__circle">
-								<img
-									className="parties__icon"
-									src={party.goal.image}
-									alt={party.goal.title}
-								/>
 							</div>
+							<div className="parties__descr">
+								<div className="parties__circle">
+									<img
+										className="parties__icon"
+										src={party.goal.image}
+										alt={party.goal.title}
+									/>
+								</div>
 							
-						</div>
-						<div className="title">
-							{party.goal.title}
-						</div>
+							</div>
+							<div className="title">
+								{party.goal.title}
+							</div>
 						
-						
-					</div>
-				))}
-			</div>
+						</div>
+					))}
+				</div> 
+			}
+			
+
+
+			
 		</div>
 		
 	);
 }
+// const MyLoader = () => (
+
+// 	<ContentLoader viewBox="0 0 380 70">
+// 		{/* Only SVG shapes */}    
+// 		<rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
+// 		<rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
+// 		<rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
+// 	</ContentLoader>
+// );
 
 export default GoalsMyParties;

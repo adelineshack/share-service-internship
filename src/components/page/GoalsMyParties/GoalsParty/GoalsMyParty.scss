@@ -61,8 +61,11 @@
         &-title {
             font-weight: 600;
             font-size: 50px;
+            width: 30vw;
+
             &-goal {
                 margin-left: 20px;
+                width: 10vw;
                 font-size: 35px;
                 font-weight: 400;
                 color:rgb(143, 142, 142);
@@ -83,6 +86,30 @@
     &_admin-message {
         margin-top: 10px;
         text-align: center;
+    }
+    &_new-admin {
+        &_select {
+            background: #d3787891;
+            padding: 0px 26px;
+            color: #FFFFFF;
+            font-weight: 500;
+            font-size: 20px;
+            text-align: right;
+            height: 42px;
+            width: 235px;
+            border-style: none;
+            border-radius: 5px;
+            outline:0 none !important;
+            cursor: pointer;
+            &:active {
+                outline:0 none !important;
+            }
+        }
+        &_option {
+            text-align: center;
+           
+            background-color: rgb(105, 105, 105);
+        }
     }
     &__content {
         display: flex;

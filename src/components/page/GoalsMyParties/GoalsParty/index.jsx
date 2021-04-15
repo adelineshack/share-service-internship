@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './GoalsMyParty.scss';
 import { useParams, navigate } from '@reach/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { getParty, leaveParty } from '../../../../store/actions/index';
+import { changeAdmin, getParty, leaveParty } from '../../../../store/actions/index';
 
 
 
@@ -16,11 +16,8 @@ function GoalParty() {
 	const [message, setMessage] = useState('');
 
 
-	console.log(party);
-
 	useEffect(() => {
 		dispatch(getParty(idParty));
-		
 	}, []);
 
 	const handlerLeave = () => {
@@ -33,7 +30,16 @@ function GoalParty() {
 		navigate('/goal/my-parties');
 	};
 
+	const handlerChangeAdmin = (e) => {
+		console.log(e);
+		const newAdmin = {
+			new_admin: party.admin.id
+		};
+		dispatch(changeAdmin(idParty, newAdmin));
+	};
+
 	return (
+		
 		<div className="party__container">
 			
 			<div className="party__bg">
@@ -82,11 +88,36 @@ function GoalParty() {
 								
 					>
 						Покинуть тусу
-					</button>	
+					</button>
 
 					<div className="party_admin-message">
 						{ message }
 					</div>
+					<div className="party_new-admin">
+						<form method="post">
+							<select  className='party_new-admin_select'  >
+								<option 
+									
+									className='party_new-admin_option'>Сменить админа</option>
+
+								{ (!party) ? '' : party.members.map(user => (
+
+									<option 
+										key={user.id} 
+										className='party_new-admin_option'
+										onChange = { () => handlerChangeAdmin(user.id) }
+									>
+										{user.first_name}
+									</option>
+								))}
+								<button type="submit">Отправить</button>
+							</select>
+						</form>
+						
+						
+						
+					</div>
+					
 					
 				</div>
 				

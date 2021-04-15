@@ -1,28 +1,37 @@
-import React, {useState} from 'react';
+import React, { useState, 
+	useEffect 
+} 
+	from 'react';
 // import { changeUser } from './actions/actions';
 import './ProfileColumn.scss';
 import './ProfileColumnMore.scss';
 import './button.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeUserName } from './actions/actions';
 
 function ProfileColumnMore(props) {
-	
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	// const [email, setEmail] = useState('');
-	// const [nickname, setNickname] = useState(null);
 
 	const id = props.userData.id;
-	const userData = props.userData;
+	
+	const userData = useSelector((state) => state.userInfo.userData);
+	
+	
+
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
+
+	
+	useEffect(() => {
+			
+		setFirstName(userData.first_name);
+		setLastName(userData.last_name);
+	}, userData.id);
 
 
 
 	const dispatch = useDispatch();
 
-	console.log( userData );
 	
-
 	const handleChangeName = () => {
 	
 		const newUserName = {

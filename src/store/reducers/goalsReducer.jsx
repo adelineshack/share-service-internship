@@ -15,10 +15,26 @@ const defaultState = {
 	joined: [],
 	party: null,
 	leavedParty: null,
+	topGoals: [],
+	partyAdmin: null,
 };	
 
 export const goalsReducer = handleActions(
 	{
+		[actions.changeAdminSuccess](state, { payload }) {
+			console.log(payload);
+			return {
+				...state,
+				partyAdmin: payload,
+			};
+		},
+		[actions.getGoalsTopSuccess](state, { payload }) {
+			console.log(payload);
+			return {
+				...state,
+				topGoals: payload,
+			};
+		},
 		[actions.leavePartySuccess](state, { payload }) {
 			console.log(payload);
 			return {

@@ -11,6 +11,12 @@ const defaultState = {
 
 export const userInfoReducer = handleActions(
 	{
+		[actionsPage.deleteAccountSuccess](state, { payload }) {
+			return {
+				...state,
+				userData: payload,
+			};
+		},
 		[actionsPage.getUserDataSuccess](state, { payload }) {
 			return {
 				...state,
