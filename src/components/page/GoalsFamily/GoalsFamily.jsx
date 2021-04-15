@@ -34,6 +34,7 @@ function GoalsFamily() {
 		dispatch(getMyParties());
 	}, []);
 
+	const joined = useSelector((state) => state.goals.joined);
 	let goals = useSelector((state) => state.goals.goals);
 
 	const breakPoints = [
@@ -80,16 +81,17 @@ function GoalsFamily() {
 						></input>
 						<div className = "waiting-approval">{message}</div>
 					</div>
-					<div className="goal-text">
-						Amet minim mollit non deserunt ullamco est sit aliqua
-						dolor do amet sint. Velit officia consequat duis enim
-						velit mollit. Exercitation veniam consequat sunt nostrud
-						amet.Amet minim mollit non deserunt ullamco est sit
-						aliqua dolor do amet sint. Velit officia consequat duis
-						enim velit mollit. Exercitation veniam consequat sunt
-						nostrud amet.
+					<div className="goal-text">{goalsObj.description}</div>
+					<div className="joined">
+						{ joined.map(joinedIcons => (
+							<div key = {joinedIcons.thumbnail} className="icon-joined-container">
+								<img
+									className="icon-joined"
+									src={(!joinedIcons.thumbnail) ? "/images/default-photo.jpg" : joinedIcons.thumbnail}
+								/>
+							</div>
+						)) }
 					</div>
-					<div className="joined">joined</div>
 				</div>
 				<div className="body-content">
 					<Carousel breakPoints={breakPoints}>
