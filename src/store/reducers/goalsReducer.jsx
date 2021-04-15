@@ -13,10 +13,26 @@ const defaultState = {
 	myParties: [],
 	goalsId: {},
 	joined: [],
+	party: null,
+	leavedParty: null,
 };	
 
 export const goalsReducer = handleActions(
 	{
+		[actions.leavePartySuccess](state, { payload }) {
+			console.log(payload);
+			return {
+				...state,
+				leavedParty: payload,
+			};
+		},
+		[actions.getPartySuccess](state, { payload }) {
+			console.log(payload);
+			return {
+				...state,
+				party: payload,
+			};
+		},
 		[actions.getMyPartiesSuccess](state, { payload }) {
 			console.log(payload);
 			return {
