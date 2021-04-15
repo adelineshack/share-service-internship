@@ -7,6 +7,7 @@
     &__title {
         margin-bottom: 30px;
         z-index: 100;
+        font-size: 45px;
     }
 
     &__grid {
@@ -16,13 +17,20 @@
         grid-auto-rows: auto;
         grid-auto-columns: auto;
         grid-gap: 20px;
+        .title {
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 36px;
+            margin-left: 30px;
+            align-self: center;
+        }
         
     }
     &__item {
         // background-color:brown;
         position: relative;
         display: grid;
-        grid-template-columns: 1fr 1fr;	
+        grid-template-columns: 1fr 0.5fr 1fr;	
 	    grid-template-rows: 1fr 1fr;
         height: 300px;
         border-radius: 19px;
@@ -44,10 +52,18 @@
         }
         div {
             &:nth-child(1) {
-                grid-column: 1 / 3;
+                grid-column: 1 / 4;
                 
             }
         }
+    }
+    &__name {
+        justify-self: center;
+        align-self: end;
+        text-align: center;
+        font-size: 3.3vw;
+        font-weight: 400;
+        z-index: 10;
     }
     &__circle {
         position: relative;
@@ -57,7 +73,7 @@
         border-radius: 100%;
         padding: 10px;
         margin-left: 30px;
-        z-index: 100;
+        z-index: 10;
         img {
             position: absolute;
             transform: translate(-50%, -50%);
@@ -81,8 +97,9 @@
     }
     &__users {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+        margin-left: 60px;
         .parties__user-icon {
             margin-left: 0px;
             left: -2px;
@@ -93,25 +110,28 @@
                 height: 200%;
             }
         }
+        
     }
-    &__user-icon {
-        position: relative;
-        width: 74px;
-        height: 74px;
-        border-radius: 100%;
-        padding: 10px;
-        margin-left: 30px;
-        z-index: 10;
-        img {
-            position: absolute;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
+    &__user {
+        &-icon {
+            position: relative;
+            width: 74px;
+            height: 74px;
             border-radius: 100%;
-            // z-index: 100;
+            padding: 10px;
+            margin-left: 30px;
+            z-index: 10;
+            img {
+                position: absolute;
+                transform: translate(-50%, -50%);
+                object-fit: cover;
+                top: 50%;
+                left: 50%;
+                width: 100%;
+                height: 100%;
+                border-radius: 100%;
+                // z-index: 100;
+            }
         }
     }
 
@@ -119,12 +139,7 @@
         display: flex; 
         align-items: center;
         justify-content: flex-start;
-        .title {
-            font-weight: 500;
-            font-size: 30px;
-            line-height: 36px;
-            margin-left: 30px;
-        }
+        
     }
     
 }

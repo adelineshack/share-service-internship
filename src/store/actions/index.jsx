@@ -210,3 +210,42 @@ export const getMyParties = () => {
 			});
 	};
 };
+
+export const getPartySuccess = createAction('GET_PARTY_SUCCESS');
+
+export const getParty = (id) => {
+	return (dispatch) => {
+		axios
+			.get(`/goal_party/${id}`)
+			.then(function (response) {
+				const { data } = response;
+				dispatch(getPartySuccess(data));
+				console.log(response);
+				// console.log(data);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+};
+
+export const leavePartySuccess = createAction('LEAVE_PARTY_SUCCESS');
+
+export const leaveParty = (id, message, back) => {
+	return (dispatch) => {
+		axios
+			.post(`/goal_party/${id}/leave/`)
+			.then(function (response) {
+				const { data } = response;
+				back();
+				dispatch(leavePartySuccess(data));
+				
+				console.log(response);
+				// console.log(data);
+			})
+			.catch(function (error) {
+				message();
+				console.log(error);
+			});
+	};
+};
