@@ -17,13 +17,20 @@
         grid-auto-rows: auto;
         grid-auto-columns: auto;
         grid-gap: 20px;
+        .title {
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 36px;
+            margin-left: 30px;
+            align-self: center;
+        }
         
     }
     &__item {
         // background-color:brown;
         position: relative;
         display: grid;
-        grid-template-columns: 1fr 1fr;	
+        grid-template-columns: 1fr 0.5fr 1fr;	
 	    grid-template-rows: 1fr 1fr;
         height: 300px;
         border-radius: 19px;
@@ -45,7 +52,7 @@
         }
         div {
             &:nth-child(1) {
-                grid-column: 1 / 3;
+                grid-column: 1 / 4;
                 
             }
         }
@@ -53,6 +60,7 @@
     &__name {
         justify-self: center;
         align-self: end;
+        text-align: center;
         font-size: 3.3vw;
         font-weight: 400;
         z-index: 10;
@@ -131,12 +139,7 @@
         display: flex; 
         align-items: center;
         justify-content: flex-start;
-        .title {
-            font-weight: 500;
-            font-size: 30px;
-            line-height: 36px;
-            margin-left: 30px;
-        }
+        
     }
     
 }
