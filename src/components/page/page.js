@@ -95,9 +95,11 @@ function Page() {
 				profileColumn={profileColumn}
 				Change={() => Change()}
 				Delete={() => Delete()}
+				Profile={() => Profile()}
 				ChangePassword={() => ChangePassword()}
 				Success={() => Success()}
 				Notes={() => Notes()}
+				setProfileColumn={setProfileColumn}
 			/>
 			<Modal showModal={handleModal} Change={() => Change()} />
 			<ModalDeleteAccount
