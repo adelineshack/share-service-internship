@@ -147,7 +147,7 @@ function GoalParty() {
 						Party members
 						</div>
 						<div className="party__users">
-
+							
 							{( (joinedLenght - SHOW_USERS) < 0 ) ?  (
 								party.members.map(user => (
 									<div key = {user.id} className="party__user-icon">
@@ -156,9 +156,11 @@ function GoalParty() {
 											src={(!user.avatar) ? "/images/default-photo.jpg" : user.avatar.thumbnail}
 										/>
 									</div>
-								))) :
+								))) 
+								
+								:
 
-								<div className="joinedAndNum">
+								<>
 									{
 										party.members.slice(0,SHOW_USERS).map(user => (
 											<div key = {user.id} className="party__user-icon">
@@ -170,7 +172,7 @@ function GoalParty() {
 										))
 									}
 									<div className="icon-joined-num1">{party.members.length - SHOW_USERS}</div>
-								</div>
+								</>
 							}
 						</div>
 					</div>
@@ -180,16 +182,15 @@ function GoalParty() {
 						Admin
 						</div>
 						<div className="party__admin">
-							<div className="party__users">
 						
-								<div className="party__user-admin-icon party__user-icon">
-									<img
-										className="party__thumbnail"
-										src={(!party) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
-									/>
-								</div>
-							
+						
+							<div className="party__user-admin-icon party__user-icon">
+								<img
+									className="party__thumbnail"
+									src={(!party.admin.avatar) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
+								/>
 							</div>
+							
 						</div>
 					</div>
 				</div>

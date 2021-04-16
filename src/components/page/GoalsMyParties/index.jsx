@@ -68,15 +68,15 @@ function GoalsMyParties() {
 					
 
 								<div className="parties__users">
-									<div className="parties__admin">
-										<div className="parties__user-icon">
-											<img
-												className="parties__thumbnail"
-												src={(!party.admin.avatar) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
-												alt={party.admin.first_name}
-											/>
-										</div>
+									
+									<div className="parties__user-icon">
+										<img
+											className="parties__thumbnail"
+											src={(!party.admin.avatar) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
+											alt={party.admin.first_name}
+										/>
 									</div>
+									
 									{/* { party.members.map(user => (
 								<div key = {user.id} className="parties__user-icon">
 									<img
@@ -87,7 +87,7 @@ function GoalsMyParties() {
 									/>
 								</div>
 							)) } */}
-							
+									
 									{ ((party.members.length - 5) < 0) ?
 										party.members.map(user => (
 											<div key = {user.id} className="parties__user-icon">
@@ -97,7 +97,7 @@ function GoalsMyParties() {
 												/>
 											</div>
 										)) :
-										<div className="joinedAndNum">
+										<>
 											{
 												party.members.slice(0,4).map(user => (
 													<div key = {user.id} className="parties__user-icon">
@@ -109,7 +109,7 @@ function GoalsMyParties() {
 												))
 											}
 											<div className="icon-joined-num">{party.members.length - 5}</div>
-										</div>
+										</>
 									}
 							
 								</div>
