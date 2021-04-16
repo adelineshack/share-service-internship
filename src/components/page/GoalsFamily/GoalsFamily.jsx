@@ -45,6 +45,8 @@ function GoalsFamily() {
 		dispatch(getGoalsId(idG));
 		dispatch(getJoined(idG));
 		dispatch(getMyParties());
+		setMessage('');
+		setErrorMessage('');
 	}, [idG]);
 
 	
