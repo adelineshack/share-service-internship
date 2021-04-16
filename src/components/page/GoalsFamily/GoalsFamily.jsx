@@ -4,12 +4,14 @@ import './GoalsFamily.scss';
 import Carousel from 'react-elastic-carousel';
 import { getGoals } from '../../../store/actions';
 import { getGoalsId, getJoined } from '../actions/actions';
-import { useParams } from '@reach/router';
+import { useParams, navigate } from '@reach/router';
 import { joinGoals, getMyParties } from './../../../store/actions/index';
-import { navigate } from '@reach/router';
+// import { navigate } from '@reach/router';
 
 function GoalsFamily() {
 	const [message, setMessage] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
+	// const [isLoaded, setIsLoaded] = useState(false);
 	const dispatch = useDispatch();
 
 
@@ -26,10 +28,7 @@ function GoalsFamily() {
 	const joinedUsers = joined.slice(0, SHOW_USERS);
 	const joinedLenght = joined.length;
 	const hiddenUsers = joinedLenght - SHOW_USERS;
-	console.log('присоединились');
-	console.log(joined);
-	console.log('обрезанный');
-	console.log(joinedUsers);
+	
 	
 	const filteredJoinedGoals = joinedGoals.filter( goal => {
 		
@@ -37,8 +36,9 @@ function GoalsFamily() {
 			return true;
 		}
 	});
-
-	console.log(filteredJoinedGoals);
+	
+	
+	
 
 	useEffect(() => {
 		dispatch(getGoals());
@@ -57,9 +57,15 @@ function GoalsFamily() {
 	];
 
 	const handlerJoinFamily = () => {
-		dispatch(joinGoals(idG));
+		dispatch(joinGoals(idG, setErrorMessage));
 		setMessage('Подождите, пока администратор одобрит вашу заявку');
 	};
+
+	const handlerHavigateToParty = () => {
+		const [party] = filteredJoinedGoals;
+		navigate(`/goal/my-parties/${party.id}`);
+	};
+
 	return (
 		idG,
 		(
@@ -86,12 +92,13 @@ function GoalsFamily() {
 							type="button"
 							className="goal-button-join all-buttons"
 							// value=value="Вступить в тусу"
-							value= { (filteredJoinedGoals.length === 0) ? "Вступить в тусу" : "Уже в тусе"}
-							disabled = { (filteredJoinedGoals.length === 0) ? false : true }
-							onClick = { handlerJoinFamily }
+							value= { (filteredJoinedGoals.length === 0) ? "Вступить в тусу" : "Перейти к мой тусе"}
+							// disabled = { (filteredJoinedGoals.length === 0) ? false : true }
+							onClick = { (filteredJoinedGoals.length === 0) ? handlerJoinFamily : handlerHavigateToParty }
 							
 						></input>
 						<div className = "waiting-approval">{message}</div>
+						<div className = "error-approval">{errorMessage}</div>
 					</div>
 					<div className="goal-text">{goalsObj.description}</div>
 					<div className="joined">

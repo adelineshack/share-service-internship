@@ -1,10 +1,8 @@
 import React from 'react';
 import './Menu.scss';
 import { navigate } from '@reach/router';
-import { useSelector } from 'react-redux';
 
 function Menu() {
-	const id = useSelector((state) => state.userInfo.userData.id);
 
 	return (
 		<div className="left-menu left-menu-hover">
@@ -14,7 +12,7 @@ function Menu() {
 				<div className="icon">
 					<img src="/images/icon.svg" alt="icon"></img>
 				</div>
-				<div className="GoalMenu" onClick = { () => navigate(`/${id}`) }>
+				<div className="GoalMenu" onClick = { () => navigate(`/`) }>
 					<img src="/images/GoalMenu.png" alt="GoalMenu" />
 				</div>
 				{/* вторая строчка */}

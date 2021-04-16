@@ -7,6 +7,7 @@ import {
 	getGoalsCategories,
 	getGoals,
 	filterGoals,
+	getMyParties,
 } from './../../../store/actions/index';
 import { navigate } from '@reach/router';
 
@@ -17,12 +18,15 @@ function GoalCatalog() {
 	useEffect(() => {
 		dispatch(getGoalsCategories());
 		dispatch(getGoals());
+		dispatch(getMyParties());
 	}, []);
 
 	//Получение данных из стора
 	const categories = useSelector((state) => state.goals.categories);
 	let goals = useSelector((state) => state.goals.goals);
 	let categoryId = useSelector((state) => state.goals.filteredCategoryId);
+	const joinedParties = useSelector((state) => state.goals.myParties);
+	console.log(joinedParties);
 
 	// Отобажение бэкграунда
 	goals.map((item) => (item.bg_image = `url(${item.bg_image})`));
@@ -54,7 +58,6 @@ function GoalCatalog() {
 		}
 		
 	});
-
 	
 
 	function filterCategories(categories) {
@@ -63,6 +66,11 @@ function GoalCatalog() {
 		console.log(categoryId);
 	}
 
+	function unFilterCategories() {
+		dispatch(filterGoals(null));
+		dispatch(getGoals());
+	}
+	
 	const responsive = {
 		0: {
 			items: 1,
@@ -79,7 +87,9 @@ function GoalCatalog() {
 	return (
 		<div className="goals__container">
 			<div className="goals_categories">
+				
 				<div className="goals__title">Categories</div>
+					
 				<div className="goals__slider">
 					<AliceCarousel
 						disableDotsControls={true}
@@ -120,42 +130,59 @@ function GoalCatalog() {
 				</div>
 			</div>
 
-			<div className="goals__title">Сейчас ищут</div>
 
+			<div className="goals__wrapper">
+				<div className="goals__title">Popular</div>
+				{ (categoryId === null) ? '' 
+					:
+					<button className='goals__button_all' onClick = { unFilterCategories }>
+						All goals
+					</button>
+				}
+				
+			</div>
+			
 			<div className="goals__layout">
 				{newGoals.map((section, index) => (
 					<div key={index} className="goals_grid">
-						{section.map((goals) => (
-							<div
-								className="item_grid"
-								style={{ backgroundImage: goals.bg_image }}
-								key={goals.id}
-								onClick={() => {
-									if (Object.keys(goals).length != 1) {
-										navigate(`/goal/${goals.id}`);
-									}
+						{section.map((goals) =>  {
+							let joinedParty = false;
+							joinedParties.map(item => {
+								if (item.goal.id === goals.id) {
+									joinedParty = true;
+								}
+							});
+							return (
+								<div
+									// className="item_grid"
+									className={(!joinedParty) ? "item_grid" : "item_grid item_grid_joined" }
+									style={{ backgroundImage: goals.bg_image }}
+									key={goals.id}
+									onClick={() => {
+										if (Object.keys(goals).length != 1) {
+											navigate(`/goal/${goals.id}`);
+										}
 							
-								}
-								}
+									}}
 								
-							>
-								<div className="goals_goals__circle">
-									<img
-										className="goals_goals__icon"
-										src={goals.image}
-										alt={goals.title}
-									/>
-								</div>
-								<div className="goals_goals__text">
-									<div className="goals_goals__title">
-										{goals.title}
+								>
+									<div className="goals_goals__circle">
+										<img
+											className="goals_goals__icon"
+											src={goals.image}
+											alt={goals.title}
+										/>
 									</div>
-									<div className="goals_goals__subtitle">
-										{goals.description}
+									<div className="goals_goals__text">
+										<div className="goals_goals__title">
+											{goals.title}
+										</div>
+										<div className="goals_goals__subtitle">
+											{goals.description}
+										</div>
 									</div>
 								</div>
-							</div>
-						))}
+							);})}
 					</div>
 				))}
 			</div>
