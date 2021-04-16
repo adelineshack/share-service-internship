@@ -9,9 +9,10 @@ const Modal = (props) => {
 			className={`attentionContainer ${
 				props.showModal ? 'open' : 'close'
 			} style={{...props.style}}`}
+			onClick={() => props.Change()}
 		>
-			<div className="singOutAttention">
-				<div className="white-text">Sing out</div>
+			<div className="singOutAttention" onClick={(event) => event.stopPropagation()}>
+				<div className="white-text">Sign out</div>
 				<button 
 					onClick = { () => {
 						localStorage.token = undefined;

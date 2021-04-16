@@ -69,8 +69,9 @@ function ModalChangePassword(props) {
 			className={`attention-container-changePassword ${
 				props.changeModal ? 'open' : 'close'
 			} style={{...props.style}}`}
+			onClick={() => props.ChangePassword()}
 		>
-			<div className="changePassword">
+			<div className="changePassword" onClick={(event) => event.stopPropagation()}>
 				<div onClick={() => props.ChangePassword()}>
 					<img src="/images/x.png" alt="x" className="x" />
 				</div>

@@ -35,7 +35,7 @@ function Page() {
 	}, []);
 
 	const userData = useSelector((state) => state.userInfo.userData);
-	//console.log( userData );
+	console.log( userData );
 
 	const Change = () => {
 		return setHandleModal(!handleModal);
@@ -59,19 +59,12 @@ function Page() {
 	return (
 		<div 
 			className="container-max"
-			// onClick = { () => {
-			// 	(!notesModal) ? setNotesModal(notesModal) : Notes();
-			// }}
 		>
-			{/* страница семьи, раскомментировать строчку ниже */}
-
-			{/* <GoalsFamily /> */}
 			<Menu />
 			<div className="tools">
 				<div className="bell">
 
 					<img
-						// src="/images/bell.png"
 						src = { (notification) ? "/images/bell.png" : "/images/bell1.png" }
 						alt = "bell"
 						
@@ -118,7 +111,11 @@ function Page() {
 				successModal={successModal}
 				Success={() => Success()}
 			/>
-			<Notifications notesModal={notesModal} />
+			<Notifications 
+				notesModal={notesModal} 
+				Notes={() => Notes()}
+				setNotesModal={setNotesModal}
+			/>
 			<Router>
 				{/* <DefaultPage path="/*" /> */}
 				<GoalCatalog path="/goal/categories/" />

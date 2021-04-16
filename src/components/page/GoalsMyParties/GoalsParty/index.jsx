@@ -3,7 +3,7 @@ import './GoalsMyParty.scss';
 import { useParams, navigate } from '@reach/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getParty, leaveParty } from '../../../../store/actions/index';
-
+import '../../GoalsFamily/GoalsFamily.scss';
 
 
 
@@ -14,7 +14,22 @@ function GoalParty() {
 	const idParty = params.idParty;
 	const party = useSelector((state) => state.goals.party);
 	const [message, setMessage] = useState('');
+	let membersParty = [];
 
+	console.log('мемберсы');
+	console.log(party);
+
+	//для иконок юзеров
+	const members = useSelector((state) => state.goals.party[0]);
+	const SHOW_USERS = 5;
+	//const joinedUsers = members.slice(0, SHOW_USERS);
+	const joinedLenght = membersParty.length;
+	//const hiddenUsers = joinedLenght - SHOW_USERS;
+
+	if (members) {
+		membersParty = members.members;
+		
+	}
 
 	console.log(party);
 
@@ -44,8 +59,6 @@ function GoalParty() {
 				/>
 			</div>
 
-
-
 			<div className="party__header">
 				
 				<div className="party__header-wrap">
@@ -73,13 +86,8 @@ function GoalParty() {
 				</div>
 				<div className="party__header-wrap-btn">
 					<button
-					// type="button"
 						className="party__header-button"
-						// value=value="Вступить в тусу"
-						// value= "Покинуть тусу"
-						// disabled = { (filteredJoinedGoals.length === 0) ? false : true }
 						onClick = { handlerLeave }
-								
 					>
 						Покинуть тусу
 					</button>	
@@ -105,16 +113,31 @@ function GoalParty() {
 						Party members
 					</div>
 					<div className="party__users">
-						{ (!party) ? '' : party.members.map(user => (
-							<div key = {user.id} className="party__user-icon">
-								<img
-									className="party__thumbnail"
-									// src={user.avatar.thumbnail}
-									src={(!user.avatar) ? "/images/default-photo.jpg" : user.avatar.thumbnail}
-								// alt={party.admin.first_name}
-								/>
+
+						{( (joinedLenght - SHOW_USERS) < 0 ) ?  (
+							(!party) ? '' : party.membersParty.map(user => (
+								<div key = {user.id} className="party__user-icon">
+									<img
+										className="party__thumbnail"
+										src={(!user.avatar) ? "/images/default-photo.jpg" : user.avatar.thumbnail}
+									/>
+								</div>
+							))) :
+
+							<div className="joinedAndNum">
+								{
+									(!party) ? '' : party.membersParty.slice(0,SHOW_USERS).map(user => (
+										<div key = {user.id} className="party__user-icon">
+											<img
+												className="party__thumbnail"
+												src={(!user.avatar) ? "/images/default-photo.jpg" : user.avatar.thumbnail}
+											/>
+										</div>
+									))
+								}
+								<div className="icon-joined-num1">{party.membersParty.length - SHOW_USERS}</div>
 							</div>
-						))}
+						}
 					</div>
 				</div>
 				
@@ -125,12 +148,10 @@ function GoalParty() {
 					<div className="party__admin">
 						<div className="party__users">
 						
-							<div className="party__user-icon">
+							<div className="party__user-admin-icon party__user-icon">
 								<img
 									className="party__thumbnail"
-									// src={user.avatar.thumbnail}
 									src={(!party) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
-									// alt={party.admin.first_name}
 								/>
 							</div>
 							
