@@ -4,9 +4,11 @@ import './GoalsMyParties.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	getMyParties,
+
 } from './../../../store/actions/index';
 import { navigate } from '@reach/router';
 // import ContentLoader from 'react-content-loader';
+import '../GoalsFamily/GoalsFamily.scss';
 
 
 function GoalsMyParties() {
@@ -24,7 +26,6 @@ function GoalsMyParties() {
 	//Получение данных из стора
 	const goalFamilies = useSelector((state) => state.goals.myParties);
 	console.log(goalFamilies);
-
 
 	return (
 		<div className='parties__wrapper'>
@@ -81,6 +82,30 @@ function GoalsMyParties() {
 									/>
 								</div>
 							)) } */}
+							
+									{ (party.members.length < 0) ?
+										party.members.map(user => (
+											<div key = {user.id} className="parties__user-icon">
+												<img
+													className="parties__thumbnail"
+													src={(!user.avatar) ? "/images/default-photo.jpg" : user.avatar.thumbnail}
+												/>
+											</div>
+										)) :
+										<div className="joinedAndNum">
+											{
+												party.members.slice(0,4).map(user => (
+													<div key = {user.id} className="parties__user-icon">
+														<img
+															className="parties__thumbnail"
+															src={(!user.avatar) ? "/images/default-photo.jpg" : user.avatar.thumbnail}
+														/>
+													</div>
+												))
+											}
+											<div className="icon-joined-num">{party.members.length - 5}</div>
+										</div>
+									}
 							
 								</div>
 								<div className="parties__descr">

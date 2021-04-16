@@ -116,6 +116,7 @@
             img {
                 width: 80%;
                 height: 80%;
+                transform: translate(-50%, -75%);
             }
         }
     }
@@ -127,8 +128,9 @@
         .parties__user-icon {
             margin-left: 0px;
             left: -2px;
-            width: 34px;
-            height: 34px;
+            width: 37px;
+            height: 37px;
+            transform: translate(60%, 50%);
             img {
                 width: 200%;
                 height: 200%;

@@ -7,8 +7,9 @@ function Notifications(props) {
 			className={`container-notifications ${
 				props.notesModal ? 'open' : 'close'
 			} style={{...props.style}}`}
+			onClick={() => props.Notes()}
 		>
-			<div className="notifications">
+			<div className="notifications" onClick={(event) => event.stopPropagation()}>
 				<div className="container-center-note">
 					<div className="note">
 						<div className="theNote">

@@ -224,15 +224,15 @@ export const getMyParties = (skeleton) => {
 
 export const getPartySuccess = createAction('GET_PARTY_SUCCESS');
 
-export const getParty = (id) => {
+export const getParty = (id, isLoaded) => {
 	return (dispatch) => {
 		axios
 			.get(`/goal_party/${id}`)
 			.then(function (response) {
 				const { data } = response;
 				dispatch(getPartySuccess(data));
-				
 				console.log(response);
+				isLoaded(true);
 				// console.log(data);
 			})
 			.catch(function (error) {
