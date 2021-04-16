@@ -74,12 +74,7 @@ function Form()  {
 			>
 						send me email instructions
 			</button>
-			{/* <Button 
-				type = "submit" 
-				text = "Sign up"
-				disabled = {!email.inputValid}
-			/> */}
-			
+	
 		</form>
 		
 	);

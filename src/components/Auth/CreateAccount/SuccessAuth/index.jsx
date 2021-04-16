@@ -1,11 +1,5 @@
 import './SuccessAuth.scss';
 import React from 'react';
-// import BackBlock from './AuthComp/BackBlock';
-// import PropTypes from 'prop-types';
-
-// import { Link } from '@reach/router';
-// import FrontBlock from './AuthComp/FrontBlock/index';
-// import Button from '../Buttons';
 import { CSSTransitionGroup } from 'react-transition-group';
 
 

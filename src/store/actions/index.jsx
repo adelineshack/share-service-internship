@@ -14,8 +14,9 @@ axios.interceptors.request.use(async (config) => {
 			'/auth/forgot_password/',
 			'/auth/set_new_password/',
 			'/auth/set_new_password/',
-			'/goal/categories/',
-			'/goal/',
+			// '/goal/categories/',
+			// '/goal/',
+		
 		].includes(config.url)
 	) {
 		return config;
@@ -29,8 +30,8 @@ axios.interceptors.request.use(async (config) => {
 	if (token !== null) {
 		// console.log('дошло');
 		config.headers.Authorization = `Token ${token}`;
-		axios.defaults.xsrfHeaderName = "X-XSRF-TOKEN";
-		axios.defaults.xsrfCookieName = "X-CSRFToken";
+		// axios.defaults.xsrfHeaderName = "X-XSRF-TOKEN";
+		// axios.defaults.xsrfCookieName = "X-CSRFToken";
 	}
 	return config;
 });
@@ -49,8 +50,9 @@ export const registerUser = (userData, errorMessage) => {
 				console.log(response);
 			})
 			.catch(function (error) {
-				errorMessage();
-				console.log('Ошибка');
+				if (error.response.status === 400) {
+					errorMessage();
+				}
 				console.log(error);
 			});
 	};
@@ -71,8 +73,9 @@ export const enterUser = (userData, errorMessage) => {
 				console.log(response);
 			})
 			.catch(function (error) {
-				errorMessage();
-				console.log('Ошибка');
+				if (error.response.status === 400) {
+					errorMessage();
+				}
 				console.log(error);
 			});
 	};
@@ -92,7 +95,9 @@ export const recoverUser = (userData, errorMessage) => {
 				console.log(response);
 			})
 			.catch(function (error) {
-				errorMessage();
+				if (error.response.status === 400) {
+					errorMessage();
+				}
 				console.log(error);
 			});
 	};
@@ -133,7 +138,7 @@ export const getGoalsCategories = () => {
 			})
 			.catch(function (error) {
 				console.log(error);
-				navigate('/auth');
+				// navigate('/auth');
 			});
 	};
 };
@@ -151,7 +156,7 @@ export const getGoals = () => {
 				console.log(response);
 			})
 			.catch(function (error) {
-				navigate('/auth');
+				// navigate('/auth');
 				console.log(error);
 			});
 	};
@@ -177,7 +182,7 @@ export const filterGoals = (filteredData) => {
 
 export const joinGoalsSuccess = createAction('JOIN_GOALS_SUCCESS');
 
-export const joinGoals = (id) => {
+export const joinGoals = (id, errorMessage) => {
 	return (dispatch) => {
 		axios
 			.post(`/goal/${id}/join/`)
@@ -188,6 +193,11 @@ export const joinGoals = (id) => {
 				// console.log(data);
 			})
 			.catch(function (error) {
+				if (error.response.status === 400 ) {
+					
+					errorMessage('Уже вступили');
+				}
+				console.log(error.response);
 				console.log(error);
 			});
 	};
@@ -195,13 +205,14 @@ export const joinGoals = (id) => {
 
 export const getMyPartiesSuccess = createAction('GET_MY_PARTIES_SUCCESS');
 
-export const getMyParties = () => {
+export const getMyParties = (skeleton) => {
 	return (dispatch) => {
 		axios
 			.get(`/goal_party/`)
 			.then(function (response) {
 				const { data } = response;
 				dispatch(getMyPartiesSuccess(data));
+				skeleton(false);
 				console.log(response);
 				// console.log(data);
 			})
@@ -213,7 +224,7 @@ export const getMyParties = () => {
 
 export const getPartySuccess = createAction('GET_PARTY_SUCCESS');
 
-export const getParty = (id) => {
+export const getParty = (id, isLoaded) => {
 	return (dispatch) => {
 		axios
 			.get(`/goal_party/${id}`)
@@ -221,6 +232,7 @@ export const getParty = (id) => {
 				const { data } = response;
 				dispatch(getPartySuccess(data));
 				console.log(response);
+				isLoaded(true);
 				// console.log(data);
 			})
 			.catch(function (error) {
@@ -245,6 +257,41 @@ export const leaveParty = (id, message, back) => {
 			})
 			.catch(function (error) {
 				message();
+				console.log(error);
+			});
+	};
+};
+
+export const getGoalsTopSuccess = createAction('GET_GOALS_TOP_SUCCESS');
+
+export const getGoalsTop = (data, isLoaded) => {
+	return (dispatch) => {
+		axios
+			.get(`/top/?table_type=${data}`)
+			.then(function (response) {
+				const { data } = response;
+				dispatch(getGoalsTopSuccess(data));
+				isLoaded(true);
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+};
+
+export const changeAdminSuccess = createAction('CHANGE_ADMIN_SUCCESS');
+
+export const changeAdmin = (id, userData) => {
+	return (dispatch) => {
+		axios
+			.post(`/goal_party/${id}/set_new_admin/`, userData)
+			.then(function (response) {
+				const { data } = response;
+				dispatch(changeAdminSuccess(data));
+				console.log(response);
+			})
+			.catch(function (error) {
 				console.log(error);
 			});
 	};

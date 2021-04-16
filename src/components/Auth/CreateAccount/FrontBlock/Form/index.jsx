@@ -30,7 +30,6 @@ function Form()  {
 		
 		console.log('Кнопка работает');
 		const newUserData = {
-		// from your form
 			email: email.value,
 			password: password.value,
 		};	
@@ -60,7 +59,6 @@ function Form()  {
 				<div className="validation-text">enter valid email</div>}
 			
 			{(email.isDirty && email.isEmpty) || (email.isDirty && email.emailError) ?
-			// true					 true				true
 				<Email 
 					value={email.value}
 					onChange={e => email.onChange(e)}
@@ -115,16 +113,7 @@ function Form()  {
 				>
 					Sign up
 				</button>	
-				{/* <Button 
-					type = "submit" 
-					text = "Sign up"
-					disabled = {!email.inputValid || !password.inputValid}
-					// onClick = {() => {
-					// 	handleRegistration;
-					// 	console.log(`Password: ${password.value} Email: ${email.value}`);
-						
-					// }}
-				/> */}
+
 				<div className="front__social">
 					<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g clipPath="url(#clip0)">
