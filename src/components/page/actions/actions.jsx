@@ -19,7 +19,6 @@ export const getGoalsId = (idG) => {
 			.then(function (response) {
 				const { data } = response;
 				dispatch(getGoalsIdSuccess(data));
-				console.log('нет ошибки, id= ' + idG);
 				console.log(response);
 			})
 			.catch(function (error) {

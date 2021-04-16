@@ -14,10 +14,11 @@ function Form()  {
 	const email = useInput('', {isEmpty: true, minLength: 5, isEmail: true});
 	const password = useInput('', {isEmpty: true, minLength: 5});
 	const [error, setError] = useState('');
-
+	// const [isChecked, setIsChecked] = useState(false);
 
 	const dispatch = useDispatch();
-	
+
+	// console.log(isChecked);
 
 	const handleError = () => {
 	
@@ -101,7 +102,12 @@ function Form()  {
 			
 			{/* Кнопка */}
 			<label className="front__label">
-				<input className="front__checkbox" name="checkbox" type="checkbox"/>
+				<input 
+					// onChange = { () => setIsChecked(!isChecked)} 
+					// checked={isChecked} 
+					className="front__checkbox" 
+					name="checkbox" type="checkbox"
+				/>
 				<span className="front__checkbox_new"></span>
 				<span className="front__remember">Запомнить меня</span>
 			</label>
