@@ -25,7 +25,12 @@ function GoalsMyParties() {
 
 	//Получение данных из стора
 	const goalFamilies = useSelector((state) => state.goals.myParties);
+	console.log('goalFamilies');
 	console.log(goalFamilies);
+
+	// if (party) {
+	// 	members = party.members;
+	// }
 
 	return (
 		<div className='parties__wrapper'>
@@ -83,7 +88,7 @@ function GoalsMyParties() {
 								</div>
 							)) } */}
 							
-									{ (party.members.length < 0) ?
+									{ ((party.members.length - 5) < 0) ?
 										party.members.map(user => (
 											<div key = {user.id} className="parties__user-icon">
 												<img

@@ -17,11 +17,16 @@ function GoalParty() {
 	// const [isLoaded, setIsLoaded] = useState(false);
 	
 	let members = [];
+	console.log('party');
 	console.log(party);
 
+	if (party) {
+		members = party.members;
+	}
+
 	//для иконок юзеров
-	members = party.members;
-	window.members = members;
+	// members = party.members;
+	// window.members = members;
 	
 	const SHOW_USERS = 5;
 	//const joinedUsers = members.slice(0, SHOW_USERS);
@@ -144,7 +149,7 @@ function GoalParty() {
 						<div className="party__users">
 
 							{( (joinedLenght - SHOW_USERS) < 0 ) ?  (
-								party.membersParty.map(user => (
+								party.members.map(user => (
 									<div key = {user.id} className="party__user-icon">
 										<img
 											className="party__thumbnail"
@@ -155,7 +160,7 @@ function GoalParty() {
 
 								<div className="joinedAndNum">
 									{
-										party.membersParty.slice(0,SHOW_USERS).map(user => (
+										party.members.slice(0,SHOW_USERS).map(user => (
 											<div key = {user.id} className="party__user-icon">
 												<img
 													className="party__thumbnail"
@@ -164,7 +169,7 @@ function GoalParty() {
 											</div>
 										))
 									}
-									<div className="icon-joined-num1">{party.membersParty.length - SHOW_USERS}</div>
+									<div className="icon-joined-num1">{party.members.length - SHOW_USERS}</div>
 								</div>
 							}
 						</div>
