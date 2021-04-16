@@ -19,7 +19,7 @@ function GoalsFamily() {
 	const idG = params.id;
 	const goalsObj = useSelector((state) => state.goals.goalsId);
 	const joinedGoals = useSelector((state) => state.goals.myParties);
-	
+	console.log(idG);
 
 	//для иконок юзеров
 	const joined = useSelector((state) => state.goals.joined);
@@ -45,7 +45,7 @@ function GoalsFamily() {
 		dispatch(getGoalsId(idG));
 		dispatch(getJoined(idG));
 		dispatch(getMyParties());
-	}, []);
+	}, [idG]);
 
 	
 
@@ -91,7 +91,6 @@ function GoalsFamily() {
 						<input
 							type="button"
 							className="goal-button-join all-buttons"
-							// value=value="Вступить в тусу"
 							value= { (filteredJoinedGoals.length === 0) ? "Вступить в тусу" : "Перейти к мой тусе"}
 							// disabled = { (filteredJoinedGoals.length === 0) ? false : true }
 							onClick = { (filteredJoinedGoals.length === 0) ? handlerJoinFamily : handlerHavigateToParty }
@@ -133,7 +132,7 @@ function GoalsFamily() {
 					<Carousel breakPoints={breakPoints}>
 						{goals.map((item) => (
 							<div className="card" key={item.id} 
-								onClick={() => {
+								onDoubleClick={() => {
 									navigate(`/goal/${item.id}`);
 								}
 							

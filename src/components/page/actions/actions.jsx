@@ -34,7 +34,6 @@ export const getJoined = (idG) => {
 			.then(function (response) {
 				const { data } = response;
 				dispatch(getJoinedSuccess(data));
-				console.log('joined: ');
 				console.log(data);
 			})
 			.catch(function (error) {
