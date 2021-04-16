@@ -128,6 +128,8 @@ function GoalsFamily() {
 							<div className="card" key={item.id} 
 								onClick={() => {
 									navigate(`/goal/${item.id}`);
+									console.log('ytyty');
+									console.log(item.id);
 								}
 							
 								}>

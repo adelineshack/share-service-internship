@@ -20,16 +20,20 @@ function GoalParty() {
 	console.log(party);
 
 	//для иконок юзеров
-	const members = useSelector((state) => state.goals.party[0]);
+	// const members = useSelector((state) => state.goals.party);
 	const SHOW_USERS = 5;
 	//const joinedUsers = members.slice(0, SHOW_USERS);
+
+	if (party) {
+		membersParty = party.members;
+		
+	}
+	console.log('lsdncdkjm');
+	console.log(membersParty);
 	const joinedLenght = membersParty.length;
 	//const hiddenUsers = joinedLenght - SHOW_USERS;
 
-	if (members) {
-		membersParty = members.members;
-		
-	}
+	
 
 	console.log(party);
 
@@ -115,7 +119,7 @@ function GoalParty() {
 					<div className="party__users">
 
 						{( (joinedLenght - SHOW_USERS) < 0 ) ?  (
-							(!party) ? '' : party.membersParty.map(user => (
+							(!party) ? '' : party.members.map(user => (
 								<div key = {user.id} className="party__user-icon">
 									<img
 										className="party__thumbnail"

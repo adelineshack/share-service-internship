@@ -17,6 +17,7 @@ function GoalCatalog() {
 	useEffect(() => {
 		dispatch(getGoalsCategories());
 		dispatch(getGoals());
+		// dispatch
 	}, []);
 
 	//Получение данных из стора

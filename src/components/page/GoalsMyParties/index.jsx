@@ -64,7 +64,7 @@ function GoalsMyParties() {
 									/>
 								</div>
 							</div>
-							{ (party.members.length < 0) ?
+							{ ((party.members.length - 5) < 0) ?
 								party.members.map(user => (
 									<div key = {user.id} className="parties__user-icon">
 										<img
