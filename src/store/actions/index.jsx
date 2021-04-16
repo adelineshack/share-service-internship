@@ -24,8 +24,7 @@ axios.interceptors.request.use(async (config) => {
 
 
 	let token = (localStorage.token || sessionStorage.token);
-	console.log(token);
-
+	
 	if (!token) {
 		return navigate('/auth');
 	}
