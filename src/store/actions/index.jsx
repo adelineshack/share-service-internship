@@ -205,13 +205,14 @@ export const joinGoals = (id, errorMessage) => {
 
 export const getMyPartiesSuccess = createAction('GET_MY_PARTIES_SUCCESS');
 
-export const getMyParties = () => {
+export const getMyParties = (skeleton) => {
 	return (dispatch) => {
 		axios
 			.get(`/goal_party/`)
 			.then(function (response) {
 				const { data } = response;
 				dispatch(getMyPartiesSuccess(data));
+				skeleton(false);
 				console.log(response);
 				// console.log(data);
 			})
@@ -230,6 +231,7 @@ export const getParty = (id) => {
 			.then(function (response) {
 				const { data } = response;
 				dispatch(getPartySuccess(data));
+				
 				console.log(response);
 				// console.log(data);
 			})

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './GoalsMyParty.scss';
 import { useParams, navigate } from '@reach/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeAdmin, getParty, leaveParty } from '../../../../store/actions/index';
+import {  getParty, leaveParty } from '../../../../store/actions/index';
 
 
 
@@ -14,7 +14,7 @@ function GoalParty() {
 	const idParty = params.idParty;
 	const party = useSelector((state) => state.goals.party);
 	const [message, setMessage] = useState('');
-
+	
 
 	useEffect(() => {
 		dispatch(getParty(idParty));
@@ -30,13 +30,13 @@ function GoalParty() {
 		navigate('/goal/my-parties');
 	};
 
-	const handlerChangeAdmin = (e) => {
-		console.log(e);
-		const newAdmin = {
-			new_admin: party.admin.id
-		};
-		dispatch(changeAdmin(idParty, newAdmin));
-	};
+	// const handlerChangeAdmin = (e) => {
+	// 	console.log(e);
+	// 	const newAdmin = {
+	// 		new_admin: party.admin.id
+	// 	};
+	// 	dispatch(changeAdmin(idParty, newAdmin));
+	// };
 
 	return (
 		
@@ -93,7 +93,7 @@ function GoalParty() {
 					<div className="party_admin-message">
 						{ message }
 					</div>
-					<div className="party_new-admin">
+					{/* <div className="party_new-admin">
 						<form method="post">
 							<select  className='party_new-admin_select'  >
 								<option 
@@ -113,10 +113,7 @@ function GoalParty() {
 								<button type="submit">Отправить</button>
 							</select>
 						</form>
-						
-						
-						
-					</div>
+					</div> */}
 					
 					
 				</div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-alice-carousel/lib/scss/alice-carousel.scss';
 import './GoalsMyParties.scss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,11 +12,11 @@ import { navigate } from '@reach/router';
 function GoalsMyParties() {
 	
 	const dispatch = useDispatch();
-	
+	const [skeleton, setSketelon] = useState(true);
 
 	useEffect(() => {
 	
-		dispatch(getMyParties());
+		dispatch(getMyParties(setSketelon));
 	
 		// dispatch(getGoals());
 	}, []);
@@ -29,21 +29,10 @@ function GoalsMyParties() {
 	return (
 		<div className='parties__wrapper'>
 			<h1 className="parties__title">My parties</h1>
-			{/* <ContentLoader speed={2}
-				width={604}
-				height={300}
-				viewBox="0 0 1024 1000"
-				backgroundColor="#f3f3f3"
-				foregroundColor="#d6d6d6">
-				 
-				<rect x="0" y="0" rx="19" ry="19" width="604" height="300" />
-				<rect x="3020" y="0" rx="19" ry="19" width="604" height="300" />
-				<rect x="0" y="0" rx="19" ry="19" width="600" height="300" />
-				<rect x="0" y="0" rx="19" ry="19" width="600" height="300" />
-			</ContentLoader> */}
-			{/* <h2 className = 'parties__message'>{ (goalFamilies.length === 0) ? 'Вы еще пока не вступили ни в одну семью :(' : ''}</h2> */}
+			
+			
 
-			{  (goalFamilies.length === 0) ? 
+			{  (skeleton) ? 
 			
 				<div className="parties__grid_default">					
 					<div className="parties__item_default"></div>
@@ -53,34 +42,36 @@ function GoalsMyParties() {
 				</div> 
 				
 				:
-				<div className="parties__grid">
+				<>
+					<h2 className = 'parties__message'>{ (goalFamilies.length === 0) ? 'Вы еще пока не вступили ни в одну семью :(' : ''}</h2>
+					<div className="parties__grid">
 				
-					{goalFamilies.map((party) => (
+						{goalFamilies.map((party) => (
 					
-						<div 
-							key={party.id} 
-							className="parties__item"
-							style={{ backgroundImage: `url(${party.goal.bg_image})` }}
-							onClick = { () => navigate(`/goal/my-parties/${party.id}`) }
-						>
+							<div 
+								key={party.id} 
+								className="parties__item"
+								style={{ backgroundImage: `url(${party.goal.bg_image})` }}
+								onClick = { () => navigate(`/goal/my-parties/${party.id}`) }
+							>
 
 
-							<div className="parties__name">
-								{party.name}
-							</div>
-					
-
-							<div className="parties__users">
-								<div className="parties__admin">
-									<div className="parties__user-icon">
-										<img
-											className="parties__thumbnail"
-											src={(!party) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
-											alt={party.admin.first_name}
-										/>
-									</div>
+								<div className="parties__name">
+									{party.name}
 								</div>
-								{/* { party.members.map(user => (
+					
+
+								<div className="parties__users">
+									<div className="parties__admin">
+										<div className="parties__user-icon">
+											<img
+												className="parties__thumbnail"
+												src={(!party) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
+												alt={party.admin.first_name}
+											/>
+										</div>
+									</div>
+									{/* { party.members.map(user => (
 								<div key = {user.id} className="parties__user-icon">
 									<img
 										className="parties__thumbnail"
@@ -91,24 +82,25 @@ function GoalsMyParties() {
 								</div>
 							)) } */}
 							
-							</div>
-							<div className="parties__descr">
-								<div className="parties__circle">
-									<img
-										className="parties__icon"
-										src={party.goal.image}
-										alt={party.goal.title}
-									/>
 								</div>
+								<div className="parties__descr">
+									<div className="parties__circle">
+										<img
+											className="parties__icon"
+											src={party.goal.image}
+											alt={party.goal.title}
+										/>
+									</div>
 							
-							</div>
-							<div className="title">
-								{party.goal.title}
-							</div>
+								</div>
+								<div className="title">
+									{party.goal.title}
+								</div>
 						
-						</div>
-					))}
-				</div> 
+							</div>
+						))}
+					</div> 
+				</>
 			}
 			
 
