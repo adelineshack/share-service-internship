@@ -1,6 +1,5 @@
 import './EnterAccount.scss';
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 import BackBlock from './BackBlock';
 import FrontBlock from './FrontBlock';
@@ -46,10 +45,5 @@ function EnterAccount()  {
 	);
 	
 }
-// BackBlock.propTypes = {
-// 	title: PropTypes.string,
-// 	text: PropTypes.string,
-// 	btn: PropTypes.string
-// };
 
 export default EnterAccount;

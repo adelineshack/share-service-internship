@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
 import Button from '../../../Button';
 
@@ -8,13 +7,7 @@ import Button from '../../../Button';
 //CreateAccount
 
 function BackBlock()  {
-	// BackBlock.propTypes = {
-	// 	title: PropTypes.string,
-	// 	text: PropTypes.string,
-	// 	btnContent: PropTypes.string,
-	// 	navigation: PropTypes.string,
-	// };
-	
+
 	return (
 		
 		<div className="back__content">
