@@ -8,8 +8,9 @@ function ModalDeleteAccount(props) {
 			className={`attention-container-delete ${
 				props.deleteModal ? 'open' : 'close'
 			} style={{...props.style}}`}
+			onClick={() => props.Delete()}
 		>
-			<div className="deleteAccount singOutAttention">
+			<div className="deleteAccount singOutAttention" onClick={(event) => event.stopPropagation()}>
 				<div className="white-text">Delete your account?</div>
 				<button className="btn-yes all-buttons">Yes</button>
 				<button

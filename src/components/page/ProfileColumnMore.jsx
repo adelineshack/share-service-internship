@@ -10,8 +10,6 @@ function ProfileColumnMore(props) {
 	
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
-	// const [email, setEmail] = useState('');
-	// const [nickname, setNickname] = useState(null);
 
 	const id = props.userData.id;
 	const userData = props.userData;
@@ -41,6 +39,11 @@ function ProfileColumnMore(props) {
 				props.showModal ? 'open' : 'close'
 			} style={{...props.style}}`}
 		>
+			<div className="background">
+				<img src="/images/back4.png" alt="4" className="back4" />
+				<img src="/images/back5.png" alt="5" className="back5" />
+				<img src="/images/back6.png" alt="6" className="back6" />
+			</div>
 			{/* <div className="main-content"> */}
 			<div className="person-card-more">
 				<form
@@ -51,13 +54,6 @@ function ProfileColumnMore(props) {
 					className="form"
 				>
 					<div className="card-inputs">
-
-						{/* <div>
-							{ ( firstName && (firstName.length > 3)) 
-								? '' : "Too short name" }
-						</div> */}
-						
-
 						<input
 							placeholder = { (!userData.first_name) ? 'Enter your first name' : userData.first_name }
 							className = "input-more"
@@ -67,11 +63,6 @@ function ProfileColumnMore(props) {
 							value = { firstName }
 						/>
 
-						{/* <div>
-							{ ( lastName && (lastName.length > 3)) 
-								? '' : "Too short name" }
-						</div> */}
-						
 						<input
 							placeholder = { (!userData.last_name) ? 'Enter your last name' : userData.last_name }
 							className = "input-more"
@@ -82,16 +73,9 @@ function ProfileColumnMore(props) {
 						/>
 						<input
 							className="input-more"
-							// onChange = { e => setEmail(e.target.value) }
 							value = { userData.email }
 							placeholder = "Email"
 						/>
-						{/* <input 
-							className="input-more" 
-							onChange = { e => setNickname(e.target.value) }
-							value = { nickname }
-							placeholder = "Nickname"
-						/> */}
 					</div>
 					<input
 						type="submit"

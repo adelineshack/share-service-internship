@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './GoalsFamily.scss';
 import Carousel from 'react-elastic-carousel';
-//import Card from './card';
 import { getGoals } from '../../../store/actions';
 import { getGoalsId, getJoined } from '../actions/actions';
 import { useParams } from '@reach/router';
 import { joinGoals, getMyParties } from './../../../store/actions/index';
+import { navigate } from '@reach/router';
 
 function GoalsFamily() {
 	const [message, setMessage] = useState('');
@@ -17,7 +17,20 @@ function GoalsFamily() {
 	const idG = params.id;
 	const goalsObj = useSelector((state) => state.goals.goalsId);
 	const joinedGoals = useSelector((state) => state.goals.myParties);
+	
 
+	//для иконок юзеров
+	const joined = useSelector((state) => state.goals.joined);
+	let goals = useSelector((state) => state.goals.goals);
+	const SHOW_USERS = 5;
+	const joinedUsers = joined.slice(0, SHOW_USERS);
+	const joinedLenght = joined.length;
+	const hiddenUsers = joinedLenght - SHOW_USERS;
+	console.log('присоединились');
+	console.log(joined);
+	console.log('обрезанный');
+	console.log(joinedUsers);
+	
 	const filteredJoinedGoals = joinedGoals.filter( goal => {
 		
 		if (+goal.goal.id === +idG) {
@@ -34,8 +47,7 @@ function GoalsFamily() {
 		dispatch(getMyParties());
 	}, []);
 
-	const joined = useSelector((state) => state.goals.joined);
-	let goals = useSelector((state) => state.goals.goals);
+	
 
 	const breakPoints = [
 		{ width: 1, itemsToShow: 1 },
@@ -83,20 +95,42 @@ function GoalsFamily() {
 					</div>
 					<div className="goal-text">{goalsObj.description}</div>
 					<div className="joined">
-						{ joined.map(joinedIcons => (
-							<div key = {joinedIcons.thumbnail} className="icon-joined-container">
-								<img
-									className="icon-joined"
-									src={(!joinedIcons.thumbnail) ? "/images/default-photo.jpg" : joinedIcons.thumbnail}
-								/>
-							</div>
-						)) }
+						{ 
+							( hiddenUsers < 0 ) ?  (
+								joined.map(joinedIcons => (
+									<div key = {joinedIcons.thumbnail} className="icon-joined-container">
+										<img
+											className="icon-joined"
+											src={(!joinedIcons.thumbnail) ? "/images/default-photo.jpg" : joinedIcons.thumbnail}
+										/>
+									</div>
+								))
+							) :
+								(
+									<div className="joinedAndNum">
+										{joinedUsers.map(joinedIcons => (
+											<div key = {joinedIcons.thumbnail} className="icon-joined-container">
+												<img
+													className="icon-joined"
+													src={(!joinedIcons.thumbnail) ? "/images/default-photo.jpg" : joinedIcons.thumbnail}
+												/>
+											</div>
+										))}
+										<div className="icon-joined-num">{hiddenUsers}</div>
+									</div>
+								)
+						}
 					</div>
 				</div>
 				<div className="body-content">
 					<Carousel breakPoints={breakPoints}>
 						{goals.map((item) => (
-							<div className="card" key={item.id}>
+							<div className="card" key={item.id} 
+								onClick={() => {
+									navigate(`/goal/${item.id}`);
+								}
+							
+								}>
 								<div className="goalBG">
 									<img
 										src={item.bg_image}
