@@ -177,7 +177,10 @@ function GoalCatalog() {
 										<div className="goals_goals__title">
 											{goals.title}
 										</div>
-										<div className="goals_goals__subtitle">
+										<div 
+											// className="goals_goals__subtitle"
+											className={(!joinedParty) ? "goals_goals__subtitle" : "goals_goals__subtitle goals_goals__subtitle_joined" }
+										>
 											{goals.description}
 										</div>
 									</div>

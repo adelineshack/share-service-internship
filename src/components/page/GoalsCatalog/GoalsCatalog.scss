@@ -157,6 +157,9 @@
 				font-size: 14px;
 				line-height: 10px;
 			}
+			&_joined {
+				color: #b9b9b9;
+			}
 		}
 
 	}
@@ -202,7 +205,7 @@
 	&_joined {
 		&::after {
 			content: '';
-			background: linear-gradient(to top, rgba(43, 100, 36, 0.582) 17%, rgba(68, 68, 68, 0.1) 71%);
+			background: linear-gradient(to top, rgb(57, 146, 47) 17%, rgba(68, 68, 68, 0.1) 71%);
 		}
 	}
 	&:hover {
