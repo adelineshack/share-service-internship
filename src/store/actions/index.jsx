@@ -21,8 +21,10 @@ axios.interceptors.request.use(async (config) => {
 	) {
 		return config;
 	}
-	const token = localStorage.token;
 
+
+	let token = (localStorage.token || sessionStorage.token);
+	
 	if (!token) {
 		return navigate('/auth');
 	}
@@ -66,8 +68,10 @@ export const enterUser = (userData, errorMessage) => {
 		
 		axios.post('/auth/sign_in/', userData)
 			.then(function (response) {
-				const { data } = response; 
+				const { data } = response;
+
 				localStorage.setItem("token", data.token);
+				
 				dispatch(enterUserSuccess(response));
 				navigate('/user');
 				console.log(response);

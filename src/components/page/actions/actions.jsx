@@ -19,7 +19,6 @@ export const getGoalsId = (idG) => {
 			.then(function (response) {
 				const { data } = response;
 				dispatch(getGoalsIdSuccess(data));
-				console.log('нет ошибки, id= ' + idG);
 				console.log(response);
 			})
 			.catch(function (error) {
@@ -35,7 +34,6 @@ export const getJoined = (idG) => {
 			.then(function (response) {
 				const { data } = response;
 				dispatch(getJoinedSuccess(data));
-				console.log('joined: ');
 				console.log(data);
 			})
 			.catch(function (error) {

@@ -80,6 +80,10 @@
 			line-height: 35px;
 			width: 150px;
 			user-select: none;
+			&::selection {
+				background: transparent;
+			}
+			 
 			@media (max-width: 1366px) {
 				font-size: 26px;
 				line-height: 26px;
