@@ -26,6 +26,14 @@
             text-align: center;
             width: 10.8vw;
         }
+        &_default {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;	
+            grid-template-rows: 200px;
+            grid-auto-rows: auto;
+            grid-auto-columns: auto;
+            grid-gap: 20px;
+        }
         
     }
     &__item {
@@ -59,6 +67,11 @@
             transition: all 0.7s;
             transform: scale(1.03);
             overflow-x: hidden;
+        }
+        &_default {
+            height: 200px;
+            border-radius: 19px;
+            background-color:rgba(145, 145, 145, 0.3);
         }
     }
     &__name {

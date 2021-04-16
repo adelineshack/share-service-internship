@@ -264,13 +264,14 @@ export const leaveParty = (id, message, back) => {
 
 export const getGoalsTopSuccess = createAction('GET_GOALS_TOP_SUCCESS');
 
-export const getGoalsTop = (data) => {
+export const getGoalsTop = (data, isLoaded) => {
 	return (dispatch) => {
 		axios
 			.get(`/top/?table_type=${data}`)
 			.then(function (response) {
 				const { data } = response;
 				dispatch(getGoalsTopSuccess(data));
+				isLoaded(true);
 				console.log(response);
 			})
 			.catch(function (error) {

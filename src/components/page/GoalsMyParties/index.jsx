@@ -67,7 +67,7 @@ function GoalsMyParties() {
 										<div className="parties__user-icon">
 											<img
 												className="parties__thumbnail"
-												src={(!party) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
+												src={(!party.admin.avatar) ? "/images/default-photo.jpg" : party.admin.avatar.thumbnail}
 												alt={party.admin.first_name}
 											/>
 										</div>

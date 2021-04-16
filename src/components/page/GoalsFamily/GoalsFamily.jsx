@@ -58,7 +58,7 @@ function GoalsFamily() {
 
 	const handlerJoinFamily = () => {
 		dispatch(joinGoals(idG, setErrorMessage));
-		setMessage('Подождите, пока администратор одобрит вашу заявку');
+		setMessage('Подождите, пока мы подберем вам пати');
 	};
 
 	const handlerHavigateToParty = () => {

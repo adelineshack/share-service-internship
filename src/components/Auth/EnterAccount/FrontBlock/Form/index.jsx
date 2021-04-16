@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {  Link } from '@reach/router';
 import useInput from './../../../ValidationHook/index';
-// import Button from '../../../../Button';
 import Email from './../../../../Email/index';
 import Password from './../../../../Password/index';
 import { useDispatch } from "react-redux";
@@ -61,7 +60,7 @@ function Form()  {
 				<div className="validation-text">enter valid email</div>}
 			
 			{(email.isDirty && email.isEmpty) || (email.isDirty && email.emailError) ?
-			// true 				false			true			false
+	
 				<Email 
 					value={email.value}
 					onChange={e => email.onChange(e)}
@@ -118,12 +117,7 @@ function Form()  {
 				>
 						Sign in
 				</button>
-				{/* <Button 
-					type = "submit" 
-					text = "Sign up"
-
-					disabled = {!email.inputValid || !password.inputValid}
-				/> */}
+	
 				<div className="front__social">
 					<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g clipPath="url(#clip0)">
