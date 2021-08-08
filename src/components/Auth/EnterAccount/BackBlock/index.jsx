@@ -1,14 +1,8 @@
 // import './BackBlock.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { navigate } from '@reach/router';
 import Button from '../../../Button';
-// import EmailForm from '../../EmailForm';
-// import Email from '../../Email';
-// import Password from '../../Password';
-// import { CSSTransition } from 'react-transition-group';
-// import LoginForm from '../../LoginForm';
 
 
 function BackBlock({title, text, btnContent})  {
@@ -28,7 +22,7 @@ function BackBlock({title, text, btnContent})  {
 				onSubmit={event => {
 					event.preventDefault();
 					event.target.reset();
-					navigate('/');
+					navigate('/auth');
 				}}
 			>
 				<Button type="submit" text={btnContent}/>

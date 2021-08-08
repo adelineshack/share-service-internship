@@ -1,23 +1,20 @@
-import './App.scss';
 import React from 'react';
-import Auth from '../Auth';
-
-
+import { Router } from '@reach/router';
+import './App.scss';
+import '../page/page.scss';
+import Page from '../page/page';
+import Auth from './../Auth/index';
 
 
 function App() {
-	// axios.get('https://share-service.mircod.one/api/goal/categories/')
-	// 	.then(function (response) {
-	// 		console.log(response);
-	// 	})
-	// 	.catch(function (error) {
-	// 		console.log(error);
-	// 	});
+		
 	return (
 		<div className="App">
-			<Auth />
+			<Router>
+				<Page path="/*" />
+				<Auth path="/auth/*" />
+			</Router>
 		</div>
-
 	);
 }
 

@@ -1,0 +1,17 @@
+// модалка удаления окна
+.attention-container-delete {
+	position: absolute;
+	width: 100%;
+	backdrop-filter: blur(5px);
+	z-index: 3;
+	display: none;
+}
+.attention-container-delete.open {
+	display: block;
+	z-index: 9500;
+	width: 100%;
+	height: 100%;
+}
+.attention-container-delete.close {
+	display: none;
+}

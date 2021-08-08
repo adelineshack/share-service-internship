@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {  Link } from '@reach/router';
 import useInput from './../../../ValidationHook/index';
-// import Button from '../../../../Button';
 import Email from './../../../../Email/index';
 import Password from './../../../../Password/index';
 import { useDispatch } from "react-redux";
 import { enterUser } from '../../../../../store/actions';
+
+
 
 //CreateAccount
 
 function Form()  {
 	const email = useInput('', {isEmpty: true, minLength: 5, isEmail: true});
 	const password = useInput('', {isEmpty: true, minLength: 5});
+	const [error, setError] = useState('');
+	// const [isChecked, setIsChecked] = useState(false);
 
 	const dispatch = useDispatch();
 
+	// console.log(isChecked);
+
+	const handleError = () => {
+	
+		setError('Incorrect email or password');
+	
+	};
+	
+	
 	
 	const handleEnter = () => {
 		
@@ -24,9 +36,10 @@ function Form()  {
 			email: email.value,
 			password: password.value,
 		};	
-		dispatch(enterUser(newUserData));
 		
+		dispatch(enterUser(newUserData, handleError));
 	};
+	
 	return (
 		
 		<form 
@@ -38,13 +51,17 @@ function Form()  {
 			}}
 		>
 			{/* Email  */}
+
+			<div className = 'error-message'>{ error }</div>
+
+			
 			{(email.isDirty && email.isEmpty) && 
 				<div className="validation-text">empty field</div>}
 			{(email.isDirty && email.emailError) && 
 				<div className="validation-text">enter valid email</div>}
 			
 			{(email.isDirty && email.isEmpty) || (email.isDirty && email.emailError) ?
-			// true 				false			true			false
+	
 				<Email 
 					value={email.value}
 					onChange={e => email.onChange(e)}
@@ -85,12 +102,17 @@ function Form()  {
 			
 			{/* Кнопка */}
 			<label className="front__label">
-				<input className="front__checkbox" name="checkbox" type="checkbox"/>
+				<input 
+					// onChange = { () => setIsChecked(!isChecked)} 
+					// checked={isChecked} 
+					className="front__checkbox" 
+					name="checkbox" type="checkbox"
+				/>
 				<span className="front__checkbox_new"></span>
 				<span className="front__remember">Запомнить меня</span>
 			</label>
 
-			<Link className="front__forgot" to='/recover-password'>Forgot password?</Link>
+			<Link className="front__forgot" to='/auth/recover-password'>Forgot password?</Link>
 
 			<div className="front__wrapper">
 				<button
@@ -101,12 +123,7 @@ function Form()  {
 				>
 						Sign in
 				</button>
-				{/* <Button 
-					type = "submit" 
-					text = "Sign up"
-
-					disabled = {!email.inputValid || !password.inputValid}
-				/> */}
+	
 				<div className="front__social">
 					<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g clipPath="url(#clip0)">

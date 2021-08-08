@@ -1,7 +1,4 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
-
-// import Button from '../../../Button';
+import React, {useState} from 'react';
 import useInput from './../../ValidationHook/index';
 import Email from '../../../Email';
 import { recoverUser } from '../../../../store/actions';
@@ -13,7 +10,13 @@ import { useDispatch } from "react-redux";
 function Form()  {
 	const email = useInput('', {isEmpty: true, minLength: 5, isEmail: true});
 	const dispatch = useDispatch();
+	const [error, setError] = useState('');
 
+	const handleError = () => {
+	
+		setError('Incorrect email');
+	
+	};
 	
 	const handleRecover = () => {
 		
@@ -21,7 +24,7 @@ function Form()  {
 		const newUserData = {
 			email: email.value,
 		};	
-		dispatch(recoverUser(newUserData));
+		dispatch(recoverUser(newUserData, handleError));
 		
 	};
 
@@ -38,6 +41,9 @@ function Form()  {
 
 			
 			{/* Email  */}
+			<div className = 'error-message'>{ error }</div>
+
+
 			{(email.isDirty && email.isEmpty) && 
 				<div className="validation-text">empty field</div>}
 			{(email.isDirty && email.emailError) && 
@@ -68,12 +74,7 @@ function Form()  {
 			>
 						send me email instructions
 			</button>
-			{/* <Button 
-				type = "submit" 
-				text = "Sign up"
-				disabled = {!email.inputValid}
-			/> */}
-			
+	
 		</form>
 		
 	);

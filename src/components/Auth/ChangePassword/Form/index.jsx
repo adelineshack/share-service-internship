@@ -17,24 +17,19 @@ function Form()  {
 	const newPassword = useInput('', {isEmpty: true, minLength: 5});
 	const confirmNewPassword = useInput('', {isEmpty: true, minLength: 5});
 	
-	
-	
-	
 	const tokenProps = useParams();
 	const token = tokenProps.token;
-	console.log(token);
 	
-
 
 	const dispatch = useDispatch();
 
 	
 	const handleNewPassword = () => {
 		
-		console.log('Кнопка работает');
+	
 		
 		const newUserData = {
-		// from your form
+		
 			token: token,
 			password: newPassword.value,
 			
@@ -42,7 +37,6 @@ function Form()  {
 		dispatch(newPasswordUser(newUserData));
 		
 	};
-	// console.log(newPassword.value);
 
 	return (
 		
