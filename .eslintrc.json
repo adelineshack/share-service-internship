@@ -1,5 +1,4 @@
 {
-    
     "env": {
         "browser": true,
         "es2021": true,
@@ -25,14 +24,11 @@
             "error",
             "tab"
         ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
         
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "react/prop-types": "off"
     }
 }

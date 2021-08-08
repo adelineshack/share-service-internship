@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 // import PropTypes from 'prop-types';
 import useInput from './../../../ValidationHook/index';
 // import Button from '../../../../Button';
@@ -15,9 +15,17 @@ function Form()  {
 	
 	const email = useInput('', {isEmpty: true, minLength: 5, isEmail: true});
 	const password = useInput('', {isEmpty: true, minLength: 5});
-
+	const [error, setError] = useState('');
 
 	const dispatch = useDispatch();
+
+	const handleError = () => {
+	
+		setError('The email already in use');
+	
+	};
+	
+
 	const handleRegistration = () => {
 		
 		console.log('Кнопка работает');
@@ -26,14 +34,10 @@ function Form()  {
 			email: email.value,
 			password: password.value,
 		};	
-		dispatch(registerUser(newUserData));
+		dispatch(registerUser(newUserData, handleError));
 	};
 
-	// useEffect(() => {
-	// 	dispatch(registerUser());
-		
-	// }, []);
-  
+	
 
 	return (
 
@@ -47,6 +51,8 @@ function Form()  {
 			}}
 		>
 			{/* Email  */}
+
+			<div className = 'error-message'>{ error }</div> 
 
 			{(email.isDirty && email.isEmpty) && 
 				<div className="validation-text">empty field</div>}
@@ -105,6 +111,7 @@ function Form()  {
 					// disabled = {!email.inputValid}
 					type = 'submit'
 					onClick = { handleRegistration }
+				
 				>
 					Sign up
 				</button>	

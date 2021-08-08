@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {  Link } from '@reach/router';
 import useInput from './../../../ValidationHook/index';
 // import Button from '../../../../Button';
@@ -7,14 +7,26 @@ import Password from './../../../../Password/index';
 import { useDispatch } from "react-redux";
 import { enterUser } from '../../../../../store/actions';
 
+
+
 //CreateAccount
 
 function Form()  {
 	const email = useInput('', {isEmpty: true, minLength: 5, isEmail: true});
 	const password = useInput('', {isEmpty: true, minLength: 5});
+	const [error, setError] = useState('');
+
 
 	const dispatch = useDispatch();
+	
 
+	const handleError = () => {
+	
+		setError('Incorrect email or password');
+	
+	};
+	
+	
 	
 	const handleEnter = () => {
 		
@@ -24,9 +36,10 @@ function Form()  {
 			email: email.value,
 			password: password.value,
 		};	
-		dispatch(enterUser(newUserData));
 		
+		dispatch(enterUser(newUserData, handleError));
 	};
+	
 	return (
 		
 		<form 
@@ -38,6 +51,10 @@ function Form()  {
 			}}
 		>
 			{/* Email  */}
+
+			<div className = 'error-message'>{ error }</div>
+
+			
 			{(email.isDirty && email.isEmpty) && 
 				<div className="validation-text">empty field</div>}
 			{(email.isDirty && email.emailError) && 
@@ -90,7 +107,7 @@ function Form()  {
 				<span className="front__remember">Запомнить меня</span>
 			</label>
 
-			<Link className="front__forgot" to='/recover-password'>Forgot password?</Link>
+			<Link className="front__forgot" to='/auth/recover-password'>Forgot password?</Link>
 
 			<div className="front__wrapper">
 				<button

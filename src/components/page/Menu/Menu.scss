@@ -1,0 +1,96 @@
+//left column
+
+.left-menu {
+	display: flex;
+	position: fixed;
+	left: 0;
+	top: 0;
+	justify-content: space-between;
+	height: 100vh;
+	cursor: pointer;
+	z-index: 100;
+	
+}
+.mini-menu {
+	width: 84px;
+	background-color: #2c353d;
+
+	.GoalMenu {
+		display: none;
+	}
+	.catalog-text {
+		display: none;
+	}
+	.parties-text {
+		display: none;
+	}
+}
+.mini-menu:hover {
+	width: 245px;
+	transition: all 0.2s ease-in-out;
+	z-index: 100;
+	.GoalMenu {
+		display: block;
+	}
+	.catalog-text {
+		display: block;
+	}
+	.parties-text {
+		display: block;
+	}
+}
+//развернутое меню
+.max-menu {
+	display: none;
+	position: absolute;
+	width: 245px;
+	height: 900px;
+	top: 0;
+	left: 0;
+	background-color: #2c353d;
+	opacity: 0;
+	cursor: pointer;
+}
+.icon {
+	padding-left: 23px;
+	padding-top: 34px;
+	width: 38.94px;
+	height: 34.14px;
+	position: fixed;
+}
+.catalog {
+	width: 36px;
+	height: 36px;
+	padding-top: 247px;
+	padding-left: 23px;
+	margin: 0;
+	position: fixed;
+}
+.catalog-text {
+	position: fixed;
+	top: 253.5px;
+	left: 93px;
+}
+.menu-text {
+	color: white;
+	font-size: 20px;
+	line-height: 23px;
+	font-weight: 100;
+}
+.myParties {
+	width: 36px;
+	height: 36px;
+	padding-top: 325px;
+	padding-left: 23px;
+	position: fixed;
+}
+.GoalMenu {
+	position: fixed;
+	padding-top: 34px;
+	padding-left: 79px;
+}
+.parties-text {
+	position: fixed;
+	margin-top: 331.5px;
+	margin-left: 93px;
+}
