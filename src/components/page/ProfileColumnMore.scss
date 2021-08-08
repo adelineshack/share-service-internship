@@ -1,0 +1,109 @@
+.profile-column-more.open {
+	display: block;
+	z-index: 500;
+	width: 25vw;
+}
+.profile-column-more.close {
+	display: none;
+}
+.input-more {
+	box-sizing: border-box;
+	width: 20vw;
+	height: 5vh;
+	background-color: #1e252b;
+	font-size: 16px;
+	line-height: 19px;
+	font-weight: 100;
+	border: 1px solid #c6c6c6;
+	border-radius: 5px;
+	padding-left: 1vw;
+}
+input {
+	color: #757575;
+}
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	height: 30vh;
+	width: 25vw;
+}
+.card-inputs {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	// height: 10vw;
+}
+.person-card-more {
+	position: absolute;
+	font-family: Roboto, sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 0px;
+}
+.card-photo {
+	padding-bottom: 15px;
+}
+.more-save {
+	width: 17.5vw;
+	height: 3.5vw;
+	//position: absolute;
+	top: 230px;
+	background-color: #5063ee;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 19px;
+	font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+		'Helvetica Neue', sans-serif;
+	font-size: 18px;
+	line-height: 21px;
+	color: #eeeeee;
+	border: none;
+}
+.more-save:hover {
+	cursor: pointer;
+}
+.more-change-password {
+	width: 17.5vw;
+	height: 3.5vw;
+	//position: absolute;
+}
+.more-change-password:hover {
+	cursor: pointer;
+}
+.more-delete {
+	width: 17.5vw;
+	height: 3.5vw;
+	//position: absolute;
+	background-color: #eb5757;
+}
+.more-delete:hover {
+	cursor: pointer;
+}
+.delete-change-buttons {
+	display: flex;
+	height: 20vh;
+	width: 25vw;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+.profile-column-more {
+	height: 50vh;
+	width: 25vw;
+	background-color: #2c353d;
+	position: absolute;
+	bottom: 0;
+	box-sizing: border-box;
+	z-index: 5;
+}
+.background img {
+	position: absolute;
+}
+.back-4 {
+	margin-top: 230px;
+}

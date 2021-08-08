@@ -1,0 +1,89 @@
+.container-max {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	min-height: 100vh;
+	width: 100vw;
+	background-color: #1e252b;
+	z-index: 1;
+	// overflow-x: hidden;
+	margin: 0;
+	font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+		'Helvetica Neue', sans-serif;
+}
+.back-block__default {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	justify-content: center;
+	width: 1190px;
+	margin: 0 auto;
+}
+.back-1 {
+
+	background-color: #2d9cdb;
+	opacity: 0.1;
+	border-radius: 64px;
+	// top: 101px;
+	// left: 114px;
+	height: 748px;
+	width: 970px;
+	z-index: 1;
+}
+.back-2 {
+
+	background-color: #2d9cdb;
+	opacity: 0.1;
+	border-radius: 64px;
+	// top: 101px;
+	// left: 1168px;
+	height: 748px;
+	width: 304px;
+}
+
+.tools {
+	position: fixed;
+	top: 34px;
+	right: 47px;
+	z-index: 105;
+}
+.bell:hover {
+	cursor: pointer;
+}
+.person {
+	margin-left: 22px;
+}
+.person:hover {
+	cursor: pointer;
+}
+// sign out модальное окно
+.attentionContainer {
+	position: fixed;
+	width: 100%;
+	backdrop-filter: blur(5px);
+	z-index: 500;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	//display: none;
+}
+.attentionContainer.open {
+	display: block;
+	z-index: 500;
+	width: 100%;
+}
+.attentionContainer.close {
+	display: none;
+}
+.singOutAttention {
+	background-color: #1e252b;
+	z-index: 777;
+	width: 578px;
+	height: 305px;
+	border: 2px solid #5063ee;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 43px;
+	margin: 297px 431px;
+}

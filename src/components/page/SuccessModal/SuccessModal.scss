@@ -1,0 +1,41 @@
+.attention-container-success {
+	position: absolute;
+	width: 100%;
+	backdrop-filter: blur(5px);
+	z-index: 500;
+}
+.attention-container-success.open {
+	display: block;
+	z-index: 500;
+	width: 100%;
+}
+.attention-container-success.close {
+	display: none;
+}
+.success {
+	width: 211px;
+	height: 46px;
+	font-weight: 100;
+	text-align: center;
+	margin-top: -17.5px;
+}
+.white-text {
+	color: #eeeeee;
+	font-size: 38px;
+	line-height: 44px;
+	font-weight: 100;
+	margin-top: 56px;
+	margin-bottom: 49px;
+}
+.successAttention {
+	background-color: #1e252b;
+	z-index: 500;
+	width: 578px;
+	height: 305px;
+	border: 2px solid #5063ee;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 43px;
+	margin: 297px 431px;
+}

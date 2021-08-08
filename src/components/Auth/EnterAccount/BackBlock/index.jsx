@@ -28,7 +28,7 @@ function BackBlock({title, text, btnContent})  {
 				onSubmit={event => {
 					event.preventDefault();
 					event.target.reset();
-					navigate('/');
+					navigate('/auth');
 				}}
 			>
 				<Button type="submit" text={btnContent}/>

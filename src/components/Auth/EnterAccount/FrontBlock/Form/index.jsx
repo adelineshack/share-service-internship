@@ -7,6 +7,8 @@ import Password from './../../../../Password/index';
 import { useDispatch } from "react-redux";
 import { enterUser } from '../../../../../store/actions';
 
+
+
 //CreateAccount
 
 function Form()  {
@@ -14,7 +16,8 @@ function Form()  {
 	const password = useInput('', {isEmpty: true, minLength: 5});
 
 	const dispatch = useDispatch();
-
+	
+	
 	
 	const handleEnter = () => {
 		
@@ -24,9 +27,10 @@ function Form()  {
 			email: email.value,
 			password: password.value,
 		};	
-		dispatch(enterUser(newUserData));
 		
+		dispatch(enterUser(newUserData));
 	};
+	
 	return (
 		
 		<form 
@@ -90,7 +94,7 @@ function Form()  {
 				<span className="front__remember">Запомнить меня</span>
 			</label>
 
-			<Link className="front__forgot" to='/recover-password'>Forgot password?</Link>
+			<Link className="front__forgot" to='/auth/recover-password'>Forgot password?</Link>
 
 			<div className="front__wrapper">
 				<button

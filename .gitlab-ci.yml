@@ -1,0 +1,34 @@
+image: tiangolo/docker-with-compose
+
+services:
+  - docker:19.03.12-dind
+
+stages:
+  - deploy
+
+
+.base_deploy_staging: &base_deploy_staging
+  stage: deploy
+  script:
+    - docker-compose -f docker-compose.yml -p share_service_frontend stop
+    - docker-compose -f docker-compose.yml -p share_service_frontend rm -f
+    - docker-compose -f docker-compose.yml -p share_service_frontend build
+    - docker-compose -f docker-compose.yml -p share_service_frontend up -d --remove-orphans
+  environment:
+    name: Staging
+    url: https://kitbucket.ru/
+  tags:
+    - deploy
+    - staging
+
+deploy_staging_develop:
+  <<: *base_deploy_staging
+  only:
+    - develop
+
+deploy_staging:
+  <<: *base_deploy_staging
+  when: manual
+  except:
+    - master
+    - develop

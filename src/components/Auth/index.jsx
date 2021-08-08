@@ -1,8 +1,6 @@
 import './Auth.scss';
 import React, { useEffect } from 'react';
 import {  Router } from '@reach/router';
-// import PropTypes from 'prop-types';
-
 import CreateAccount from './CreateAccount/index';
 import SuccessAuth from './CreateAccount/SuccessAuth';
 import EnterAccount from './EnterAccount';
@@ -10,11 +8,6 @@ import RecoverPassword from './RecoverPassword';
 import ReplyRecover from './RecoverPassword/ReplyRecover/index';
 import ChangePassword from './ChangePassword';
 import ChangedPassword from './ChangePassword/ChangedPassword';
-// import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import Profile from './../Profile/index';
-
-
-
 
 
 function Auth()  {
@@ -57,16 +50,13 @@ function Auth()  {
 				{/* <div className="mouse-parallax-bg"> */}
 				<div className="container">
 					<Router>
-					
 						<CreateAccount path="/" exact/>
 						<SuccessAuth path="/success-auth" />
-						<EnterAccount path="/enter-account" />
+						<EnterAccount path="/enter-account" default />
 						<RecoverPassword path="/recover-password" />
 						<ReplyRecover path="/reply-recover" />
-						<ChangePassword path="/auth/forgot_password/:token" />
+						<ChangePassword path="/forgot_password/:token" />
 						<ChangedPassword path="/changed-password" /> 
-						<Profile path="/profile" />
-						
 					</Router>
 				</div>
 			</div>

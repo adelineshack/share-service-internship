@@ -1,0 +1,164 @@
+.body-back-1 {
+	position: absolute;
+	width: 95vw;
+	height: 35vh;
+	right: 0;
+	background-size: cover;
+	background: linear-gradient(
+		180deg,
+		rgba(30, 37, 43, 0) 0%,
+		rgba(30, 37, 43, 0.288409) 39.58%,
+		rgba(30, 37, 43, 0.81) 68.75%,
+		#1e252b 93.23%
+	);
+	z-index: 1;
+	// filter: blur(3px);
+}
+.body-back {
+	width: 95vw;
+}
+.body-content-container {
+	right: 0;
+	z-index: 3;
+	height: 100vh;
+	width: 95vw;
+	position: absolute;
+	margin: 0;
+}
+.body-content {
+	position: absolute;
+	margin-top: 70vh;
+	margin-left: 4.5vw;
+	width: 85vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+	z-index: 456;
+}
+.goal-text {
+	position: absolute;
+	color: #868686;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 24px;
+	margin-left: 10vw;
+	margin-right: 10vw;
+	margin-top: 45vh;
+	z-index: 23;
+}
+.goal_famimly_title {
+	position: absolute;
+	display: flex;
+	flex-direction: row;
+	z-index: 322;
+}
+.goalIconImg {
+	max-width: 5vw;
+	border-radius: 50px;
+	max-height: 7vh;
+	position: absolute;
+}
+.goalIcon {
+	width: 5vw;
+	height: 10vh;
+	z-index: 323;
+	position: absolute;
+	background-color: #1e252b;
+	border-radius: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 11vh;
+	margin-right: 16vw;
+}
+.goalBG {
+	background-size: contain;
+	width: 22vw;
+	height: 24vh;
+	position: absolute;
+	border-radius: 20px;
+}
+.card {
+	width: 22vw;
+	height: 24vh;
+
+	border-radius: 20px;
+}
+.card:after {
+	content: '';
+	width: 22vw;
+	height: 24vh;
+	position: absolute;
+	background: transparent;
+	background-image: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0) 16.67%,
+		#000000 100%
+	);
+	//opacity: 0.5;
+	border-radius: 20px;
+}
+.body-goal {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+.titleDescr {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	width: 15vw;
+	height: 20vh;
+	align-self: flex-start;
+	margin-left: 30vw;
+	// margin-top: 9vh;
+	justify-content: flex-end;
+}
+.goal-card-title {
+	font-style: normal;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 36px;
+	color: white;
+	z-index: 394938;
+}
+.goalDescription {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 19px;
+	color: #868686;
+	z-index: 394938;
+}
+.spotify {
+	position: absolute;
+	margin-top: 20vh;
+	margin-left: 10vw;
+	z-index: 6547;
+}
+.spotify-title {
+	position: absolute;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 45px;
+	line-height: 55px;
+	color: #eeeeee;
+	margin-top: 27vh;
+	margin-left: 23vw;
+}
+.goal-button-join {
+	position: absolute;
+	margin-top: 27vh;
+	left: 65vw;
+}
+.joined {
+	position: absolute;
+	margin-top: 58vh;
+	margin-left: 10vw;
+	width: 30vw;
+	height: 10vh;
+	background-color: antiquewhite;
+	color: black;
+}
